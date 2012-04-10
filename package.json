@@ -1,0 +1,40 @@
+{
+  "name": "grunt-contrib",
+  "description": "A collection of common grunt tasks.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/gruntjs/grunt-contrib",
+  "author": {
+    "name": "\"Cowboy\" Ben Alman",
+    "url": "http://benalman.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gruntjs/grunt-contrib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gruntjs/grunt-contrib/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/gruntjs/grunt-contrib/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "grunt.js",
+  "bin": "bin/grunt-contrib",
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "grunt": "~0.3.8"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.8"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
