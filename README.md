@@ -1,6 +1,6 @@
 # grunt-contrib
 
-A collection of common grunt tasks.
+A collection of general use grunt tasks.
 
 ## Getting Started
 Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-contrib`
@@ -24,5 +24,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 _(Nothing yet)_
 
 ## License
-Copyright (c) 2012 "Cowboy" Ben Alman  
+Copyright (c) 2012 "Cowboy" Ben Alman & contributors.
 Licensed under the MIT license.
