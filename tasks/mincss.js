@@ -32,11 +32,11 @@ module.exports = function(grunt) {
 
   //grunt.registerHelper('')
 
-  grunt.registerHelper("mincss", function(max) {
+  grunt.registerHelper("mincss", function(css_string) {
     var cleanCSS = require("clean-css");
 
     // Minify and combine all CSS
-    return cleanCSS.process(max);
+    return cleanCSS.process(css_string);
   });
 
 };
