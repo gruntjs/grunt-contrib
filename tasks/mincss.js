@@ -3,7 +3,7 @@
  * Task: mincss
  * Description: Minify CSS files
  * Dependencies: clean-css
- * Contributor(s): @tbranyen
+ * Contributor(s): @tbranyen, @thomasaboyt
  *
  */
 
@@ -17,22 +17,26 @@ module.exports = function(grunt) {
 
     // Minify CSS.
     var files = file.expand(this.data);
-    file.write(this.target, grunt.helper('mincss', files));
+
+    var max = grunt.helper('concat', files);
+    var min = grunt.helper('mincss', max);
+    file.write(this.target, min);
 
     // Fail task if errors were logged.
     if (grunt.errors) { return false; }
 
     // Otherwise, print a success message.
     log.writeln("File \"" + this.target + "\" created.");
+    grunt.helper('min_max_info', min, max);
   });
 
-  grunt.registerHelper("mincss", function(files) {
+  //grunt.registerHelper('')
+
+  grunt.registerHelper("mincss", function(max) {
     var cleanCSS = require("clean-css");
 
     // Minify and combine all CSS
-    return files ? files.map(function(filepath) {
-      return cleanCSS.process(file.read(filepath));
-    }).join("") : "";
+    return cleanCSS.process(max);
   });
 
 };
