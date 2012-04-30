@@ -15,8 +15,8 @@ module.exports = function(grunt) {
   var lessError = function(e, src) {
     var pos = '['.red + ('L' + e.line).yellow + ':'.red + ('C' + e.column).yellow + ']'.red;
     grunt.log.writeln(src.yellow + ': ' + pos + ' ' + e.message.yellow);
-    grunt.warn("Error compiling less.", 1)
-  }
+    grunt.warn("Error compiling less.", 1);
+  };
 
   grunt.registerMultiTask("less",
     "Compile LESS files to CSS", function() {
@@ -24,9 +24,10 @@ module.exports = function(grunt) {
     // load libraries
     var less = require("less");
     var data = this.data;
+    var options = grunt.helper('options','less');
 
     // initialize LESS parser
-    var parser = new(less.Parser)(data.options);
+    var parser = new(less.Parser)(options);
 
     // make sure task runs until parser is completely finished (imports are processed asynchronously)
     var done = this.async();
@@ -50,12 +51,11 @@ module.exports = function(grunt) {
         // in this step, more complex errors like mixins not existing are caught.
         try {
           var css = tree.toCSS();
+          grunt.file.write(dest,css);
         }
         catch (toCSS_error) {
           lessError(toCSS_error, src);
         }
-        // write contents
-        grunt.file.write(dest,css);
 
         // flag task as complete
         done();
