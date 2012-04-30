@@ -13,21 +13,15 @@ module.exports = function(grunt) {
       compile: {
         files: {
           'fixtures/output/less.css': 'fixtures/less/style.less'
+        },
+        options: {
+          paths: ['fixtures/less/include']
         }
-      },
-      options: {
-        paths: ['fixtures/less/include']
       }
     }
 
   });
 
-  // Helper for consistent options key access across contrib tasks.
-  grunt.registerHelper("options", function(task) {
-    return grunt.config(task+'.options') || grunt.config('options.'+task);
-  });
-
   grunt.loadTasks("../tasks");
-
 
 };
