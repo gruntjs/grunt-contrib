@@ -10,6 +10,11 @@ module.exports = function(grunt) {
 
   // Helper to run contrib tasks for testing.
   grunt.registerHelper('testContribTask',function(task, done) {
+    var path = require('path');
+    var fs = require('fs');
+    if(!path.existsSync('test/fixtures/output')) {
+      fs.mkdirSync('test/fixtures/output');
+    }
     grunt.utils.spawn(
       {
         cmd: "grunt",

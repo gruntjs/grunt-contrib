@@ -18,7 +18,9 @@ module.exports = function(grunt) {
           paths: ['fixtures/less/include']
         }
       }
-    }
+    },
+
+    clean: ['fixtures/output']
 
   });
 
