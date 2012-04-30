@@ -15,10 +15,27 @@ grunt.loadNpmTasks('grunt-contrib');
 [getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
 
 ## Documentation
-_(Coming soon)_
+See the docs dir.
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
+
+#### Configuration
+In order to ensure a consistent configuration style, task submissions should retreive options with `grunt.helper('options', this);`.  This will search within the current task (or subtask) object for an `options` key.  If none is found, the helper will traverse up to the global `options` entry, looking for a key that matches the task name.
+```javascript
+task: {
+  subtask: {
+    options: { param: override },
+  },
+}
+options: {
+  task: {
+    param: default
+  }
+}
+```
+
+#### Testing
+Tests must be included with your submission.  New tasks can be added to the config in `test/grunt.js`, please see existing tests for guidance.  *Currently, testing with grunt is a bit cumbersome--this will be addressed in a future release.*
 
 ## Release History
 _(Nothing yet)_
