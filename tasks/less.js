@@ -25,7 +25,7 @@ module.exports = function(grunt) {
     var less = require("less");
     var data = this.data;
 
-    var options = grunt.helper('options',this.nameArgs);
+    var options = grunt.helper('options',this);
 
     console.log(options);
 
