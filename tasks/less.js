@@ -24,7 +24,10 @@ module.exports = function(grunt) {
     // load libraries
     var less = require("less");
     var data = this.data;
-    var options = grunt.helper('options','less');
+
+    var options = grunt.helper('options',this.nameArgs);
+
+    console.log(options);
 
     // initialize LESS parser
     var parser = new(less.Parser)(options);

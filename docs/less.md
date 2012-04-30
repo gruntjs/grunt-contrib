@@ -10,12 +10,12 @@ specifies directories to scan for @import directives.
 ``` javascript
 less: {
   compile: {
-    options: {
-      paths: ['assets/css']
-    },
     files: {
       'path/to/result.css': 'path/to/source.less'
+    },
+    options: {
+      paths: ['assets/css']
     }
   }
-},
+}
 ```
