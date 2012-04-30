@@ -12,7 +12,7 @@ exports.mincss = {
     var result = grunt.file.read('test/fixtures/output/less.css');
 
     test.expect(1);
-    test.equal(expect,result,'should concat and minify and array of css files in order using clean-css');
+    test.equal(expect,result,'should compile less, with the ability to handle imported files from alternate include paths');
     test.done();
 
   }
