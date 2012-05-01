@@ -15,7 +15,7 @@ grunt.loadNpmTasks('grunt-contrib');
 [getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
 
 ## Documentation
-See the docs dir.
+Grunt-contrib is currently alpha-quality software.  See the docs dir for more information.  
 
 ## Contributing
 
@@ -38,7 +38,8 @@ options: {
 Tests must be included with your submission.  New tasks can be added to the config in `test/grunt.js`, please see existing tests for guidance.  *Currently, testing with grunt is a bit cumbersome--this will be addressed in a future release.*
 
 ## Release History
-_(Nothing yet)_
+
+2012/01/11 - v0.0.1 - Alpha release.
 
 ## License
 Copyright (c) 2012 "Cowboy" Ben Alman & contributors.
