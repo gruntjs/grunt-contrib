@@ -6,10 +6,5 @@
 Inside your `grunt.js` file, add a section named `clean`
 
 ``` javascript
-clean: {
-  key: {
-
-  }
-},
-
+clean: ['/path/to/dir/one','/path/to/dir/two']
 ```
