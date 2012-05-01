@@ -25,9 +25,8 @@ module.exports = function(grunt) {
     var less = require("less");
     var data = this.data;
 
+    // load options from task or global options key
     var options = grunt.helper('options',this);
-
-    console.log(options);
 
     // initialize LESS parser
     var parser = new(less.Parser)(options);
