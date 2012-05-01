@@ -39,7 +39,7 @@ Tests must be included with your submission.  New tasks can be added to the conf
 
 ## Release History
 
-2012/01/11 - v0.0.1 - Alpha release.
+2012/05/01 - v0.0.1 - Alpha release.
 
 ## License
 Copyright (c) 2012 "Cowboy" Ben Alman & contributors.
