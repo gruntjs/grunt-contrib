@@ -1,20 +1,17 @@
-var grunt = require('grunt');
+var grunt = require("grunt");
 
-exports.mincss = {
+exports.clean = {
 
   setUp: function(done) {
-    grunt.helper('testContribTask','clean',done);
+    grunt.helper("testContribTask", "clean", done);
   },
 
   helper: function(test) {
+    var path = require("path");
+    var result = path.existsSync("test/fixtures/output");
 
-    var path = require('path');
-    var result = path.existsSync('test/fixtures/output');
-
-    test.expect(1);
-    test.equal(result,false,'should rm -rf a directory');
+    test.equal(result, false, "should rm -rf a directory");
     test.done();
-
   }
 
 };

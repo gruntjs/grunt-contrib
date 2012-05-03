@@ -2,18 +2,18 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     test: {
-      files: ['test/*_test.js']
+      files: ["test/*_test.js"]
     }
   });
 
-  grunt.loadTasks('tasks');
+  grunt.loadTasks("tasks");
 
   // Helper to run contrib tasks for testing.
-  grunt.registerHelper('testContribTask',function(task, done) {
-    var path = require('path');
-    var fs = require('fs');
-    if(!path.existsSync('test/fixtures/output')) {
-      fs.mkdirSync('test/fixtures/output');
+  grunt.registerHelper("testContribTask", function(task, done) {
+    var path = require("path");
+    var fs = require("fs");
+    if (!path.existsSync("test/fixtures/output")) {
+      fs.mkdirSync("test/fixtures/output");
     }
     grunt.utils.spawn(
       {
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
         args: [ "--config", "test/grunt.js", "--base", "test", task ]
       },
       function (err, result) {
-        if(err !== null) {
+        if (err !== null) {
           console.log(result.stdout);
         }
         done();
@@ -29,6 +29,6 @@ module.exports = function(grunt) {
     );
   });
 
-  grunt.registerTask('default', 'test');
+  grunt.registerTask("default", "test");
 
 };
