@@ -1,5 +1,9 @@
 module.exports = function(grunt) {
   grunt.initConfig({
+    pkg: {
+      version: "0.3.9"
+    },
+
     test: {
       tasks: ["*_test.js"],
       clean: ['clean_task.js']
@@ -80,6 +84,20 @@ module.exports = function(grunt) {
       }
     },
 
+    zip: {
+      compress: {
+        options: {
+          level: 1
+        },
+        files: {
+          'fixtures/output/zip_test_files.zip': 'fixtures/zip/*',
+          'fixtures/output/zip_test_folders.zip': 'fixtures/zip/**',
+          'fixtures/output/zip_test_v<%= pkg.version %>.zip': 'fixtures/zip/**',
+          'fixtures/output/zip_test_array.zip': ['fixtures/zip/test.*','fixtures/zip/folder_one/*']
+        }
+      }
+    },
+
     options: {
       jade: {
         filename: 'fixtures/jade/inc/'
@@ -88,5 +106,5 @@ module.exports = function(grunt) {
   });
 
   grunt.loadTasks("../tasks");
-  grunt.registerTask("default", "clean test:clean coffee jade jst less mincss stylus test:tasks");
+  grunt.registerTask("default", "clean test:clean coffee jade jst less mincss stylus zip test:tasks");
 };
