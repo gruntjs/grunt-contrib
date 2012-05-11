@@ -16,7 +16,13 @@ module.exports = function(grunt) {
     },
 
     jade: {
-      "fixtures/output": "fixtures/jade/jade.jade"
+      compile: {
+        src: "fixtures/jade/jade.jade",
+        dest: "fixtures/output",
+        data: {
+          test: true
+        }
+      }
     },
 
     less: {

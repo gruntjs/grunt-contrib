@@ -23,3 +23,23 @@ options: {
   }
 },
 ```
+
+Set the data passed to the compiled jade template when it is rendered in a
+property named `data` on the target. Any data can be passed to the template.
+This can be used to generate a debug file and a release file from the same
+template, by using this:
+
+``` javascript
+jade: {
+  debug: {
+    src: "test.jade",
+    dest: "debug/",
+    data: { debug: true }
+  },
+  release: {
+    src: "test.jade",
+    dest: "release/",
+    data: { debug: true }
+  }
+}
+```
