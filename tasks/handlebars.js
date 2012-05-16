@@ -9,18 +9,17 @@
 
 module.exports = function(grunt) {
 
-  var config = grunt.config;
-  var file = grunt.file;
-  var log = grunt.log;
+  var config = grunt.config,
+        file = grunt.file,
+         log = grunt.log;
 
   grunt.registerMultiTask("handlebars",
     "Compile underscore templates to JST file", function() {
 
-    // If namespace is specified use that, otherwise fallback
-    var namespace = config("meta.handlebars.namespace") || "JST";
+    var options = grunt.helper("options", this);
+      namespace = options.namespace || "JST";
+          files = file.expand(this.data);
 
-    // Create JST file.
-    var files = file.expand(this.data);
     file.write(this.target, grunt.helper("handlebars", files, namespace));
 
     // Fail task if errors were logged.

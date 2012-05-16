@@ -9,25 +9,21 @@
 
 module.exports = function(grunt) {
 
-  var file = grunt.file;
-  var log = grunt.log;
-  var config = grunt.config;
+  var file = grunt.file,
+       log = grunt.log;
 
   var _ = grunt.utils._;
 
   grunt.registerMultiTask("jst",
     "Compile underscore templates to JST file", function() {
 
-    // If namespace is specified use that, otherwise fallback
-    var namespace = config("options.jst.namespace") || "JST";
-    // If template settings are available use those
-    var templateSettings = config("options.jst.templateSettings") || null;
-    // Expand files to full paths
-    var files = file.expand(this.data);
+    var options = grunt.helper("options", this),
+      namespace = options.namespace || "JST",
+       settings = options.templateSettings || null,
+          files = file.expand(this.data);
 
     // Create JST file.
-    file.write(this.target, grunt.helper("jst", files, namespace,
-      templateSettings));
+    file.write(this.target, grunt.helper("jst", files, namespace, settings));
 
     // Fail task if errors were logged.
     if (grunt.errors) { return false; }

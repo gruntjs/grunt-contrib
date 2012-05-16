@@ -9,18 +9,17 @@
 
 module.exports = function(grunt) {
 
-  var file = grunt.file;
-  var log = grunt.log;
-
-  var _ = grunt.utils._;
-  var async = grunt.utils.async;
+  var file = grunt.file,
+       log = grunt.log,
+         _ = grunt.utils._,
+     async = grunt.utils.async;
 
   grunt.registerMultiTask("stylus",
     "Compile Stylus files into CSS", function() {
 
-    var files = this.data.files;
-    var options = this.data.options || {};
-    var done = this.async();
+    var options = grunt.helper('options', this),
+          files = this.data.files,
+           done = this.async();
 
     async.forEach(Object.keys(files), function(dest, callback) {
       var src = files[dest];
@@ -43,8 +42,9 @@ module.exports = function(grunt) {
 
   // Compiles a single stylus file and returns the resulting CSS via a callback.
   grunt.registerHelper("stylus", function(src, options, callback) {
-    var stylus = require("stylus");
-    var s = stylus(src);
+
+    var stylus = require("stylus"),
+             s = stylus(src);
 
     _.each(options, function(value, key) {
       s.set(key, value);

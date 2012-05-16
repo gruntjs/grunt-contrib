@@ -9,18 +9,17 @@
 
 module.exports = function(grunt) {
 
-  var file = grunt.file;
-  var log = grunt.log;
-
-  var _ = grunt.utils._;
-  var async = grunt.utils.async;
+  var file = grunt.file,
+       log = grunt.log,
+         _ = grunt.utils._,
+     async = grunt.utils.async;
 
   grunt.registerMultiTask("coffee",
     "Compile CoffeeScript files into JavaScript", function () {
 
-    var files = this.data.files;
-    var options = this.data.options || {};
-    var done = this.async();
+    var options = grunt.helper("options", this),
+          files = this.data.files,
+           done = this.async();
 
     async.forEach(Object.keys(files), function(dest, callback) {
       var src = files[dest];

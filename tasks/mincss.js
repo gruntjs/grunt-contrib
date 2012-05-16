@@ -9,17 +9,16 @@
 
 module.exports = function(grunt) {
 
-  var log = grunt.log;
-  var file = grunt.file;
+  var log = grunt.log,
+     file = grunt.file;
 
   grunt.registerMultiTask("mincss",
     "Minify CSS files", function() {
 
-    // Minify CSS.
-    var files = file.expand(this.data);
+    var files = file.expand(this.data),
+          max = grunt.helper('concat', files),
+          min = grunt.helper('mincss', max);
 
-    var max = grunt.helper('concat', files);
-    var min = grunt.helper('mincss', max);
     file.write(this.target, min);
 
     // Fail task if errors were logged.
