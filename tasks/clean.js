@@ -12,10 +12,16 @@ module.exports = function(grunt) {
   var rimraf = require("rimraf");
   var log = grunt.log;
 
-  grunt.registerTask("clean",
+  grunt.registerMultiTask("clean",
     "Clear files and folders", function() {
+    var config = grunt.config.get('clean');
+    var files = this.data;
+    var isArray = typeof grunt.utils !== 'undefined' ? grunt.utils._.isArray : grunt.util._.isArray;
 
-    var files = grunt.config("clean");
+    // check if we have a valid config & an invalid target specific config
+    if (isArray(config) === true && isArray(this.data) === false) {
+      files = config;
+    }
 
     files.forEach(function(file) {
       grunt.helper("clean", file);
