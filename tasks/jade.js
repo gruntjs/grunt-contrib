@@ -27,7 +27,7 @@ module.exports = function(grunt) {
     var data = this.data.data;
 
     file.expand(files).forEach(function (filename) {
-      var opts = _.extend(options, {filename: filename});
+      var opts = _.extend({filename: filename}, options);
       var html = grunt.helper("jade", file.read(filename), opts, data);
 
       var basename = path.basename(filename);

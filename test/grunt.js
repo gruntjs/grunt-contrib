@@ -16,12 +16,16 @@ module.exports = function(grunt) {
     },
 
     jade: {
-      compile: {
+      simple: {
         src: "fixtures/jade/jade.jade",
         dest: "fixtures/output",
         data: {
           test: true
         }
+      },
+      include: {
+        src: "fixtures/jade/jadeInclude.jade",
+        dest: "fixtures/output"
       }
     },
 
@@ -53,7 +57,14 @@ module.exports = function(grunt) {
           compress: true
         }
       }
+    },
+    
+    options: {
+      jade: {
+        filename: 'fixtures/jade/inc/'
+      }
     }
+    
 
   });
 
