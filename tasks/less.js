@@ -10,26 +10,21 @@
 module.exports = function(grunt) {
 
   var file = grunt.file;
-  var log = grunt.log;
-
-  var lessError = function(e, src) {
-    var pos = '['.red + ('L' + e.line).yellow + ':'.red + ('C' + e.column).yellow + ']'.red;
-    grunt.log.writeln(src.yellow + ': ' + pos + ' ' + e.message.yellow);
-    grunt.warn("Error compiling less.", 1);
-  };
+       log = grunt.log;
 
   grunt.registerMultiTask("less",
     "Compile LESS files to CSS", function() {
 
-    // load libraries
-    var less = require("less");
-    var data = this.data;
+    var lessError = function(e, src) {
+      var pos = '['.red + ('L' + e.line).yellow + ':'.red + ('C' + e.column).yellow + ']'.red;
+      grunt.log.writeln(src.yellow + ': ' + pos + ' ' + e.message.yellow);
+      grunt.warn("Error compiling less.", 1);
+    };
 
-    // load options from task or global options key
-    var options = grunt.helper('options',this);
-
-    // initialize LESS parser
-    var parser = new(less.Parser)(options);
+    var options = grunt.helper("options", this),
+           less = require("less"),
+           data = this.data,
+         parser = new(less.Parser)(options);
 
     // make sure task runs until parser is completely finished (imports are processed asynchronously)
     var done = this.async();

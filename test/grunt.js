@@ -19,14 +19,20 @@ module.exports = function(grunt) {
       simple: {
         src: "fixtures/jade/jade.jade",
         dest: "fixtures/output",
-        data: {
-          test: true
+        options: {
+          data: {
+            test: true
+          }
         }
       },
       include: {
         src: "fixtures/jade/jadeInclude.jade",
         dest: "fixtures/output"
       }
+    },
+
+    jst: {
+      'fixtures/output/jst.js': ['fixtures/jst/*.html']
     },
 
     less: {
@@ -58,13 +64,13 @@ module.exports = function(grunt) {
         }
       }
     },
-    
+
     options: {
       jade: {
         filename: 'fixtures/jade/inc/'
       }
     }
-    
+
 
   });
 

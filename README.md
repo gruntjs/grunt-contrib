@@ -15,23 +15,12 @@ grunt.loadNpmTasks('grunt-contrib');
 [getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
 
 ## Documentation
-Grunt-contrib is currently alpha-quality software.  See the docs dir for more information.  
+Grunt-contrib is currently alpha-quality software.  See the docs dir for more information.
 
 ## Contributing
 
 #### Configuration
-In order to ensure a consistent configuration style, task submissions should retreive options with `grunt.helper('options', this);`.  This will search within the current task (or subtask) object for an `options` key.  If none is found, the helper will traverse up to the global `options` entry, looking for a key that matches the task name.
-```javascript
-task: {
-  subtask: {
-    options: { param: override },
-  },
-}
-options: {
-  task: {
-    param: default
-  }
-}
+In order to ensure a consistent configuration style, all grunt-contrib task submissions should retreive their optional paramters using the [grunt helper 'options'](/gruntjs/grunt-contrib/blob/master/docs/options.md).
 ```
 
 #### Testing

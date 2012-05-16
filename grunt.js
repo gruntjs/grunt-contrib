@@ -3,6 +3,26 @@ module.exports = function(grunt) {
   grunt.initConfig({
     test: {
       files: ["test/*_test.js"]
+    },
+
+    /* this is such a horrible mess. this should be in the test/grunt.js */
+    task: {
+      subtask: {
+        options: {
+          param: 'override all'
+        }
+      }
+    },
+
+    options: {
+      task: {
+        param: 'default',
+        setting: 'set',
+        global: 'set',
+        subtask: {
+          setting: 'subtask'
+        }
+      }
     }
   });
 
