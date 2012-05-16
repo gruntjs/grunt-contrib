@@ -7,9 +7,9 @@ exports.jade = {
   },
 
   helper: function(test) {
-     var expect = '<div id="test" class="test"><span id="data">data</span></div>';
+     var expect = '<div id="test" class="test"><span id="data">data</span><div>testing</div></div>';
      var result = grunt.file.read("test/fixtures/output/jade.html");
- 
+
      test.equal(expect, result, "should compile jade templates to html");
      test.done();
   }
