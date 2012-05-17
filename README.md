@@ -20,13 +20,16 @@ Grunt-contrib is currently alpha-quality software.  See the docs dir for more in
 ## Contributing
 
 #### Configuration
-In order to ensure a consistent configuration style, all grunt-contrib task submissions should retrieve their optional parameters using the included grunt helper, [options](/gruntjs/grunt-contrib/blob/master/docs/options.md).
+In order to ensure a consistent configuration style, task submissions should retreive their options with the [grunt helper 'options'](/gruntjs/grunt-contrib/blob/master/docs/options.md).
+```
 
 #### Testing
 Tests must be included with your submission.  New tasks can be added to the config in `test/grunt.js`, please see existing tests for guidance.  *Currently, testing with grunt is a bit cumbersome--this will be addressed in a future release.*
 
 ## Release History
 
+2012/05/17 - v0.0.3 - Cleanup release.  Getting task configuration consistent.
+2012/05/01 - v0.0.2 - Remove some debugging code.
 2012/05/01 - v0.0.1 - Alpha release.
 
 ## License
