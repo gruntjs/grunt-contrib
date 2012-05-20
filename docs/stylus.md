@@ -1,4 +1,4 @@
-## Compile Stlyus files to CSS
+## Compile Stylus files to CSS
 > Contributed By: Eric Woroshow (@errcw)
 
 ### Configuration
