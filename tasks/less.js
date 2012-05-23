@@ -3,14 +3,11 @@
  * Task: less
  * Description: Compile LESS files to CSS
  * Dependencies: less
- * Contributor(s): @tkellen, @thomasaboyt
+ * Contributor(s): @tkellen, @thomasaboyt, @tkazec
  *
  */
 
 module.exports = function(grunt) {
-
-  var file = grunt.file;
-       log = grunt.log;
 
   grunt.registerMultiTask("less",
     "Compile LESS files to CSS", function() {
@@ -36,7 +33,7 @@ module.exports = function(grunt) {
       var src = data.files[dest];
 
       // run LESS compiler
-      parser.parse(file.read(src), function (parse_err, tree) {
+      parser.parse(grunt.file.read(src), function (parse_err, tree) {
 
         // record error (if any)
         // in this step, basic parsing/syntax errors are caught
@@ -64,7 +61,7 @@ module.exports = function(grunt) {
     if (grunt.errors) { return false; }
 
     // Otherwise, print a success message.
-    log.writeln("LESS compilation complete.");
+    grunt.log.writeln("LESS compilation complete.");
   });
 
 };
