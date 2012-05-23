@@ -27,7 +27,7 @@ module.exports = function(grunt) {
     var done = this.async();
 
     // iterate over files to compile/compress
-    Object.keys(data.files).forEach(function(dest) {
+    grunt.utils.async.forEachSeries(Object.keys(data.files), function(dest, next) {
 
       // grab src file to compile dest to
       var src = data.files[dest];
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
 
         // record error (if any)
         // in this step, basic parsing/syntax errors are caught
-        if(parse_err) {
+        if (parse_err) {
           lessError(parse_err, src);
         }
 
@@ -51,10 +51,15 @@ module.exports = function(grunt) {
           lessError(toCSS_error, src);
         }
 
-        // flag task as complete
-        done();
+        // go on to the next dest
+        next();
+        
       });
 
+    }, function() {
+
+      // flag task as complete
+      done();
     });
 
   });
