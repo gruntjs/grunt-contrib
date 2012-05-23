@@ -3,14 +3,11 @@
  * Task: less
  * Description: Compile LESS files to CSS
  * Dependencies: less
- * Contributor(s): @tkellen, @thomasaboyt
+ * Contributor(s): @tkellen, @thomasaboyt, @tkazec
  *
  */
 
 module.exports = function(grunt) {
-
-  var file = grunt.file;
-       log = grunt.log;
 
   grunt.registerMultiTask("less",
     "Compile LESS files to CSS", function() {
@@ -18,29 +15,29 @@ module.exports = function(grunt) {
     var lessError = function(e, src) {
       var pos = '['.red + ('L' + e.line).yellow + ':'.red + ('C' + e.column).yellow + ']'.red;
       grunt.log.writeln(src.yellow + ': ' + pos + ' ' + e.message.yellow);
-      grunt.warn("Error compiling less.", 1);
+      grunt.fail.warn("Error compiling LESS.", 1);
     };
 
     var options = grunt.helper("options", this),
            less = require("less"),
            data = this.data,
-         parser = new(less.Parser)(options);
+         parser = new less.Parser(options);
 
     // make sure task runs until parser is completely finished (imports are processed asynchronously)
     var done = this.async();
 
     // iterate over files to compile/compress
-    Object.keys(data.files).forEach(function(dest) {
+    grunt.utils.async.forEachSeries(Object.keys(data.files), function(dest, next) {
 
       // grab src file to compile dest to
       var src = data.files[dest];
 
       // run LESS compiler
-      parser.parse(file.read(src), function (parse_err, tree) {
+      parser.parse(grunt.file.read(src), function(parse_err, tree) {
 
         // record error (if any)
         // in this step, basic parsing/syntax errors are caught
-        if(parse_err) {
+        if (parse_err) {
           lessError(parse_err, src);
         }
 
@@ -54,17 +51,17 @@ module.exports = function(grunt) {
           lessError(toCSS_error, src);
         }
 
-        // flag task as complete
-        done();
+        // go on to the next dest
+        next();
+        
       });
 
+    }, function() {
+
+      // flag task as complete
+      done();
     });
 
-    // Fail task if errors were logged.
-    if (grunt.errors) { return false; }
-
-    // Otherwise, print a success message.
-    log.writeln("LESS compilation complete.");
   });
 
 };
