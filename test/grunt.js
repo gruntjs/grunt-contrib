@@ -38,7 +38,8 @@ module.exports = function(grunt) {
     less: {
       compile: {
         files: {
-          "fixtures/output/less.css": "fixtures/less/style.less"
+          "fixtures/output/less_a.css": "fixtures/less/style.less",
+          "fixtures/output/less_b.css": "fixtures/less/style.less"
         },
         options: {
           paths: ["fixtures/less/include"]
