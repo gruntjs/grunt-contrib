@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     if (typeof data !== "undefined") {
       Object.keys(data).forEach(function (key) {
         var value = data[key];
-        if (typeof value === 'string') {
+        if (typeof value === "string") {
           data[key] = grunt.template.process(data[key]);
         }
       });
