@@ -26,8 +26,8 @@ options: {
 
 Set the data passed to the compiled jade template when it is rendered in a
 section named `options.data` on the target. Any data can be passed to the
-template. This can be used to generate a debug file and a release file from the
-same template, by using this:
+template (including `grunt` templates). This can be used to generate a debug
+file and a release file from the same template, by using this:
 
 ``` javascript
 jade: {
@@ -46,6 +46,40 @@ jade: {
     options: {
       data: {
         debug: false
+      }
+    }
+  }
+}
+```
+
+If you want to use `grunt` template in `options.data`:
+
+``` javascript
+jade: {
+  debug: {
+    src: "test.jade",
+    dest: "debug/",
+    options: {
+      data: {
+        debug: true, 
+        timestamp: "<%= new Date().getTime() %>"
+      }
+    }
+  }
+}
+```
+
+or you can use `grunt` helpers (grunt object was exposed at template context):
+
+``` javascript
+jade: {
+  debug: {
+    src: "test.jade",
+    dest: "debug/",
+    options: {
+      data: {
+        debug: true, 
+        timestamp: "<%= grunt.template.today() %>"
       }
     }
   }

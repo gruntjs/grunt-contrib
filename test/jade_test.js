@@ -12,10 +12,13 @@ exports.jade = {
        , resultSimple = grunt.file.read("test/fixtures/output/jade.html")
        , expectInclude = '<html><head><title>TEST</title></head><body></body></html><p>hello jade test</p>'
        , resultInclude = grunt.file.read("test/fixtures/output/jadeInclude.html")
+       , expectTemplate = '<div>' + grunt.template.today("yyyy") + '</div>'
+       , resultTemplate = grunt.file.read("test/fixtures/output/jadeTemplate.html")
 
-     test.expect(2);
+     test.expect(3);
      test.equal(expectSimple, resultSimple, "should compile jade templates to html");
      test.equal(expectInclude, resultInclude, "should compile jade templates to html with an include");
+     test.equal(expectTemplate, resultTemplate, "should compile jade templates to html with grunt template support");
      test.done();
   }
 
