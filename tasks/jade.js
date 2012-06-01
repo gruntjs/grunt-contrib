@@ -22,6 +22,16 @@ module.exports = function(grunt) {
            dest = this.file.dest,
            data = options.data;
 
+    // add template process for grunt templates
+    if (typeof data !== "undefined") {
+      Object.keys(data).forEach(function (key) {
+        var value = data[key];
+        if (typeof value === "string") {
+          data[key] = grunt.template.process(data[key]);
+        }
+      });
+    }
+
     file.expand(files).forEach(function (filename) {
 
       var opts = _.extend({filename: filename}, options),

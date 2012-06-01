@@ -28,6 +28,15 @@ module.exports = function(grunt) {
       include: {
         src: "fixtures/jade/jadeInclude.jade",
         dest: "fixtures/output"
+      }, 
+      template: {
+        src: "fixtures/jade/jadeTemplate.jade",
+        dest: "fixtures/output",
+        options: {
+          data: {
+            year: "<%= grunt.template.today('yyyy') %>"
+          }
+        }
       }
     },
 
