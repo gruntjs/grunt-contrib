@@ -2,7 +2,7 @@
  *
  * Grunt Contrib Helpers
  * Description: helps make things consistent across tasks.
- * Contributor(s): @tbranyen / @tkellen / @ctalkington
+ * Contributor(s): @tkellen / @ctalkington
  *
  */
 
