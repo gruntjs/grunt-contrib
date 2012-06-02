@@ -4,6 +4,7 @@
  * Description: helps make things consistent across tasks.
  * Contributor(s): @tkellen / @ctalkington
  *
+ * This file must be loaded before other tasks to bridge support between grunt v0.3.9 and v0.4.0
  */
 
 module.exports = function(grunt) {
