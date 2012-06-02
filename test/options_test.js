@@ -1,30 +1,7 @@
 var grunt = require("grunt");
 
-grunt.initConfig({
-  options: {
-    task: {
-      param: 'default',
-      setting: 'set',
-      global: 'set',
-      subtask: {
-        setting: 'subtask'
-      }
-    }
-  },
-  task: {
-    subtask: {
-      options: {
-        param: 'override all'
-      }
-    }
-  }
-});
-
-grunt.loadTasks("../tasks");
-
 exports.options = {
-
-  helper: function(test) {
+  main: function(test) {
     var options = grunt.helper("options", { nameArgs: 'task:subtask' });
 
     test.expect(3);
@@ -33,5 +10,4 @@ exports.options = {
     test.equal('override all', options.param, "should allow task options key to override all others");
     test.done();
   }
-
 };

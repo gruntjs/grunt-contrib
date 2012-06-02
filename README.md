@@ -29,8 +29,7 @@ Tests must be included with your submission.  New tasks can be added to the conf
 ```bash
 npm install grunt -g
 npm install
-cd test
-grunt
+npm test
 ```
 
 ## Release History

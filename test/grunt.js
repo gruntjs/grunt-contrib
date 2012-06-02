@@ -1,7 +1,5 @@
 module.exports = function(grunt) {
-
   grunt.initConfig({
-
     test: {
       tasks: ["*_test.js"],
       clean: ['clean_task.js']
@@ -103,10 +101,8 @@ module.exports = function(grunt) {
         }
       }
     }
-
   });
 
   grunt.loadTasks("../tasks");
-
-  grunt.registerTask("default", "clean test:clean coffee:compile jade jst less:compile mincss stylus:compile test:tasks");
+  grunt.registerTask("default", "clean test:clean coffee jade jst less mincss stylus test:tasks");
 };

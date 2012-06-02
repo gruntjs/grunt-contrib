@@ -1,8 +1,7 @@
 var grunt = require("grunt");
 
 exports.coffee = {
-
-  helper: function(test) {
+  main: function(test) {
      var expect = "test";
      eval(grunt.file.read("fixtures/output/coffee.js"));
      var result = HelloWorld.test;
@@ -11,5 +10,4 @@ exports.coffee = {
      test.equal(expect, result, "should compile coffeescript to javascript");
      test.done();
   }
-
 };

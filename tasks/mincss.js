@@ -8,34 +8,23 @@
  */
 
 module.exports = function(grunt) {
-
-  var log = grunt.log,
-     file = grunt.file;
-
-  grunt.registerMultiTask("mincss",
-    "Minify CSS files", function() {
-
-    var files = file.expand(this.data),
+  grunt.registerMultiTask("mincss", "Minify CSS files", function() {
+    var files = grunt.file.expand(this.data),
           max = grunt.helper('concat', files),
           min = grunt.helper('mincss', max);
 
-    file.write(this.target, min);
+    grunt.file.write(this.target, min);
 
     // Fail task if errors were logged.
     if (grunt.errors) { return false; }
 
     // Otherwise, print a success message.
-    log.writeln("File \"" + this.target + "\" created.");
+    grunt.log.writeln("File \"" + this.target + "\" created.");
     grunt.helper('min_max_info', min, max);
   });
 
-  //grunt.registerHelper('')
-
   grunt.registerHelper("mincss", function(css_string) {
-    var cleanCSS = require("clean-css");
-
     // Minify and combine all CSS
-    return cleanCSS.process(css_string);
+    return require("clean-css").process(css_string);
   });
-
 };

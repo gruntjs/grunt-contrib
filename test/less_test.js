@@ -1,8 +1,7 @@
 var grunt = require("grunt");
 
 exports.less = {
-
-  helper: function(test) {
+  main: function(test) {
     var expect = "body {\n  color: #ffffff;\n}\n";
     var resultA = grunt.file.read("fixtures/output/less_a.css");
     var resultB = grunt.file.read("fixtures/output/less_b.css");
@@ -12,5 +11,4 @@ exports.less = {
     test.equal(expect, resultB, "should compile to all dests");
     test.done();
   }
-
 };

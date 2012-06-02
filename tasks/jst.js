@@ -8,36 +8,29 @@
  */
 
 module.exports = function(grunt) {
+  var _ = grunt.helper("utils","_");
 
-  var file = grunt.file,
-       log = grunt.log;
-
-  var _ = grunt.utils._;
-
-  grunt.registerMultiTask("jst",
-    "Compile underscore templates to JST file", function() {
-
+  grunt.registerMultiTask("jst", "Compile underscore templates to JST file", function() {
     var options = grunt.helper("options", this),
-      namespace = options.namespace || "JST",
-       settings = options.templateSettings || null,
-          files = file.expand(this.data);
+        namespace = options.namespace || "JST",
+        settings = options.templateSettings || null,
+        files = grunt.file.expand(this.data);
 
     // Create JST file.
-    file.write(this.target, grunt.helper("jst", files, namespace, settings));
+    grunt.file.write(this.target, grunt.helper("jst", files, namespace, settings));
 
     // Fail task if errors were logged.
     if (grunt.errors) { return false; }
 
     // Otherwise, print a success message.
-    log.writeln("File \"" + this.target + "\" created.");
+    grunt.log.writeln("File \"" + this.target + "\" created.");
   });
 
   grunt.registerHelper("jst", function(files, namespace, templateSettings) {
     // Pulled from underscore 1.2.4
     function underscoreTemplating(str) {
         // Merge in the templateSettings that may be passed
-        var c  = _.extend({}, _.templateSettings, templateSettings) ||
-          _.templateSettings;
+        var c  = _.extend({}, _.templateSettings, templateSettings) || _.templateSettings;
 
         var tmpl = '' +
           'var __p=[],print=function(){__p.push.apply(__p,arguments);};' +
@@ -74,7 +67,7 @@ module.exports = function(grunt) {
         "function(data) { ",
 
           "return ",
-          underscoreTemplating(file.read(filepath)).replace("anonymous", ""),
+          underscoreTemplating(grunt.file.read(filepath)).replace("anonymous", ""),
           "(data, _)",
 
         "};"].join("");
@@ -84,5 +77,4 @@ module.exports = function(grunt) {
 
     return contents;
   });
-
 };

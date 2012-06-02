@@ -1,8 +1,7 @@
 var grunt = require("grunt");
 
 exports.stylus = {
-
-  helper: function(test) {
+  main: function(test) {
      var expect = "body{font:Helvetica;font-size:10px}\n";
      var result = grunt.file.read("fixtures/output/stylus.css");
 
@@ -10,5 +9,4 @@ exports.stylus = {
      test.equal(expect, result, "should compile stylus to css, handling includes and compression");
      test.done();
   }
-
 };

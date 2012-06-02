@@ -8,51 +8,38 @@
  */
 
 module.exports = function(grunt) {
+  var _ = grunt.helper("utils","_");
 
-  var file = grunt.file,
-       log = grunt.log,
-         _ = grunt.utils._;
-
-  grunt.registerMultiTask("jade",
-    "Compile Jade templates into HTML.", function() {
-
+  grunt.registerMultiTask("jade", "Compile Jade templates into HTML.", function() {
     var options = grunt.helper("options", this),
-           path = require("path"),
-          files = this.file.src,
-           dest = this.file.dest,
-           data = options.data;
+        path = require("path"),
+        files = grunt.file.expand(this.file.src),
+        dest = this.file.dest,
+        data = options.data;
 
     // add template process for grunt templates
-    if (typeof data !== "undefined") {
-      Object.keys(data).forEach(function (key) {
-        var value = data[key];
-        if (typeof value === "string") {
-          data[key] = grunt.template.process(data[key]);
+    if (_.isEmpty(data) == false) {
+      _.each(data,function(value,key) {
+        if (_.isString(value)) {
+          data[key] = grunt.template.process(value);
         }
       });
     }
 
-    file.expand(files).forEach(function (filename) {
-
+    files.forEach(function (filename) {
       var opts = _.extend({filename: filename}, options),
-          html = grunt.helper("jade", file.read(filename), opts, data),
-      basename = path.basename(filename),
-       extname = path.extname(filename),
-      htmlname = basename.substring(0, basename.length - extname.length) + ".html",
-       outpath = path.join(dest, htmlname);
+          html = grunt.helper("jade", grunt.file.read(filename), opts, data),
+          basename = path.basename(filename),
+          extname = path.extname(filename),
+          htmlname = basename.substring(0, basename.length - extname.length) + ".html",
+          outpath = path.join(dest, htmlname);
 
-      file.write(outpath, html);
-
-      log.writeln("File '" + outpath + "' created.");
+      grunt.file.write(outpath, html);
+      grunt.log.writeln("File '" + outpath + "' created.");
     });
   });
 
   grunt.registerHelper("jade", function(src, options, data) {
-
-    var jade = require("jade"),
-      jadeFn = jade.compile(src, options);
-
-    return jadeFn(data);
+    return require("jade").compile(src, options)(data);
   });
-
 };
