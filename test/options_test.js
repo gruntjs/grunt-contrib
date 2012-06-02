@@ -25,7 +25,6 @@ grunt.loadTasks("../tasks");
 exports.options = {
 
   helper: function(test) {
-
     var options = grunt.helper("options", { nameArgs: 'task:subtask' });
 
     test.expect(3);
