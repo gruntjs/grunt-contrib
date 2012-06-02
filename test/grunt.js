@@ -2,7 +2,14 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
-    clean: ["fixtures/output"],
+    test: {
+      tasks: ["*_test.js"],
+      clean: ['clean_task.js']
+    },
+
+    clean: {
+      output: ["fixtures/output"]
+    },
 
     coffee: {
       compile: {
@@ -28,7 +35,7 @@ module.exports = function(grunt) {
       include: {
         src: "fixtures/jade/jadeInclude.jade",
         dest: "fixtures/output"
-      }, 
+      },
       template: {
         src: "fixtures/jade/jadeTemplate.jade",
         dest: "fixtures/output",
@@ -79,11 +86,11 @@ module.exports = function(grunt) {
       jade: {
         filename: 'fixtures/jade/inc/'
       }
-    }
-
+    },
 
   });
 
   grunt.loadTasks("../tasks");
 
+  grunt.registerTask("default", "clean coffee:compile jade jst less:compile mincss stylus:compile test:tasks clean test:clean");
 };
