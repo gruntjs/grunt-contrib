@@ -8,30 +8,25 @@
  */
 
 module.exports = function(grunt) {
+  var _ = grunt.helper("utils","_"),
+      async = grunt.helper("utils","async");
 
-  var file = grunt.file,
-       log = grunt.log,
-         _ = grunt.utils._,
-     async = grunt.utils.async;
-
-  grunt.registerMultiTask("stylus",
-    "Compile Stylus files into CSS", function() {
-
+  grunt.registerMultiTask("stylus", "Compile Stylus files into CSS", function() {
     var options = grunt.helper('options', this),
-          files = this.data.files,
-           done = this.async();
+        files = this.data.files,
+        done = this.async();
 
     async.forEach(Object.keys(files), function(dest, callback) {
       var src = files[dest];
-      async.concat(file.expand(src), function(filename, callback) {
+      async.concat(grunt.file.expand(src), function(filename, callback) {
         var opts = _.extend(options, {filename: filename});
-        grunt.helper("stylus", file.read(filename), opts, function(err, css) {
+        grunt.helper("stylus", grunt.file.read(filename), opts, function(err, css) {
           callback(err, css);
         });
       }, function(err, css) {
         if (!err) {
-          file.write(dest, css.join("\n"));
-          log.writeln("File '" + dest + "' created.");
+          grunt.file.write(dest, css.join("\n"));
+          grunt.log.writeln("File '" + dest + "' created.");
         }
         callback(err);
       });
@@ -42,9 +37,7 @@ module.exports = function(grunt) {
 
   // Compiles a single stylus file and returns the resulting CSS via a callback.
   grunt.registerHelper("stylus", function(src, options, callback) {
-
-    var stylus = require("stylus"),
-             s = stylus(src);
+    var s = require("stylus")(src);
 
     _.each(options, function(value, key) {
       s.set(key, value);
@@ -52,10 +45,9 @@ module.exports = function(grunt) {
 
     s.render(function(err, css) {
       if (err) {
-        log.error(err);
+        grunt.log.error(err);
       }
       callback(err, css);
     });
   });
-
 };

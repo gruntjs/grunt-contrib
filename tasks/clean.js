@@ -8,19 +8,15 @@
  */
 
 module.exports = function(grunt) {
+  var _ = grunt.helper("utils","_"),
+      rimraf = require("rimraf");
 
-  var rimraf = require("rimraf"),
-         log = grunt.log;
-
-  grunt.registerMultiTask("clean",
-    "Clear files and folders", function() {
-
+  grunt.registerMultiTask("clean","Clear files and folders",function() {
     var config = grunt.config.get('clean'),
-         files = this.data,
-       isArray = typeof grunt.utils !== 'undefined' ? grunt.utils._.isArray : grunt.util._.isArray;
+        files = this.data;
 
     // check if we have a valid config & an invalid target specific config
-    if (isArray(config) === true && isArray(this.data) === false) {
+    if (_.isArray(config) === true && _.isArray(this.data) === false) {
       files = config;
     }
 
@@ -32,8 +28,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerHelper("clean", function(path) {
-    log.writeln("Removing: " + path);
+    grunt.log.writeln("Removing: " + path);
     rimraf.sync(path);
   });
-
 };

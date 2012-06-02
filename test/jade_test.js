@@ -1,8 +1,7 @@
 var grunt = require("grunt");
 
 exports.jade = {
-
-  helper: function(test) {
+  main: function(test) {
      var expectSimple = '<div id="test" class="test"><span id="data">data</span><div>testing</div></div>'
        , resultSimple = grunt.file.read("fixtures/output/jade.html")
        , expectInclude = '<html><head><title>TEST</title></head><body></body></html><p>hello jade test</p>'
@@ -16,5 +15,4 @@ exports.jade = {
      test.equal(expectTemplate, resultTemplate, "should compile jade templates to html with grunt template support");
      test.done();
   }
-
 };

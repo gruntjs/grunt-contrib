@@ -8,29 +8,24 @@
  */
 
 module.exports = function(grunt) {
+  var _ = grunt.helper("utils","_"),
+      async = grunt.helper("utils","async");
 
-  var file = grunt.file,
-       log = grunt.log,
-         _ = grunt.utils._,
-     async = grunt.utils.async;
-
-  grunt.registerMultiTask("coffee",
-    "Compile CoffeeScript files into JavaScript", function () {
-
+  grunt.registerMultiTask("coffee", "Compile CoffeeScript files into JavaScript", function() {
     var options = grunt.helper("options", this),
-          files = this.data.files,
-           done = this.async();
+        files = this.data.files,
+        done = this.async();
 
     async.forEach(Object.keys(files), function(dest, callback) {
       var src = files[dest];
-      async.concat(file.expand(src), function(filename, callback) {
+      async.concat(grunt.file.expand(src), function(filename, callback) {
         var opts = _.extend(options, {filename: filename});
-        var javascript = grunt.helper("coffee", file.read(filename), opts);
+        var javascript = grunt.helper("coffee", grunt.file.read(filename), opts);
         callback(!javascript, javascript);
       }, function(err, javascript) {
         if (!err) {
-          file.write(dest, javascript.join("\n"));
-          log.writeln("File '" + dest + "' created.");
+          grunt.file.write(dest, javascript.join("\n"));
+          grunt.log.writeln("File '" + dest + "' created.");
         }
         callback(err);
       });
@@ -45,9 +40,8 @@ module.exports = function(grunt) {
       var javascript = coffee.compile(coffeescript, options);
       return javascript;
     } catch (e) {
-      log.error(e);
+      grunt.log.error(e);
       return null;
     }
   });
-
 };
