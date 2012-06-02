@@ -85,12 +85,28 @@ module.exports = function(grunt) {
     options: {
       jade: {
         filename: 'fixtures/jade/inc/'
+      },
+      task: {
+        param: 'default',
+        setting: 'set',
+        global: 'set',
+        subtask: {
+          setting: 'subtask'
+        }
       }
     },
+
+    task: {
+      subtask: {
+        options: {
+          param: 'override all'
+        }
+      }
+    }
 
   });
 
   grunt.loadTasks("../tasks");
 
-  grunt.registerTask("default", "clean coffee:compile jade jst less:compile mincss stylus:compile test:tasks clean test:clean");
+  grunt.registerTask("default", "clean test:clean coffee:compile jade jst less:compile mincss stylus:compile test:tasks");
 };

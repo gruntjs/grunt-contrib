@@ -26,20 +26,12 @@ In order to ensure a consistent configuration style, task submissions should ret
 Tests must be included with your submission.  New tasks can be added to the config in `test/grunt.js`, please see existing tests for guidance.  *Currently, testing with grunt is a bit cumbersome--this will be addressed in a future release.*
 
 #### Running Tests
-The following assumes you know how to use command prompt/shell and have nodejs and npm setup on your system.
-
-From the project root, install required packages with npm via shell
-
 ```bash
-npm install grunt -g  # optional for ease of use on windows
-npm install;  # installs all the libs needed for various tasks
+npm install grunt -g
+npm install
+cd test
+grunt
 ```
-
-Switch to the ```test``` directory within the project and run ```grunt``` via shell.
-
-You should see the status of each test and/or errors in your shell.
-
-happy debugging :)
 
 ## Release History
 
