@@ -11,8 +11,7 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask("zip", "Compress files into ZIP file.", function() {
     var files = this.data.files,
-        options = grunt.helper("options", this),
-        options = _.defaults(options, {level: 1}),
+        options = grunt.helper("options", this, {level: 1}),
         done = this.async();
 
     async.forEachSeries(_.keys(files),function(dest,callback) {
