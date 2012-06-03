@@ -42,6 +42,12 @@ Compile Stylus files into CSS.
 #### [`zip`](/gruntjs/grunt-contrib/blob/master/docs/zip.md)
 Zip files and folders.
 
+## Included Helpers
+### [`options`](/gruntjs/grunt-contrib/blob/master/docs/helpers.md#options)
+Unified options retrieval
+
+### [`utils`](/gruntjs/grunt-contrib/blob/master/docs/helpers.md#utils)
+Consistent utils retrieval
 
 ## Contributing
 
