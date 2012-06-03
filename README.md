@@ -59,10 +59,9 @@ npm test
 ```
 
 ## Release History
+* (Until v1.0.0, this will only be updated when major or breaking changes are made)*
 
-* 2012/06/03 - v0.0.4 - Cleanup release with zip task addition.
-* 2012/05/17 - v0.0.3 - Cleanup release.  Getting task configuration consistent.
-* 2012/05/01 - v0.0.2 - Remove some debugging code.
+* 2012/06/03 - v0.0.5 - Cleanup release with zip task addition.
 * 2012/05/01 - v0.0.1 - Alpha release.
 
 ## License
