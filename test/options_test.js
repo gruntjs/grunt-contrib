@@ -1,8 +1,31 @@
 var grunt = require("grunt");
 
+grunt.initConfig({
+  options: {
+    task: {
+      param: 'default',
+      setting: 'set',
+      global: 'set',
+      subtask: {
+        setting: 'subtask'
+      }
+    }
+  },
+
+  task: {
+    subtask: {
+      options: {
+        param: 'override all'
+      }
+    }
+  }
+});
+
+grunt.loadTasks("../tasks");
+
 exports.options = {
   main: function(test) {
-    var options = grunt.helper("options", { nameArgs: 'task:subtask' });
+    var options = grunt.helper("options", {nameArgs: 'task:subtask'});
 
     test.expect(3);
     test.equal('set', options.global, "should get params from global options.task key");

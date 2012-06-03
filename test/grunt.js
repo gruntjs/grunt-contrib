@@ -83,22 +83,6 @@ module.exports = function(grunt) {
     options: {
       jade: {
         filename: 'fixtures/jade/inc/'
-      },
-      task: {
-        param: 'default',
-        setting: 'set',
-        global: 'set',
-        subtask: {
-          setting: 'subtask'
-        }
-      }
-    },
-
-    task: {
-      subtask: {
-        options: {
-          param: 'override all'
-        }
       }
     }
   });
