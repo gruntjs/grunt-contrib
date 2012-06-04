@@ -8,7 +8,7 @@
  */
 
 module.exports = function(grunt) {
-  var async = grunt.helper("utils","async");
+  var async = grunt.utils.async;
 
   grunt.registerMultiTask("less", "Compile LESS files to CSS", function() {
     var lessError = function(e, src) {
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     var done = this.async();
 
     // iterate over files to compile/compress
-    grunt.utils.async.forEachSeries(Object.keys(data.files), function(dest, next) {
+    async.forEachSeries(Object.keys(data.files), function(dest, next) {
       // grab src file to compile dest to
       var src = data.files[dest];
 

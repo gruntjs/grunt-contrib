@@ -8,8 +8,8 @@
  */
 
 module.exports = function(grunt) {
-  var _ = grunt.helper("utils","_"),
-      async = grunt.helper("utils","async");
+  var _ = grunt.utils._,
+      async = grunt.utils.async;
 
   grunt.registerMultiTask("coffee", "Compile CoffeeScript files into JavaScript", function() {
     var options = grunt.helper("options", this),

@@ -49,23 +49,3 @@ task: {
 ```
 
 > Contributed By: Tyler Kellen (@tkellen)
-
-### Utils
-
-#### Overview
-
-This helper was designed to provide a bridge between grunt v0.3.9 and v0.4.0 due to changes in util property naming.
-
-#### Parameters
-
-##### utility
-
-This parameter is used to specify which utility you want to load. (_, async, etc)
-
-#### Usage
-
-```javascript
-var _ = grunt.helper("utils", "_"); // loads _ (underscore js) for usage in task
-```
-
-> Contributed By: Chris Talkington (@ctalkington)

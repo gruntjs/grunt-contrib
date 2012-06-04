@@ -8,7 +8,7 @@
  */
 
 module.exports = function(grunt) {
-  var _ = grunt.helper("utils","_");
+  var _ = grunt.utils._;
 
   grunt.registerMultiTask("jade", "Compile Jade templates into HTML.", function() {
     var options = grunt.helper("options", this),

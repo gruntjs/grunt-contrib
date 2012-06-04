@@ -8,7 +8,7 @@
  */
 
 module.exports = function(grunt) {
-  var _ = grunt.helper("utils","_"),
+  var _ = grunt.utils._,
       rimraf = require("rimraf");
 
   grunt.registerMultiTask("clean","Clear files and folders",function() {

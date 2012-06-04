@@ -46,9 +46,6 @@ Zip files and folders.
 ### [`options`](/gruntjs/grunt-contrib/blob/master/docs/helpers.md#options)
 Unified options retrieval
 
-### [`utils`](/gruntjs/grunt-contrib/blob/master/docs/helpers.md#utils)
-Consistent utils retrieval
-
 ## Contributing
 
 #### Configuration
