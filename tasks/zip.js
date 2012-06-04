@@ -6,13 +6,12 @@
 * Inspired by: @jzaefferer (jquery-validation)
 */
 module.exports = function(grunt) {
-  var _ = grunt.helper("utils", "_"),
-      async = grunt.helper("utils", "async");
+  var _ = grunt.utils._,
+      async = grunt.utils.async;
 
   grunt.registerMultiTask("zip", "Compress files into ZIP file.", function() {
     var files = this.data.files,
-        options = grunt.helper("options", this),
-        options = _.defaults(options, {level: 1}),
+        options = grunt.helper("options", this, {level: 1}),
         done = this.async();
 
     async.forEachSeries(_.keys(files),function(dest,callback) {

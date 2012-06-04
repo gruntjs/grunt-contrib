@@ -1,4 +1,5 @@
-var grunt = require("grunt");
+var grunt = require("grunt"),
+    _ = grunt.utils._;
 
 grunt.loadTasks("../tasks");
 
@@ -13,7 +14,7 @@ exports.zip = {
       }
     }
 
-    var _ = grunt.helper("utils", "_");
+
 
     var expectations = {
       "fixtures/output/zip_test_files.zip": 362,
