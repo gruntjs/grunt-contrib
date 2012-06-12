@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     async.forEach(Object.keys(files), function(dest, callback) {
       var src = files[dest];
       async.concat(grunt.file.expand(src), function(filename, callback) {
-        var opts = _.extend(options, {filename: filename});
+        var opts = _.extend({filename: filename}, options);
         var javascript = grunt.helper("coffee", grunt.file.read(filename), opts);
         callback(!javascript, javascript);
       }, function(err, javascript) {
