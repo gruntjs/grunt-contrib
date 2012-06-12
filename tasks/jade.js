@@ -21,20 +21,23 @@ module.exports = function(grunt) {
 
     // add template process for grunt templates
     if (_.isEmpty(jadeData) == false) {
-      _.each(jadeData,function(value,key) {
+      _.each(jadeData, function(value, key) {
         if (_.isString(value)) {
           jadeData[key] = grunt.template.process(value);
         }
       });
     }
 
-    async.forEachSeries(_.keys(data.files),function(dest, next) {
+    async.forEachSeries(_.keys(data.files), function(dest, next) {
       var src = data.files[dest],
           srcFiles = grunt.file.expandFiles(src),
           dest = grunt.template.process(dest);
 
       async.forEach(_.values(srcFiles), function(srcFile, callback) {
-        grunt.helper("jade", grunt.file.read(srcFile), _.extend({filename: srcFile}, options), jadeData, function(error, response){
+        var jadeOptions = _.extend({filename: srcFile}, options),
+            jadeSource = grunt.file.read(srcFile);
+
+        grunt.helper("jade", jadeSource, jadeOptions, jadeData, function(error, response){
           if (error === null) {
             var basename = path.basename(srcFile),
                 extname = path.extname(srcFile),
