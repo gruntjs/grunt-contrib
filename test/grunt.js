@@ -27,8 +27,9 @@ module.exports = function(grunt) {
 
     jade: {
       simple: {
-        src: "fixtures/jade/jade.jade",
-        dest: "fixtures/output",
+        files: {
+          "fixtures/output": ["fixtures/jade/jade.jade", "fixtures/jade/jade2.jade"]
+        },
         options: {
           data: {
             test: true
@@ -36,12 +37,14 @@ module.exports = function(grunt) {
         }
       },
       include: {
-        src: "fixtures/jade/jadeInclude.jade",
-        dest: "fixtures/output"
+        files: {
+          "fixtures/output": "fixtures/jade/jadeInclude.jade"
+        }
       },
       template: {
-        src: "fixtures/jade/jadeTemplate.jade",
-        dest: "fixtures/output",
+        files: {
+          "fixtures/output": "fixtures/jade/jadeTemplate.jade"
+        },
         options: {
           data: {
             year: "<%= grunt.template.today('yyyy') %>"
