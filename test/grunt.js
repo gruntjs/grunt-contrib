@@ -28,7 +28,7 @@ module.exports = function(grunt) {
     jade: {
       simple: {
         files: {
-          "fixtures/output": "fixtures/jade/jade.jade"
+          "fixtures/output": ["fixtures/jade/jade.jade", "fixtures/jade/jade2.jade"]
         },
         options: {
           data: {
