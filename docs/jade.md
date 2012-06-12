@@ -1,5 +1,5 @@
 ## Compile Jade files to HTML
-> Contributed By: Eric Woroshow (@errcw)
+> Contributed By: Eric Woroshow (@errcw), Conrad Zimmerman (@conradz), and Chris Talkington (@ctalkington)
 
 ### Configuration
 
