@@ -73,6 +73,16 @@ module.exports = function(grunt) {
       ]
     },
 
+    requirejs: {
+      compile: {
+        options: {
+          baseUrl: "fixtures/requirejs",
+          name: "project",
+          out: "fixtures/output/requirejs.js"
+        }
+      }
+    },
+
     stylus: {
       compile: {
         files: {
@@ -107,5 +117,5 @@ module.exports = function(grunt) {
   });
 
   grunt.loadTasks("../tasks");
-  grunt.registerTask("default", "clean test:clean coffee jade jst less mincss stylus zip test:tasks");
+  grunt.registerTask("default", "clean test:clean coffee jade jst less mincss requirejs stylus zip test:tasks");
 };

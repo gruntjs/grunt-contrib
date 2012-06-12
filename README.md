@@ -31,10 +31,13 @@ Compile Jade templates to HTML.
 Compile underscore templates to JST file.
 
 #### [`less`](/gruntjs/grunt-contrib/blob/master/docs/less.md)
-Compile LESS files to CSS
+Compile LESS files to CSS.
 
 #### [`mincss`](/gruntjs/grunt-contrib/blob/master/docs/mincss.md)
 Minify CSS files.
+
+#### [`requirejs`](/gruntjs/grunt-contrib/blob/master/docs/requirejs.md)
+Optimize RequireJS projects using r.js.
 
 #### [`stylus`](/gruntjs/grunt-contrib/blob/master/docs/stylus.md)
 Compile Stylus files into CSS.
@@ -64,6 +67,7 @@ npm test
 ## Release History
 * (Until v1.0.0, this will only be updated when major or breaking changes are made)*
 
+* 2012/06/12 - v0.0.7 - Add RequireJS task.
 * 2012/06/03 - v0.0.5 - Cleanup release with zip task addition.
 * 2012/05/01 - v0.0.1 - Alpha release.
 
