@@ -21,7 +21,7 @@ Clear files and folders.
 #### [`coffee`](/gruntjs/grunt-contrib/blob/master/docs/coffee.md)
 Compile CoffeeScript files into JavaScript.
 
-#### [`compress`](/gruntjs/grunt-contrib/blob/master/docs/zip.md)
+#### [`compress`](/gruntjs/grunt-contrib/blob/master/docs/compress.md)
 Compress files and folders using gzip or zip.
 
 #### [`handlebars`](/gruntjs/grunt-contrib/blob/master/docs/handlebars.md)
