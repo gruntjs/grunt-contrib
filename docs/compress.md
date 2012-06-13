@@ -4,8 +4,8 @@
 ### Configuration
 
 Inside your `grunt.js` file add a section named `compress`. This section
-specifies the files to compress and the options passed to either zipstream
-for (zip) or (zlib)[http://nodejs.org/api/zlib.html#zlib_options] for (gzip).
+specifies the files to compress and the options passed to either [zipstream](https://github.com/wellawaretech/node-zipstream)
+(for zip) or [zlib](http://nodejs.org/api/zlib.html#zlib_options) (for gzip).
 
 *If using gzip, only one input file may be specified per output file.  Also, specifying gzip options (level/memLevel etc) is not yet supported due to deficiencies in the current implementation of node's zlib library.*
 
