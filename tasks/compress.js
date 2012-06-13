@@ -21,6 +21,7 @@ module.exports = function(grunt) {
           srcFiles = grunt.file.expandFiles(src),
           dest = grunt.template.process(dest);
 
+
       if(!_.include(supported,options.type)) {
         grunt.log.error('Compression type '+options.type+' not supported.');
         done();
@@ -37,7 +38,8 @@ module.exports = function(grunt) {
         srcFiles = srcFiles[0];
       }
 
-      grunt.helper(options.type, srcFiles, dest, options, function(err, written) {
+      // these are suffixed with helper because grunt has a conflicting, built-in "gzip" helper
+      grunt.helper(options.type+"Helper", srcFiles, dest, options, function(err, written) {
         grunt.log.writeln('File "' + dest + '" created (' + written + ' bytes written).');
         callback(err);
       });
@@ -47,7 +49,7 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.registerHelper("zip", function(files, dest, options, callback) {
+  grunt.registerHelper("zipHelper", function(files, dest, options, callback) {
     var fs = require("fs"),
         zip = require("zipstream").createZip(options),
         destdir = _(dest).strLeftBack("/");
@@ -74,7 +76,7 @@ module.exports = function(grunt) {
     addFile();
   });
 
-  grunt.registerHelper("gzip", function(file, dest, options, callback) {
+  grunt.registerHelper("gzipHelper", function(file, dest, options, callback) {
     var fs = require("fs"),
         zlib = require("zlib"),
         destdir = _(dest).strLeftBack("/");

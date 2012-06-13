@@ -15,11 +15,11 @@ exports.zip = {
     }
 
     var expectations = {
-      "fixtures/output/compress_test_files.zip": 362,
-      "fixtures/output/compress_test_folders.zip": 1118,
-      "fixtures/output/compress_test_v0.3.9.zip": 1118,
-      "fixtures/output/compress_test_array.zip": 738,
-      "fixtures/output/test.gzip": 52
+      "fixtures/output/compress_test_files.zip": 382,
+      "fixtures/output/compress_test_folders.zip": 1178,
+      "fixtures/output/compress_test_v0.3.9.zip": 1178,
+      "fixtures/output/compress_test_array.zip": 778,
+      "fixtures/output/test.gz": 52
     };
 
     test.expect(_.size(expectations));

@@ -21,6 +21,9 @@ Clear files and folders.
 #### [`coffee`](/gruntjs/grunt-contrib/blob/master/docs/coffee.md)
 Compile CoffeeScript files into JavaScript.
 
+#### [`compress`](/gruntjs/grunt-contrib/blob/master/docs/zip.md)
+Compress files and folders using gzip or zip.
+
 #### [`handlebars`](/gruntjs/grunt-contrib/blob/master/docs/handlebars.md)
 Compile handlebars templates to JST file.
 
@@ -41,9 +44,6 @@ Optimize RequireJS projects using r.js.
 
 #### [`stylus`](/gruntjs/grunt-contrib/blob/master/docs/stylus.md)
 Compile Stylus files into CSS.
-
-#### [`zip`](/gruntjs/grunt-contrib/blob/master/docs/zip.md)
-Zip files and folders.
 
 ## Included Helpers
 ### [`options`](/gruntjs/grunt-contrib/blob/master/docs/helpers.md#options)
