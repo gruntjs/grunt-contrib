@@ -1,5 +1,5 @@
 ## Compile Jade files to HTML
-> Contributed By: Eric Woroshow (@errcw)
+> Contributed By: Eric Woroshow (@errcw), Conrad Zimmerman (@conradz), and Chris Talkington (@ctalkington)
 
 ### Configuration
 
@@ -32,8 +32,9 @@ file and a release file from the same template, by using this:
 ``` javascript
 jade: {
   debug: {
-    src: "test.jade",
-    dest: "debug/",
+    files: {
+      "debug/": "test.jade"
+    },
     options: {
       data: {
         debug: true
@@ -41,8 +42,9 @@ jade: {
     }
   },
   release: {
-    src: "test.jade",
-    dest: "release/",
+    files: {
+      "release/": "test.jade"
+    },
     options: {
       data: {
         debug: false
@@ -57,11 +59,12 @@ If you want to use `grunt` template in `options.data`:
 ``` javascript
 jade: {
   debug: {
-    src: "test.jade",
-    dest: "debug/",
+    files: {
+      "debug/": "test.jade"
+    },
     options: {
       data: {
-        debug: true, 
+        debug: true,
         timestamp: "<%= new Date().getTime() %>"
       }
     }
@@ -74,11 +77,12 @@ or you can use `grunt` helpers (grunt object was exposed at template context):
 ``` javascript
 jade: {
   debug: {
-    src: "test.jade",
-    dest: "debug/",
+    files: {
+      "debug/": "test.jade"
+    },
     options: {
       data: {
-        debug: true, 
+        debug: true,
         timestamp: "<%= grunt.template.today() %>"
       }
     }
