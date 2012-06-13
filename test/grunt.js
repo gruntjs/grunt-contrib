@@ -25,6 +25,29 @@ module.exports = function(grunt) {
       }
     },
 
+    compress: {
+      zip: {
+        options: {
+          type: 'zip',
+          level: 1
+        },
+        files: {
+          'fixtures/output/compress_test_files.zip': 'fixtures/compress/*',
+          'fixtures/output/compress_test_folders.zip': 'fixtures/compress/**',
+          'fixtures/output/compress_test_v<%= pkg.version %>.zip': 'fixtures/compress/**',
+          'fixtures/output/compress_test_array.zip': ['fixtures/compress/test.*','fixtures/compress/folder_one/*']
+        }
+      },
+      gzip: {
+        options: {
+          type: 'gzip'
+        },
+        files: {
+          'fixtures/output/test.gz': 'fixtures/compress/test.js'
+        }
+      }
+    },
+
     jade: {
       simple: {
         files: {
@@ -98,20 +121,6 @@ module.exports = function(grunt) {
       }
     },
 
-    zip: {
-      compress: {
-        options: {
-          level: 1
-        },
-        files: {
-          'fixtures/output/zip_test_files.zip': 'fixtures/zip/*',
-          'fixtures/output/zip_test_folders.zip': 'fixtures/zip/**',
-          'fixtures/output/zip_test_v<%= pkg.version %>.zip': 'fixtures/zip/**',
-          'fixtures/output/zip_test_array.zip': ['fixtures/zip/test.*','fixtures/zip/folder_one/*']
-        }
-      }
-    },
-
     options: {
       jade: {
         filename: 'fixtures/jade/inc/'
@@ -120,5 +129,5 @@ module.exports = function(grunt) {
   });
 
   grunt.loadTasks("../tasks");
-  grunt.registerTask("default", "clean test:clean coffee jade jst less mincss requirejs stylus zip test:tasks");
+  grunt.registerTask("default", "clean test:clean coffee compress jade jst less mincss requirejs stylus test:tasks");
 };
