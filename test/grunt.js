@@ -1,7 +1,12 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: {
+      name: "grunt-contrib",
       version: "0.3.9"
+    },
+
+    files: {
+      test: "fixtures/compress/<%= pkg.name %>-<%= pkg.version %>"
     },
 
     test: {
@@ -28,22 +33,51 @@ module.exports = function(grunt) {
     compress: {
       zip: {
         options: {
-          type: 'zip',
+          mode: 'zip',
+          basePath: 'fixtures/compress',
           level: 1
         },
         files: {
           'fixtures/output/compress_test_files.zip': 'fixtures/compress/*',
           'fixtures/output/compress_test_folders.zip': 'fixtures/compress/**',
-          'fixtures/output/compress_test_v<%= pkg.version %>.zip': 'fixtures/compress/**',
-          'fixtures/output/compress_test_array.zip': ['fixtures/compress/test.*','fixtures/compress/folder_one/*']
+          'fixtures/output/compress_test_array.zip': ['fixtures/compress/test.*','fixtures/compress/folder_one/*'],
+          'fixtures/output/compress_test_files_template.zip': '<%= files.test %>/**',
+          'fixtures/output/compress_test_v<%= pkg.version %>.zip': 'fixtures/compress/**'
+        }
+      },
+      tar: {
+        options: {
+          mode: 'tar',
+          basePath: 'fixtures/compress'
+        },
+        files: {
+          'fixtures/output/compress_test_files.tar': 'fixtures/compress/*',
+          'fixtures/output/compress_test_folders.tar': 'fixtures/compress/**',
+          'fixtures/output/compress_test_array.tar': ['fixtures/compress/test.*','fixtures/compress/folder_one/*'],
+          'fixtures/output/compress_test_files_template.tar': '<%= files.test %>/**',
+          'fixtures/output/compress_test_v<%= pkg.version %>.tar': 'fixtures/compress/**'
+        }
+      },
+      tgz: {
+        options: {
+          mode: 'tgz',
+          basePath: 'fixtures/compress',
+        },
+        files: {
+          'fixtures/output/compress_test_files.tgz': 'fixtures/compress/*',
+          'fixtures/output/compress_test_folders.tgz': 'fixtures/compress/**',
+          'fixtures/output/compress_test_array.tgz': ['fixtures/compress/test.*','fixtures/compress/folder_one/*'],
+          'fixtures/output/compress_test_files_template.tgz': '<%= files.test %>/**',
+          'fixtures/output/compress_test_v<%= pkg.version %>.tgz': 'fixtures/compress/**'
         }
       },
       gzip: {
         options: {
-          type: 'gzip'
+          mode: 'gzip'
         },
         files: {
-          'fixtures/output/test.gz': 'fixtures/compress/test.js'
+          'fixtures/output/compress_test_file.gz': 'fixtures/compress/test.js',
+          'fixtures/output/compress_test_file2.gz': 'fixtures/compress/folder_one/one.js'
         }
       }
     },

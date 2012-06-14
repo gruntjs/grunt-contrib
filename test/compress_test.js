@@ -5,29 +5,95 @@ grunt.loadTasks("../tasks");
 
 exports.zip = {
   main: function(test) {
-    function getSize(filename, callback) {
+    function getSize(filename) {
       try {
-        var stat = require("fs").statSync(filename);
-        callback(null, stat.size);
-      } catch (err) {
-        callback(err, 0);
+        return require("fs").statSync(filename).size;
+      } catch (e) {
+        return 0;
       }
     }
 
     var expectations = {
-      "fixtures/output/compress_test_files.zip": 382,
-      "fixtures/output/compress_test_folders.zip": 1178,
-      "fixtures/output/compress_test_v0.3.9.zip": 1178,
-      "fixtures/output/compress_test_array.zip": 778,
-      "fixtures/output/test.gz": 52
+      "fixtures/output/compress_test_files.zip": {
+        test: 'size',
+        expected: 314
+      },
+      "fixtures/output/compress_test_folders.zip": {
+        test: 'size',
+        expected: 1346
+      },
+      "fixtures/output/compress_test_array.zip": {
+        test: 'size',
+        expected: 642
+      },
+      "fixtures/output/compress_test_files_template.zip": {
+        test: 'size',
+        expected: 394
+      },
+      "fixtures/output/compress_test_v0.3.9.zip": {
+        test: 'size',
+        expected: 1346
+      },
+      "fixtures/output/compress_test_files.tar": {
+        test: 'size',
+        expected: 3072
+      },
+      "fixtures/output/compress_test_folders.tar": {
+        test: 'size',
+        expected: 10752
+      },
+      "fixtures/output/compress_test_array.tar": {
+        test: 'size',
+        expected: 5632
+      },
+      "fixtures/output/compress_test_files_template.tar": {
+        test: 'size',
+        expected: 3584
+      },
+      "fixtures/output/compress_test_v0.3.9.tar": {
+        test: 'size',
+        expected: 10752
+      },
+      "fixtures/output/compress_test_files.tgz": {
+        test: 'size-greaterthan',
+        expected: 200
+      },
+      "fixtures/output/compress_test_folders.tgz": {
+        test: 'size-greaterthan',
+        expected: 350
+      },
+      "fixtures/output/compress_test_array.tgz": {
+        test: 'size-greaterthan',
+        expected: 300
+      },
+      "fixtures/output/compress_test_files_template.tgz": {
+        test: 'size-greaterthan',
+        expected: 225
+      },
+      "fixtures/output/compress_test_v0.3.9.tgz": {
+        test: 'size-greaterthan',
+        expected: 300
+      },
+      "fixtures/output/compress_test_file.gz": {
+        test: 'size',
+        expected: 52
+      },
+      "fixtures/output/compress_test_file2.gz": {
+        test: 'size',
+        expected: 67
+      }
     };
 
     test.expect(_.size(expectations));
 
-    _.each(expectations,function(expected, filename){
-      getSize(filename,function(err,size){
-        test.equal(expected, size, filename + " filesize should equal " + expected);
-      });
+    _.each(expectations,function(properties, filename){
+      if (properties.test == 'size') {
+        var actual = getSize(filename);
+        test.equal(properties.expected, actual, filename + " size should equal " + properties.expected + " bytes");
+      } else if (properties.test == 'size-greaterthan') {
+        var actual = getSize(filename) > properties.expected;
+        test.equal(true, actual, filename + " should exist and have a size > " + properties.expected + " bytes");
+      }
     });
 
     test.done();
