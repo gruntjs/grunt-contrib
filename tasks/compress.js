@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask("compress", "Compress files.", function() {
     var files = this.data.files,
-        options = grunt.helper("options", this, {type: "zip", gzip: false, basePath: null, level: 1}),
+        options = grunt.helper("options", this, {archiver: "zip", gzip: true, basePath: null, level: 1}),
         supported = ["zip", "tar"],
         done = this.async();
 
@@ -26,19 +26,19 @@ module.exports = function(grunt) {
           dest = grunt.template.process(dest);
 
 
-      if(!_.include(supported, options.type)) {
-        grunt.log.error("Compression type " + options.type + " not supported.");
+      if(!_.include(supported, options.archiver)) {
+        grunt.log.error("Archiver " + options.archiver + " not supported.");
         done();
         return;
       }
 
       // these are suffixed with helper because grunt has a conflicting, built-in "gzip" helper
-      grunt.helper(options.type + "Helper", srcFiles, dest, options, function(error, written) {
+      grunt.helper(options.archiver + "Helper", srcFiles, dest, options, function(error, written) {
         if (error === null) {
           grunt.log.writeln('File "' + dest + '" created (' + written + ' bytes written).');
         } else {
           grunt.log.error(error);
-          grunt.fail.warn(options.type + " compressor failed.");
+          grunt.fail.warn("Archiver " + options.archiver + " failed.");
         }
 
         next();
@@ -51,8 +51,9 @@ module.exports = function(grunt) {
 
   grunt.registerHelper("zipHelper", function(files, dest, options, callback) {
     var fs = require("fs"),
-        zip = require("zipstream").createZip(options),
-        destdir = _(dest).strLeftBack("/");
+        zip = require("zipstream").createZip(options);
+
+    var destdir = _(dest).strLeftBack("/");
 
     if (require("path").existsSync(destdir) === false) {
       grunt.file.mkdir(destdir);
@@ -69,17 +70,17 @@ module.exports = function(grunt) {
       }
 
       var filepath = files.shift(),
-          filename = _(filepath).strRightBack("/")
-          zippath = _(filepath).strLeftBack("/");
+          filename = _(filepath).strRightBack("/"),
+          internal = _(filepath).strLeftBack("/");
 
       if (options.basePath !== null) {
-        zippath = _(zippath).strRightBack(options.basePath);
+        internal = _(internal).strRightBack(options.basePath);
       }
 
-      zippath = zippath + "/" + filename;
+      internal = internal + "/" + filename;
 
       grunt.verbose.writeln("Adding " + filepath + " to zip.");
-      zip.addFile(fs.createReadStream(filepath), {name: zippath}, addFile);
+      zip.addFile(fs.createReadStream(filepath), {name: internal}, addFile);
     }
 
     addFile();
@@ -92,7 +93,7 @@ module.exports = function(grunt) {
 
     var destdir = _(dest).strLeftBack("/"),
         destfile = _(dest).strRight("/"),
-        tempdir = destdir + "/tar_temp/",
+        tempdir = destdir + "/tar_temp",
         tardir = _(destfile).strLeftBack(".");
 
     // support tar.gz naming when getting root folder for tar
@@ -100,7 +101,7 @@ module.exports = function(grunt) {
       tardir = _(tardir).strLeftBack(".");
     }
 
-    tardir = tempdir + tardir;
+    tardir = tempdir + "/" + tardir;
 
     if (require("path").existsSync(destdir) === false) {
       grunt.file.mkdir(destdir);
@@ -108,16 +109,16 @@ module.exports = function(grunt) {
 
     _.each(files, function(filepath) {
       var filename = _(filepath).strRightBack("/"),
-          tarpath = _(filepath).strLeftBack("/");
+          internal = _(filepath).strLeftBack("/");
 
       if (options.basePath !== null) {
-        tarpath = _(tarpath).strRightBack(options.basePath);
+        internal = _(internal).strRightBack(options.basePath);
       }
 
-      tarpath = tarpath + "/" + filename;
+      internal = internal + "/" + filename;
 
       grunt.verbose.writeln("Adding " + filepath + " to tar.");
-      grunt.file.copy(filepath, tardir + tarpath);
+      grunt.file.copy(filepath, tardir + internal);
     })
 
     var reader = fstream.Reader({path: tardir, type: "Directory"}),
@@ -136,7 +137,7 @@ module.exports = function(grunt) {
     });
 
     tard.on("close", function() {
-      //grunt.helper("clean", tempdir);
+      grunt.helper("clean", tempdir);
       callback(null, require("fs").statSync(dest).size);
     });
   });

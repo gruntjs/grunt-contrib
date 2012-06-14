@@ -28,33 +28,39 @@ module.exports = function(grunt) {
     compress: {
       zip: {
         options: {
-          type: 'zip',
-          level: 1,
-          basePath: 'fixtures/compress'
+          archiver: 'zip',
+          basePath: 'fixtures/compress',
+          level: 1
         },
         files: {
           'fixtures/output/compress_test_files.zip': 'fixtures/compress/*',
           'fixtures/output/compress_test_folders.zip': 'fixtures/compress/**',
-          'fixtures/output/compress_test_v<%= pkg.version %>.zip': 'fixtures/compress/**',
-          'fixtures/output/compress_test_array.zip': ['fixtures/compress/test.*','fixtures/compress/folder_one/*']
+          'fixtures/output/compress_test_array.zip': ['fixtures/compress/test.*','fixtures/compress/folder_one/*'],
+          'fixtures/output/compress_test_v<%= pkg.version %>.zip': 'fixtures/compress/**'
         }
       },
       tar: {
         options: {
-          type: 'tar',
-          basePath: 'fixtures/compress'
+          archiver: 'tar',
+          basePath: 'fixtures/compress',
+          gzip: false
         },
         files: {
-          'fixtures/output/compress_test.tar': 'fixtures/compress/test.js'
+          'fixtures/output/compress_test_files.tar': 'fixtures/compress/*',
+          'fixtures/output/compress_test_folders.tar': 'fixtures/compress/**',
+          'fixtures/output/compress_test_array.tar': ['fixtures/compress/test.*','fixtures/compress/folder_one/*'],
+          'fixtures/output/compress_test_v<%= pkg.version %>.tar': 'fixtures/compress/**'
         }
       },
       tgz: {
         options: {
-          type: 'tar',
-          gzip: true,
-          basePath: 'fixtures/compress'
+          archiver: 'tar',
+          basePath: 'fixtures/compress',
         },
         files: {
+          'fixtures/output/compress_test_files.tgz': 'fixtures/compress/*',
+          'fixtures/output/compress_test_folders.tgz': 'fixtures/compress/**',
+          'fixtures/output/compress_test_array.tgz': ['fixtures/compress/test.*','fixtures/compress/folder_one/*'],
           'fixtures/output/compress_test_v<%= pkg.version %>.tgz': 'fixtures/compress/**'
         }
       }

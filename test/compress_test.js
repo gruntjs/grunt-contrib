@@ -22,17 +22,41 @@ exports.zip = {
         test: 'size',
         expected: 974
       },
-      "fixtures/output/compress_test_v0.3.9.zip": {
-        test: 'size',
-        expected: 974
-      },
       "fixtures/output/compress_test_array.zip": {
         test: 'size',
         expected: 642
       },
-      "fixtures/output/compress_test.tar": {
+      "fixtures/output/compress_test_v0.3.9.zip": {
         test: 'size',
-        expected: 2048
+        expected: 974
+      },
+      "fixtures/output/compress_test_files.tar": {
+        test: 'size',
+        expected: 3072
+      },
+      "fixtures/output/compress_test_folders.tar": {
+        test: 'size',
+        expected: 8192
+      },
+      "fixtures/output/compress_test_array.tar": {
+        test: 'size',
+        expected: 5632
+      },
+      "fixtures/output/compress_test_v0.3.9.tar": {
+        test: 'size',
+        expected: 8192
+      },
+      "fixtures/output/compress_test_files.tgz": {
+        test: 'size-greaterthan',
+        expected: 200
+      },
+      "fixtures/output/compress_test_folders.tgz": {
+        test: 'size-greaterthan',
+        expected: 350
+      },
+      "fixtures/output/compress_test_array.tgz": {
+        test: 'size-greaterthan',
+        expected: 300
       },
       "fixtures/output/compress_test_v0.3.9.tgz": {
         test: 'size-greaterthan',
@@ -48,7 +72,7 @@ exports.zip = {
         test.equal(properties.expected, actual, filename + " size should equal " + properties.expected + " bytes");
       } else if (properties.test == 'size-greaterthan') {
         var actual = getSize(filename) > properties.expected;
-        test.equal(true, actual, filename + " should have a size > " + properties.expected + " bytes");
+        test.equal(true, actual, filename + " should exist and have a size > " + properties.expected + " bytes");
       }
     });
 
