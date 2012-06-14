@@ -1,7 +1,7 @@
 /**
 * Task: compress
 * Description: Compress files
-* Dependencies: zipstream
+* Dependencies: zipstream / tar / fstream
 * Contributor(s): @ctalkington / @tkellen
 * Inspired by: @jzaefferer (jquery-validation)
 */
@@ -11,41 +11,37 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask("compress", "Compress files.", function() {
     var files = this.data.files,
-        options = grunt.helper("options", this, {level: 1}),
-        supported = ['zip', 'gzip'],
+        options = grunt.helper("options", this, {type: 'zip', gzip: false, level: 1}),
+        supported = ['zip', 'tar'],
         done = this.async();
 
 
-    async.forEachSeries(_.keys(files),function(dest, callback) {
+    async.forEachSeries(_.keys(files),function(dest, next) {
       var src = files[dest],
           srcFiles = grunt.file.expandFiles(src),
           dest = grunt.template.process(dest);
 
 
-      if(!_.include(supported,options.type)) {
-        grunt.log.error('Compression type '+options.type+' not supported.');
+      if(!_.include(supported, options.type)) {
+        grunt.log.error('Compression type ' + options.type + ' not supported.');
         done();
         return;
       }
 
-      if(options.type === 'gzip') {
-        if(srcFiles.length > 1) {
-          // eventually it'd be nice to support tar files so we can do this
-          grunt.log.error('Cannot specify multiple input files for gzip compression, aborting.');
-          done();
-          return;
-        }
-        srcFiles = srcFiles[0];
-      }
-
       // these are suffixed with helper because grunt has a conflicting, built-in "gzip" helper
-      grunt.helper(options.type+"Helper", srcFiles, dest, options, function(err, written) {
-        grunt.log.writeln('File "' + dest + '" created (' + written + ' bytes written).');
-        callback(err);
+      grunt.helper(options.type + "Helper", srcFiles, dest, options, function(error, written) {
+        if (error === null) {
+          grunt.log.writeln('File "' + dest + '" created (' + written + ' bytes written).');
+        } else {
+          grunt.log.error(error);
+          grunt.fail.warn(options.type + " compressor failed.");
+        }
+
+        next();
       });
 
-    },function(err) {
-      done(!err);
+    }, function() {
+      done();
     });
   });
 
@@ -63,7 +59,7 @@ module.exports = function(grunt) {
     function addFile(){
       if (!files.length) {
         zip.finalize(function(written) {
-          callback(false, written);
+          callback(null, written);
         });
         return;
       }
@@ -74,6 +70,81 @@ module.exports = function(grunt) {
     }
 
     addFile();
+  });
+
+  grunt.registerHelper("tarHelper", function(files, dest, options, callback) {
+    var fs = require("fs"),
+        path = require("path"),
+        fstream = require("fstream"),
+        tar = require("tar"),
+        zlib = require("zlib");
+
+    function rmdir(dir) {
+      var list = fs.readdirSync(dir);
+      for(var i = 0; i < list.length; i++) {
+        var filename = path.join(dir, list[i]);
+        var stat = fs.statSync(filename);
+
+        if(filename == "." || filename == "..") {
+          // pass these files
+        } else if(stat.isDirectory()) {
+          // rmdir recursively
+          rmdir(filename);
+        } else {
+          // rm fiilename
+          fs.unlinkSync(filename);
+        }
+      }
+      fs.rmdirSync(dir);
+    }
+
+    var destdir = _(dest).strLeftBack("/"),
+        tempdir = destdir + "/tar" + new Date().getTime() + "/";
+
+    if (require("path").existsSync(destdir) === false) {
+      grunt.file.mkdir(destdir);
+    }
+
+    _.each(files, function(filepath) {
+      var filename = _(filepath).strRightBack("/");
+
+      grunt.file.copy(filepath, tempdir + "/" + filename)
+    })
+
+    var reader = fstream.Reader({path: tempdir, type: "Directory"}),
+        packer = tar.Pack(),
+        gzipper = zlib.createGzip(),
+        writer = fstream.Writer(dest);
+
+    reader.pipe(packer);
+
+    if (options.gzip) {
+      packer.pipe(gzipper);
+      gzipper.pipe(writer);
+    } else {
+      packer.pipe(writer);
+    }
+
+    reader.on("error", function(e) {
+      callback(e, null);
+    });
+
+    packer.on("error", function(e) {
+      callback(e, null);
+    });
+
+    gzipper.on("error", function(e) {
+      callback(e, null);
+    });
+
+    writer.on("error", function(e) {
+      callback(e, null);
+    });
+
+    writer.on("close", function() {
+      rmdir(tempdir);
+      callback(null, "unknown");
+    });
   });
 
   grunt.registerHelper("gzipHelper", function(file, dest, options, callback) {

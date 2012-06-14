@@ -38,12 +38,21 @@ module.exports = function(grunt) {
           'fixtures/output/compress_test_array.zip': ['fixtures/compress/test.*','fixtures/compress/folder_one/*']
         }
       },
-      gzip: {
+      tar: {
         options: {
-          type: 'gzip'
+          type: 'tar'
         },
         files: {
-          'fixtures/output/test.gz': 'fixtures/compress/test.js'
+          'fixtures/output/test.tar': 'fixtures/compress/test.js'
+        }
+      },
+      tgz: {
+        options: {
+          type: 'tar',
+          gzip: true
+        },
+        files: {
+          'fixtures/output/test.tgz': 'fixtures/compress/test.js'
         }
       }
     },

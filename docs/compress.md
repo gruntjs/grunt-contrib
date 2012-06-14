@@ -5,9 +5,9 @@
 
 Inside your `grunt.js` file add a section named `compress`. This section
 specifies the files to compress and the options passed to either [zipstream](https://github.com/wellawaretech/node-zipstream)
-(for zip) or [zlib](http://nodejs.org/api/zlib.html#zlib_options) (for gzip).
+(for zip) or [tar](https://github.com/isaacs/node-tar) (for tar/tgz).
 
-*If using gzip, only one input file may be specified per output file.  Also, specifying gzip options (level/memLevel etc) is not yet supported due to deficiencies in the current implementation of node's zlib library.*
+*Specifying gzip options (level/memLevel etc) is not yet supported due to deficiencies in the current implementation of node's zlib library.*
 
 ``` javascript
 compress: {
@@ -24,13 +24,23 @@ compress: {
     }
   }
 
-  gzip: {
+  tar: {
     options: {
-      type: 'gzip'
+      type: 'tar'
     },
     files: {
-      'path/to/result.gz': 'path/to/file.ext'
+      'path/to/result.tar': 'path/to/file.ext'
     }
-}
+  },
+
+  tgz: {
+    options: {
+      type: 'tar',
+      gzip: true
+    },
+    files: {
+      'path/to/result.tgz': 'path/to/file.ext'
+    }
+  }
 },
 ```

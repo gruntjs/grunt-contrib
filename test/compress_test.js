@@ -19,7 +19,8 @@ exports.zip = {
       "fixtures/output/compress_test_folders.zip": 1178,
       "fixtures/output/compress_test_v0.3.9.zip": 1178,
       "fixtures/output/compress_test_array.zip": 778,
-      "fixtures/output/test.gz": 52
+      "fixtures/output/test.tar": 2048,
+      "fixtures/output/test.tgz": 146
     };
 
     test.expect(_.size(expectations));
