@@ -29,7 +29,8 @@ module.exports = function(grunt) {
       zip: {
         options: {
           type: 'zip',
-          level: 1
+          level: 1,
+          basePath: 'fixtures/compress'
         },
         files: {
           'fixtures/output/compress_test_files.zip': 'fixtures/compress/*',
@@ -40,19 +41,21 @@ module.exports = function(grunt) {
       },
       tar: {
         options: {
-          type: 'tar'
+          type: 'tar',
+          basePath: 'fixtures/compress'
         },
         files: {
-          'fixtures/output/test.tar': 'fixtures/compress/test.js'
+          'fixtures/output/compress_test.tar': 'fixtures/compress/test.js'
         }
       },
       tgz: {
         options: {
           type: 'tar',
-          gzip: true
+          gzip: true,
+          basePath: 'fixtures/compress'
         },
         files: {
-          'fixtures/output/test.tgz': 'fixtures/compress/test.js'
+          'fixtures/output/compress_test_v<%= pkg.version %>.tgz': 'fixtures/compress/**'
         }
       }
     },
