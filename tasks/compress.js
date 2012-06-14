@@ -68,9 +68,8 @@ module.exports = function(grunt) {
 
   grunt.registerHelper("zipHelper", function(files, dest, options, callback) {
     var fs = require("fs"),
-        zip = require("zipstream").createZip(options);
-
-    var destdir = _(dest).strLeftBack("/");
+        zip = require("zipstream").createZip(options),
+        destdir = _(dest).strLeftBack("/");
 
     if (require("path").existsSync(destdir) === false) {
       grunt.file.mkdir(destdir);
@@ -106,12 +105,19 @@ module.exports = function(grunt) {
   grunt.registerHelper("tarHelper", function(files, dest, options, callback) {
     var fstream = require("fstream"),
         tar = require("tar"),
-        zlib = require("zlib");
-
-    var destdir = _(dest).strLeftBack("/"),
+        zlib = require("zlib"),
+        destdir = _(dest).strLeftBack("/"),
         destfile = _(dest).strRight("/"),
         tempdir = destdir + "/tar_temp",
         tardir = _(destfile).strLeftBack(".");
+
+    function getSize(filename) {
+      try {
+        return require("fs").statSync(filename).size;
+      } catch (e) {
+        return 0;
+      }
+    }
 
     // support tar.gz naming when getting root folder for tar
     if (_(tardir).strRightBack(".") === "tar") {
@@ -155,7 +161,7 @@ module.exports = function(grunt) {
 
     tard.on("close", function() {
       grunt.helper("clean", tempdir);
-      callback(null, require("fs").statSync(dest).size);
+      callback(null, getSize(dest));
     });
   });
 
