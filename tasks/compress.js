@@ -79,25 +79,6 @@ module.exports = function(grunt) {
         tar = require("tar"),
         zlib = require("zlib");
 
-    function rmdir(dir) {
-      var list = fs.readdirSync(dir);
-      for(var i = 0; i < list.length; i++) {
-        var filename = path.join(dir, list[i]);
-        var stat = fs.statSync(filename);
-
-        if(filename == "." || filename == "..") {
-          // pass these files
-        } else if(stat.isDirectory()) {
-          // rmdir recursively
-          rmdir(filename);
-        } else {
-          // rm fiilename
-          fs.unlinkSync(filename);
-        }
-      }
-      fs.rmdirSync(dir);
-    }
-
     var destdir = _(dest).strLeftBack("/"),
         tempdir = destdir + "/tar" + new Date().getTime() + "/";
 
@@ -142,8 +123,8 @@ module.exports = function(grunt) {
     });
 
     writer.on("close", function() {
-      rmdir(tempdir);
-      callback(null, "unknown");
+      grunt.helper("clean", tempdir);
+      callback(null, fs.statSync(dest).size);
     });
   });
 };
