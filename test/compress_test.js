@@ -61,6 +61,14 @@ exports.zip = {
       "fixtures/output/compress_test_v0.3.9.tgz": {
         test: 'size-greaterthan',
         expected: 300
+      },
+      "fixtures/output/compress_test_file.gz": {
+        test: 'size',
+        expected: 52
+      },
+      "fixtures/output/compress_test_file2.gz": {
+        test: 'size',
+        expected: 67
       }
     };
 

@@ -63,6 +63,15 @@ module.exports = function(grunt) {
           'fixtures/output/compress_test_array.tgz': ['fixtures/compress/test.*','fixtures/compress/folder_one/*'],
           'fixtures/output/compress_test_v<%= pkg.version %>.tgz': 'fixtures/compress/**'
         }
+      },
+      gzip: {
+        options: {
+          gzip: true
+        },
+        files: {
+          'fixtures/output/compress_test_file.gz': 'fixtures/compress/test.js',
+          'fixtures/output/compress_test_file2.gz': ['fixtures/compress/folder_one/one.js', 'fixtures/compress/folder_two/two.js']
+        }
       }
     },
 

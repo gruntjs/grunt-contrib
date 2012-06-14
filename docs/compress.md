@@ -26,9 +26,9 @@ This option is used to define which archiver to use, currently supports tar and 
 
 This option adjusts internal filenames to be relative to provided path, within the resulting archive file. defaults to null.
 
-##### gzip ```boolean``` ```tar only```
+##### gzip ```boolean```
 
-This option controls the gzipping of data within the tar process. defaults to true.
+This option toggles the gzipping of data within the tar process. when set to ```true``` without a set ```archiver``` this gzips single files.
 
 ##### level ```integer``` ```zip only```
 
@@ -68,6 +68,16 @@ compress: {
     options: {
       archiver: 'tar',
       basePath: 'path/to',
+      gzip: true
+    },
+    files: {
+      'path/to/result.tgz': 'path/to/file.ext'
+    }
+  },
+
+  gzip: {
+    options: {
+      archiver: null,
       gzip: true
     },
     files: {
