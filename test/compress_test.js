@@ -20,15 +20,19 @@ exports.zip = {
       },
       "fixtures/output/compress_test_folders.zip": {
         test: 'size',
-        expected: 974
+        expected: 1346
       },
       "fixtures/output/compress_test_array.zip": {
         test: 'size',
         expected: 642
       },
+      "fixtures/output/compress_test_files_template.zip": {
+        test: 'size',
+        expected: 394
+      },
       "fixtures/output/compress_test_v0.3.9.zip": {
         test: 'size',
-        expected: 974
+        expected: 1346
       },
       "fixtures/output/compress_test_files.tar": {
         test: 'size',
@@ -36,15 +40,19 @@ exports.zip = {
       },
       "fixtures/output/compress_test_folders.tar": {
         test: 'size',
-        expected: 8192
+        expected: 10752
       },
       "fixtures/output/compress_test_array.tar": {
         test: 'size',
         expected: 5632
       },
+      "fixtures/output/compress_test_files_template.tar": {
+        test: 'size',
+        expected: 3584
+      },
       "fixtures/output/compress_test_v0.3.9.tar": {
         test: 'size',
-        expected: 8192
+        expected: 10752
       },
       "fixtures/output/compress_test_files.tgz": {
         test: 'size-greaterthan',
@@ -57,6 +65,10 @@ exports.zip = {
       "fixtures/output/compress_test_array.tgz": {
         test: 'size-greaterthan',
         expected: 300
+      },
+      "fixtures/output/compress_test_files_template.tgz": {
+        test: 'size-greaterthan',
+        expected: 225
       },
       "fixtures/output/compress_test_v0.3.9.tgz": {
         test: 'size-greaterthan',

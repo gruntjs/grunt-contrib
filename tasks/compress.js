@@ -12,31 +12,40 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask("compress", "Compress files.", function() {
     var files = this.data.files,
-        options = grunt.helper("options", this, {archiver: null, gzip: false, basePath: null, level: 1}),
-        supported = ["zip", "tar"],
-        helper = options.archiver + "Helper",
-        gzipOnly = false,
+        options = grunt.helper("options", this, {mode: null, basePath: null, level: 1}),
+        supported = ["zip", "tar", "tgz", "gzip"],
+        helper = options.mode + "Helper",
         done = this.async();
 
     if (options.basePath !== null) {
       options.basePath = _(options.basePath).rtrim("/");
     }
 
-    if (options.archiver === null && options.gzip === true) {
-      gzipOnly = true;
-      helper = "gzipHelper";
-    } else if (_.include(supported, options.archiver) === false) {
-      grunt.log.error("Archiver " + options.archiver + " not supported.");
+    if (options.mode == 'tgz') {
+      helper = "tarHelper";
+    }
+
+    if (_.include(supported, options.mode) === false) {
+      grunt.log.error("Mode " + options.mode + " not supported.");
       done();
       return;
     }
 
     async.forEachSeries(_.keys(files),function(dest, next) {
       var src = files[dest],
-          srcFiles = grunt.file.expandFiles(src),
           dest = grunt.template.process(dest);
 
-      if (gzipOnly && _.size(srcFiles) > 1) {
+      if (_.isArray(src)) {
+        _.each(src, function(s, k) {
+          src[k] = grunt.template.process(s);
+        });
+      } else {
+        src = grunt.template.process(src);
+      }
+
+      var srcFiles = grunt.file.expandFiles(src);
+
+      if (options.mode == 'gzip' && _.size(srcFiles) > 1) {
         grunt.warn("Cannot specify multiple input files for gzip compression.");
         srcFiles = srcFiles[0];
       }
@@ -46,7 +55,7 @@ module.exports = function(grunt) {
           grunt.log.writeln('File "' + dest + '" created (' + written + ' bytes written).');
         } else {
           grunt.log.error(error);
-          grunt.fail.warn("Archiver " + options.archiver + " failed.");
+          grunt.fail.warn("Mode " + options.mode + " failed.");
         }
 
         next();
@@ -134,7 +143,7 @@ module.exports = function(grunt) {
         gzipper = zlib.createGzip(),
         writer = fstream.Writer(dest);
 
-    if (options.gzip) {
+    if (options.mode == 'tgz') {
       var tard = reader.pipe(packer).pipe(gzipper).pipe(writer);
     } else {
       var tard = reader.pipe(packer).pipe(writer);

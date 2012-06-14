@@ -18,21 +18,17 @@ This parameter controls how this task operates and should contain key:value pair
 
 #### Options
 
-##### archiver ```string```
+##### mode ```string``` ```null```
 
-This option is used to define which archiver to use, currently supports tar and zip (default).
+This option is used to define which mode to use, currently supports gzip, tar, tgz (tar gzip) and zip.
 
-##### basePath ```string```
+##### basePath ```string``` ```null```
 
-This option adjusts internal filenames to be relative to provided path, within the resulting archive file. defaults to null.
+This option adjusts internal filenames to be relative to provided path, within the resulting archive file.
 
-##### gzip ```boolean```
+##### level ```integer``` ```1``` ```zip only```
 
-This option toggles the gzipping of data within the tar process. when set to ```true``` without a set ```archiver``` this gzips single files.
-
-##### level ```integer``` ```zip only```
-
-This option sets the level of archive compression. defaults to 1.
+This option sets the level of archive compression.
 
 > Currently, gzip compression related options are not supported due to deficiencies in node's zlib library.
 
@@ -42,7 +38,7 @@ This option sets the level of archive compression. defaults to 1.
 compress: {
   zip: {
     options: {
-      archiver: 'zip',
+      mode: 'zip',
       basePath: 'path/to',
       level: 1
     },
@@ -56,7 +52,7 @@ compress: {
 
   tar: {
     options: {
-      archiver: 'tar',
+      mode: 'tar',
       basePath: 'path/to'
     },
     files: {
@@ -66,9 +62,8 @@ compress: {
 
   tgz: {
     options: {
-      archiver: 'tar',
-      basePath: 'path/to',
-      gzip: true
+      mode: 'tgz',
+      basePath: 'path/to'
     },
     files: {
       'path/to/result.tgz': 'path/to/file.ext'
@@ -77,11 +72,10 @@ compress: {
 
   gzip: {
     options: {
-      archiver: null,
-      gzip: true
+      mode: 'gzip'
     },
     files: {
-      'path/to/result.tgz': 'path/to/file.ext'
+      'path/to/result.gz': 'path/to/file.ext'
     }
   }
 },
