@@ -146,21 +146,4 @@ module.exports = function(grunt) {
       callback(null, "unknown");
     });
   });
-
-  grunt.registerHelper("gzipHelper", function(file, dest, options, callback) {
-    var fs = require("fs"),
-        zlib = require("zlib"),
-        destdir = _(dest).strLeftBack("/");
-
-    if (require("path").existsSync(destdir) === false) {
-      grunt.file.mkdir(destdir);
-    }
-
-    zlib.gzip(grunt.file.read(file), function(err, result) {
-      grunt.file.write(dest, result);
-      callback(false, result.length);
-    });
-
-  });
-
 };
