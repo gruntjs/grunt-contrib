@@ -8,7 +8,7 @@
  */
 
 module.exports = function(grunt) {
-  grunt.registerMultiTask("handlebars", "Compile underscore templates to JST file", function() {
+  grunt.registerMultiTask("handlebars", "Compile handlebars templates to JST file", function() {
 
     var options = grunt.helper("options", this),
         namespace = options.namespace || "JST",
