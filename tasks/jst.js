@@ -3,30 +3,41 @@
  * Task: jst
  * Description: Compile underscore templates to JST file
  * Dependencies: underscore
- * Contributor(s): @tbranyen
+ * Contributor(s): @tbranyen / @ctalkington
  *
  */
 
 module.exports = function(grunt) {
   var _ = grunt.utils._;
+  var async = grunt.utils.async;
 
   grunt.registerMultiTask("jst", "Compile underscore templates to JST file", function() {
-    var options = grunt.helper("options", this),
-        namespace = options.namespace || "JST",
-        settings = options.templateSettings || null,
-        files = grunt.file.expand(this.data);
+    var options = grunt.helper("options", this, {namespace: "JST", templateSettings: {}});
+    var data = this.data;
+    var done = this.async();
 
-    // Create JST file.
-    grunt.file.write(this.target, grunt.helper("jst", files, namespace, settings));
+    async.forEachSeries(_.keys(data.files), function(dest, next) {
+      var src = data.files[dest];
+      var srcFiles = grunt.file.expandFiles(src);
+      var dest = grunt.template.process(dest);
 
-    // Fail task if errors were logged.
-    if (grunt.errors) { return false; }
+      grunt.helper("jst", srcFiles, options.namespace, options.templateSettings, function(error, script) {
+        if (error === null) {
+          grunt.file.write(dest, script);
+          grunt.log.writeln("File '" + dest + "' created.");
+        } else {
+          grunt.log.error(error);
+          grunt.fail.warn("Underscore template failed to compile.");
+        }
 
-    // Otherwise, print a success message.
-    grunt.log.writeln("File \"" + this.target + "\" created.");
+        next();
+      });
+    }, function() {
+      done();
+    });
   });
 
-  grunt.registerHelper("jst", function(files, namespace, templateSettings) {
+  grunt.registerHelper("jst", function(files, namespace, templateSettings, callback) {
     // Pulled from underscore 1.2.4
     function underscoreTemplating(str) {
         // Merge in the templateSettings that may be passed
@@ -58,23 +69,19 @@ module.exports = function(grunt) {
 
     namespace = "this['" + namespace + "']";
 
-    // Comes out looking like this["JST"] = this["JST"] || {};
-    var contents = namespace + " = " + namespace + " || {};\n\n";
+    var results = [];
+    results.push(namespace + " = " + namespace + " || {};")
 
-    // Compile the template and get the function source
-    contents += files ? files.map(function(filepath) {
-      var templateFunction = [
-        "function(data) { ",
-
-          "return ",
-          underscoreTemplating(grunt.file.read(filepath)).replace("anonymous", ""),
-          "(data, _)",
-
-        "};"].join("");
-
-      return namespace + "['" + filepath + "'] = " + templateFunction;
-    }).join("\n\n") : "";
-
-    return contents;
+    try {
+      _.each(files, function(filepath) {
+        var handleSource = grunt.file.read(filepath);
+        var handleOutput = "function(data) { return " + underscoreTemplating(handleSource).replace("anonymous", "") + "(data, _)" + "};";
+        results.push(namespace + "['" + filepath + "'] = " + handleOutput);
+      });
+      var result = results.join("\n\n");
+      callback(null, result);
+    } catch (e) {
+      callback(e, null);
+    }
   });
 };

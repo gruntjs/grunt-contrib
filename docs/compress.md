@@ -1,4 +1,4 @@
-## Compress files
+## Compress files and folders
 > Contributed By: Chris Talkington (@ctalkington) and Tyler Kellen (@tkellen)
 
 ### Overview
@@ -11,7 +11,7 @@ Inside your `grunt.js` file, add a section named `compress`. This section specif
 
 This defines what files this task will compress and should contain key:value pairs.
 
-The key (destination) should be an unique filepath (supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md)) and the value (source) should be a filepath or an array of filepaths (supports [minimatch](https://github.com/isaacs/minimatch) regex).
+The key (destination) should be an unique filepath (supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md)) and the value (source) should be a filepath or an array of filepaths (supports [minimatch](https://github.com/isaacs/minimatch)).
 
 ##### options ```object```
 
@@ -39,45 +39,45 @@ This option sets the level of archive compression (defaults to 1).
 compress: {
   zip: {
     options: {
-      mode: 'zip',
-      basePath: 'path/to',
+      mode: "zip",
+      basePath: "path/to",
       level: 1
     },
     files: {
-      'path/to/result.zip': 'path/to/source/*', // includes files in dir
-      'path/to/another.gz': 'path/to/source/**', // includes files in dir and subdirs
-      'path/to/final.zip': ['path/to/sources/*.js', 'path/to/more/*.js'], // include JS files in two diff dirs
-      'path/to/project-<%= pkg.version %>.zip': 'path/to/source/**' // variables in destination
+      "path/to/result.zip": "path/to/source/*", // includes files in dir
+      "path/to/another.gz": "path/to/source/**", // includes files in dir and subdirs
+      "path/to/final.zip": ["path/to/sources/*.js", "path/to/more/*.js"], // include JS files in two diff dirs
+      "path/to/project-<%= pkg.version %>.zip": "path/to/source/**" // variables in destination
     }
   }
 
   tar: {
     options: {
-      mode: 'tar',
-      basePath: 'path/to'
+      mode: "tar",
+      basePath: "path/to"
     },
     files: {
-      'path/to/result.tar': 'path/to/file.ext'
+      "path/to/result.tar": "path/to/file.ext"
     }
   },
 
   tgz: {
     options: {
-      mode: 'tgz',
-      basePath: 'path/to'
+      mode: "tgz",
+      basePath: "path/to"
     },
     files: {
-      'path/to/result.tgz': 'path/to/file.ext'
+      "path/to/result.tgz": "path/to/file.ext"
     }
   },
 
   gzip: {
     options: {
-      mode: 'gzip'
+      mode: "gzip"
     },
     files: {
-      'path/to/result.gz': 'path/to/file.ext'
+      "path/to/result.gz": "path/to/file.ext"
     }
   }
-},
+}
 ```

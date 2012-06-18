@@ -9,8 +9,8 @@
 
 module.exports = function(grunt) {
   grunt.registerMultiTask("requirejs", "Build a RequireJS project.", function() {
-    var options = grunt.helper("options", this),
-        done = this.async();
+    var options = grunt.helper("options", this);
+    var done = this.async();
 
     grunt.helper("requirejs", options, function(error, response) {
       if (error === null) {

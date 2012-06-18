@@ -3,45 +3,54 @@
  * Task: coffee
  * Description: Compile CoffeeScript files into JavaScript
  * Dependencies: coffee-script
- * Contributor(s): @errcw
+ * Contributor(s): @errcw / @ctalkington
  *
  */
 
 module.exports = function(grunt) {
-  var _ = grunt.utils._,
-      async = grunt.utils.async;
+  var _ = grunt.utils._;
+  var async = grunt.utils.async;
 
   grunt.registerMultiTask("coffee", "Compile CoffeeScript files into JavaScript", function() {
-    var options = grunt.helper("options", this),
-        files = this.data.files,
-        done = this.async();
+    var options = grunt.helper("options", this);
+    var data = this.data;
+    var done = this.async();
 
-    async.forEach(Object.keys(files), function(dest, callback) {
-      var src = files[dest];
-      async.concat(grunt.file.expand(src), function(filename, callback) {
-        var opts = _.extend({filename: filename}, options);
-        var javascript = grunt.helper("coffee", grunt.file.read(filename), opts);
-        callback(!javascript, javascript);
-      }, function(err, javascript) {
-        if (!err) {
-          grunt.file.write(dest, javascript.join("\n"));
+    async.forEachSeries(_.keys(data.files), function(dest, next) {
+      var src = data.files[dest];
+      var srcFiles = grunt.file.expandFiles(src);
+      var dest = grunt.template.process(dest);
+
+      async.concatSeries(srcFiles, function(srcFile, nextConcat) {
+        var coffeeOptions = _.extend({filename: srcFile}, options);
+        var coffeeSource = grunt.file.read(srcFile);
+
+        grunt.helper("coffee", coffeeSource, coffeeOptions, function(error, script) {
+          nextConcat(error, script);
+        });
+      }, function(error, script) {
+        if (error === null) {
+          grunt.file.write(dest, script.join("\n"));
           grunt.log.writeln("File '" + dest + "' created.");
+        } else {
+          grunt.log.error(error);
+          grunt.fail.warn("CoffeeScript failed to compile.");
         }
-        callback(err);
+
+        next();
       });
-    }, function(err) {
-      done(!err);
+
+    }, function() {
+      done();
     });
   });
 
-  grunt.registerHelper("coffee", function(coffeescript, options) {
-    var coffee = require("coffee-script");
+  grunt.registerHelper("coffee", function(coffeescript, options, callback) {
     try {
-      var javascript = coffee.compile(coffeescript, options);
-      return javascript;
+      var javascript = require("coffee-script").compile(coffeescript, options);
+      callback(null, javascript);
     } catch (e) {
-      grunt.log.error(e);
-      return null;
+      callback(e, null);
     }
   });
 };

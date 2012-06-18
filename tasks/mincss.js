@@ -3,28 +3,48 @@
  * Task: mincss
  * Description: Minify CSS files
  * Dependencies: clean-css
- * Contributor(s): @tbranyen, @thomasaboyt
+ * Contributor(s): @tbranyen, @thomasaboyt, @ctalkington
  *
  */
 
 module.exports = function(grunt) {
+  var _ = grunt.utils._;
+  var async = grunt.utils.async;
+
   grunt.registerMultiTask("mincss", "Minify CSS files", function() {
-    var files = grunt.file.expand(this.data),
-          max = grunt.helper('concat', files),
-          min = grunt.helper('mincss', max);
+    var options = grunt.helper("options", this);
+    var data = this.data;
+    var done = this.async();
 
-    grunt.file.write(this.file.dest, min);
+    async.forEachSeries(_.keys(data.files), function(dest, next) {
+      var src = data.files[dest];
+      var srcFiles = grunt.file.expandFiles(src);
+      var dest = grunt.template.process(dest);
+      var source = grunt.helper("concat", srcFiles);
 
-    // Fail task if errors were logged.
-    if (grunt.errors) { return false; }
+      grunt.helper("mincss", source, function(error, min, max) {
+        if (error === null) {
+          grunt.file.write(dest, min);
+          grunt.log.writeln("File '" + dest + "' created.");
+          grunt.helper('min_max_info', min, max);
+        } else {
+          grunt.log.error(error);
+          grunt.fail.warn("clean-css failed.");
+        }
 
-    // Otherwise, print a success message.
-    grunt.log.writeln("File \"" + this.file.dest + "\" created.");
-    grunt.helper('min_max_info', min, max);
+        next();
+      });
+    }, function() {
+      done();
+    });
   });
 
-  grunt.registerHelper("mincss", function(css_string) {
-    // Minify and combine all CSS
-    return require("clean-css").process(css_string);
+  grunt.registerHelper("mincss", function(source, callback) {
+    try {
+      var css = require("clean-css").process(source);
+      callback(null, css, source);
+    } catch (e) {
+      callback(e, null, source);
+    }
   });
 };

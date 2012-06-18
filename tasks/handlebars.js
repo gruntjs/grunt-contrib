@@ -3,40 +3,56 @@
  * Task: handlebars
  * Description: Compile handlebars templates to JST file
  * Dependencies: handlebars
- * Contributor(s): @tbranyen
+ * Contributor(s): @tbranyen / @ctalkington
  *
  */
 
 module.exports = function(grunt) {
+  var _ = grunt.utils._;
+  var async = grunt.utils.async;
+
   grunt.registerMultiTask("handlebars", "Compile handlebars templates to JST file", function() {
+    var options = grunt.helper("options", this, {namespace: "JST"});
+    var data = this.data;
+    var done = this.async();
 
-    var options = grunt.helper("options", this),
-        namespace = options.namespace || "JST",
-        files = grunt.file.expand(this.data);
+    async.forEachSeries(_.keys(data.files), function(dest, next) {
+      var src = data.files[dest];
+      var srcFiles = grunt.file.expandFiles(src);
+      var dest = grunt.template.process(dest);
 
-    grunt.file.write(this.target, grunt.helper("handlebars", files, namespace));
+      grunt.helper("handlebars", srcFiles, options.namespace, function(error, script) {
+        if (error === null) {
+          grunt.file.write(dest, script);
+          grunt.log.writeln("File '" + dest + "' created.");
+        } else {
+          grunt.log.error(error);
+          grunt.fail.warn("Handlebars failed to compile.");
+        }
 
-    // Fail task if errors were logged.
-    if (grunt.errors) { return false; }
-
-    // Otherwise, print a success message.
-    grunt.log.writeln("File \"" + this.target + "\" created.");
+        next();
+      });
+    }, function() {
+      done();
+    });
   });
 
-  grunt.registerHelper("handlebars", function(files, namespace) {
+  grunt.registerHelper("handlebars", function(files, namespace, callback) {
     namespace = "this['" + namespace + "']";
 
-    // Comes out looking like this["JST"] = this["JST"] || {};
-    var contents = namespace + " = " + namespace + " || {};\n\n";
+    var results = [];
+    results.push(namespace + " = " + namespace + " || {};");
 
-    // Compile the template and get the function source
-    contents += files ? files.map(function(filepath) {
-      var templateFunction =
-        require("handlebars").precompile(grunt.file.read(filepath));
-
-      return namespace + "['" + filepath + "'] = " + templateFunction;
-    }).join("\n\n") : "";
-
-    return contents;
+    try {
+      _.each(files, function(filepath) {
+        var handleSource = grunt.file.read(filepath);
+        var handleOutput = require("handlebars").precompile(handleSource);
+        results.push(namespace + "['" + filepath + "'] = " + handleOutput);
+      });
+      var result = results.join("\n\n");
+      callback(null, result);
+    } catch (e) {
+      callback(e, null);
+    }
   });
 };
