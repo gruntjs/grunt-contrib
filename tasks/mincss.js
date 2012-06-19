@@ -13,13 +13,13 @@ module.exports = function(grunt) {
           max = grunt.helper('concat', files),
           min = grunt.helper('mincss', max);
 
-    grunt.file.write(this.target, min);
+    grunt.file.write(this.file.dest, min);
 
     // Fail task if errors were logged.
     if (grunt.errors) { return false; }
 
     // Otherwise, print a success message.
-    grunt.log.writeln("File \"" + this.target + "\" created.");
+    grunt.log.writeln("File \"" + this.file.dest + "\" created.");
     grunt.helper('min_max_info', min, max);
   });
 
