@@ -2,17 +2,11 @@ var grunt = require("grunt");
 
 exports.jade = {
   main: function(test) {
-    test.expect(2);
+    test.expect(1);
 
-    var expectA = "function";
-    var sourceA = require("./fixtures/output/jst.js");
-    var resultA = typeof sourceA["JST"]["fixtures/jst/template.html"];
+    var expectA = "this['JST'] = this['JST'] || {};\n\nthis['JST']['fixtures/jst/template.html'] = function(obj){\nvar __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'')};\nwith(obj||{}){\n__p+='<head><title>'+\n((__t=( title ))==null?'':__t)+\n'</title></head>';\n}\nreturn __p;\n}";
+    var resultA = grunt.file.read("./fixtures/output/jst.js");
     test.equal(expectA, resultA, "should compile underscore templates into JST");
-
-    var expectB = "<head><title>test</title></head>";
-    var sourceB = sourceA;
-    var resultB = sourceB["JST"]["fixtures/jst/template.html"]({title: "test"});
-    test.equal(expectB, resultB, "should output html when run");
 
     test.done();
   }

@@ -25,7 +25,7 @@ module.exports = function(grunt) {
     async.forEachSeries(Object.keys(data.files), function(dest, next) {
       var src = data.files[dest];
       var srcFiles = grunt.file.expandFiles(src);
-      var dest = grunt.template.process(dest);
+      dest = grunt.template.process(dest);
 
       async.concatSeries(srcFiles, function(srcFile, nextConcat) {
         var lessOptions = _.extend({filename: srcFile}, options);
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
   grunt.registerHelper("less", function(source, options, callback) {
     require("less").Parser(options).parse(source, function(parse_error, tree) {
       if (parse_error) {
-        lessError(parse_error)
+        lessError(parse_error);
       }
 
       try {

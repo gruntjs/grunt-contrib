@@ -14,9 +14,9 @@ module.exports = function(grunt) {
 
     Object.keys(data.files).forEach(function(dest) {
       var src = data.files[dest];
-      var srcFiles = grunt.file.expandFiles(src);
-      var dest = grunt.template.process(dest);
+      var srcFiles = grunt.file.expandFiles(src);      
       var source = grunt.helper("concat", srcFiles);
+      dest = grunt.template.process(dest);
 
       var min = grunt.helper("mincss", source);
 

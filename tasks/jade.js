@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     var data = this.data;
     var jadeData = options.data;
 
-    if (_.isEmpty(jadeData) == false) {
+    if (_.isEmpty(jadeData) === false) {
       _.each(jadeData, function(value, key) {
         if (_.isString(value)) {
           jadeData[key] = grunt.template.process(value);
@@ -28,7 +28,7 @@ module.exports = function(grunt) {
     Object.keys(data.files).forEach(function(dest) {
       var src = data.files[dest];
       var srcFiles = grunt.file.expandFiles(src);
-      var dest = grunt.template.process(dest);
+      dest = grunt.template.process(dest);
 
       var jadeOutput = [];
 

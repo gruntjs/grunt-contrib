@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 
     async.forEachSeries(Object.keys(data.files), function(dest, next) {
       var src = data.files[dest];
-      var dest = grunt.template.process(dest);
+      dest = grunt.template.process(dest);
 
       if (_.isArray(src)) {
         src.forEach(function(s, k) {
@@ -110,6 +110,7 @@ module.exports = function(grunt) {
     var destfile = _(dest).strRight("/");
     var tempdir = destdir + "/tar_temp";
     var tardir = _(destfile).strLeftBack(".");
+    var tard;
 
     function getSize(filename) {
       try {
@@ -150,9 +151,9 @@ module.exports = function(grunt) {
     var writer = fstream.Writer(dest);
 
     if (options.mode == 'tgz') {
-      var tard = reader.pipe(packer).pipe(gzipper).pipe(writer);
+      tard = reader.pipe(packer).pipe(gzipper).pipe(writer);
     } else {
-      var tard = reader.pipe(packer).pipe(writer);
+      tard = reader.pipe(packer).pipe(writer);
     }
 
     tard.on("error", function(e) {

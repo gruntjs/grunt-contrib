@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     async.forEachSeries(Object.keys(data.files), function(dest, next) {
       var src = data.files[dest];
       var srcFiles = grunt.file.expandFiles(src);
-      var dest = grunt.template.process(dest);
+      dest = grunt.template.process(dest);
 
       async.concatSeries(srcFiles, function(srcFile, nextConcat) {
         var stylusOptions = _.extend({filename: srcFile}, options);
