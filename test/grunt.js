@@ -20,11 +20,14 @@ module.exports = function(grunt) {
 
     copy: {
       test: {
+        options: {
+          basePath: "fixtures/copy"
+        },
         files: {
-          'fixtures/output/copy_test_files': 'fixtures/copy/*',
-          'fixtures/output/copy_test_folders': 'fixtures/copy/**',
-          'fixtures/output/copy_test_v<%= pkg.version %>': 'fixtures/copy/**',
-          'fixtures/output/copy_test_array': ['fixtures/zip/test.*','fixtures/copy/folder_one/*']
+          "fixtures/output/copy_test_files": "fixtures/copy/*",
+          "fixtures/output/copy_test_folders": "fixtures/copy/**",
+          "fixtures/output/copy_test_v<%= pkg.version %>": "fixtures/copy/**",
+          "fixtures/output/copy_test_array": ["fixtures/copy/test.*", "fixtures/copy/folder_one/*"]
         }
       }
     },
