@@ -192,5 +192,5 @@ module.exports = function(grunt) {
   });
 
   grunt.loadTasks("../tasks");
-  grunt.registerTask("default", "clean test:clean coffee compress jade jst handlebars less mincss requirejs stylus test:tasks");
+  grunt.registerTask("default", "clean test:clean coffee compress copy jade jst handlebars less mincss requirejs stylus test:tasks");
 };

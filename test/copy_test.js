@@ -1,5 +1,4 @@
-var grunt = require("grunt"),
-    _ = grunt.utils._;
+var grunt = require("grunt");
 
 grunt.loadTasks("../tasks");
 
@@ -7,38 +6,31 @@ exports.copy = {
   main: function(test) {
     var fs = require("fs");
 
-    var expectations = {
-      "fixtures/output/copy_test_files": ['test.css','test.js'],
-      "fixtures/output/copy_test_folders": [
-        'test.css',
-        'test.js',
-        'folder_one/one.css',
-        'folder_one/one.js',
-        'folder_two/two.css',
-        'folder_two/two.js'
-      ],
-      "fixtures/output/copy_test_v0.3.9": [
-        'test.css',
-        'test.js',
-        'folder_one/one.css',
-        'folder_one/one.js',
-        'folder_two/two.css',
-        'folder_two/two.js'
-      ],
-      "fixtures/output/copy_test_array": [
-        'test.css',
-        'test.js',
-        'folder_one/one.css',
-        'folder_one/one.js'
-      ]
-    };
+    test.expect(3);
 
-    test.expect(_.size(expectations));
+    var expectA = ["test.css","test.js"];
+    var resultA = fs.readdirSync("fixtures/output/copy_test_files");
+    test.equal(expectA, resultA, "should copy several files");
 
-    _.each(expectations,function(expected, directory){
-      var actual = fs.readdirSync(directory);
-      test.equal(actual,expected, directory + " should contain " + _.size(expected) + " files");
-    });
+    var expectB = [
+      "test.css",
+      "test.js",
+      "folder_one/one.css",
+      "folder_one/one.js",
+      "folder_two/two.css",
+      "folder_two/two.js"
+    ];
+    var resultB = fs.readdirSync("fixtures/output/copy_test_folders");
+    test.equal(expectB, resultB, "should copy several folders and files");
+
+    var expectC = [
+      "test.css",
+      "test.js",
+      "folder_one/one.css",
+      "folder_one/one.js"
+    ];
+    var resultC = fs.readdirSync("fixtures/output/copy_test_array");
+    test.equal(expectC, resultC, "should copy several folders and files (based on array)");
 
     test.done();
   }

@@ -3,18 +3,35 @@
 
 ### Configuration
 
-Inside your `grunt.js` file add a section named `copy`. This section
-specifies the files to copy.
+Inside your `grunt.js` file add a section named `copy`. This section specifies the files to copy.
+
+#### Parameters
+
+##### files ```object```
+
+This defines what files this task will compress and should contain key:value pairs.
+
+The key (destination) should be an unique filepath (supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md)) and the value (source) should be a filepath or an array of filepaths (supports [minimatch](https://github.com/isaacs/minimatch)).
+
+##### options ```object```
+
+This controls how this task operates and should contain key:value pairs, see options below.
+
+#### Options
+
+This tasks currently doesn't expose any options.
+
+#### Config Example
 
 ``` javascript
 copy: {
   dist: {
     files: {
-      'path/to/directory': 'path/to/source/*', // includes files in dir
-      'path/to/directory': 'path/to/source/**', // includes files in dir and subdirs
-      'path/to/project-<%= pkg.version %>': 'path/to/source/**', // variables in destination
-      'path/to/directory': ['path/to/sources/*.js', 'path/to/more/*.js'] // include JS files in two diff dirs
+      "path/to/directory": "path/to/source/*", // includes files in dir
+      "path/to/directory": "path/to/source/**", // includes files in dir and subdirs
+      "path/to/project-<%= pkg.version %>": "path/to/source/**", // variables in destination
+      "path/to/directory": ["path/to/sources/*.js", "path/to/more/*.js"] // include JS files in two diff dirs
     }
   }
-},
+}
 ```
