@@ -24,6 +24,9 @@ Compile CoffeeScript files into JavaScript.
 #### [`compress`](/gruntjs/grunt-contrib/blob/master/docs/compress.md)
 Compress files and folders using gzip or zip.
 
+#### [`copy`](/gruntjs/grunt-contrib/blob/master/docs/copy.md)
+Copy files into another directory.
+
 #### [`handlebars`](/gruntjs/grunt-contrib/blob/master/docs/handlebars.md)
 Compile handlebars templates to JST file.
 
