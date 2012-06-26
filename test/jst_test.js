@@ -10,8 +10,8 @@ exports.jade = {
     test.equal(expectA, resultA, "should compile underscore templates into JST");
 
     var expectB = "<head><title>test</title></head>";
-    var sourceB = require("./fixtures/output/jst.js");
-    var resultB = sourceA["JST"]["fixtures/jst/template.html"]({title: "test"});
+    var sourceB = sourceA;
+    var resultB = sourceB["JST"]["fixtures/jst/template.html"]({title: "test"});
     test.equal(expectB, resultB, "should output html when run");
 
     test.done();

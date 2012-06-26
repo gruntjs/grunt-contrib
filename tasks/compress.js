@@ -31,12 +31,12 @@ module.exports = function(grunt) {
       return;
     }
 
-    async.forEachSeries(_.keys(data.files),function(dest, next) {
+    async.forEachSeries(Object.keys(data.files), function(dest, next) {
       var src = data.files[dest];
       var dest = grunt.template.process(dest);
 
       if (_.isArray(src)) {
-        _.each(src, function(s, k) {
+        src.forEach(function(s, k) {
           src[k] = grunt.template.process(s);
         });
       } else {
@@ -45,18 +45,13 @@ module.exports = function(grunt) {
 
       var srcFiles = grunt.file.expandFiles(src);
 
-      if (options.mode == 'gzip' && _.size(srcFiles) > 1) {
+      if (options.mode == 'gzip' && srcFiles.length > 1) {
         grunt.warn("Cannot specify multiple input files for gzip compression.");
         srcFiles = srcFiles[0];
       }
 
-      grunt.helper(helper, srcFiles, dest, options, function(error, written) {
-        if (error === null) {
-          grunt.log.writeln('File "' + dest + '" created (' + written + ' bytes written).');
-        } else {
-          grunt.log.error(error);
-          grunt.fail.warn("Mode " + options.mode + " failed.");
-        }
+      grunt.helper(helper, srcFiles, dest, options, function(written) {
+        grunt.log.writeln('File "' + dest + '" created (' + written + ' bytes written).');
 
         next();
       });
@@ -75,12 +70,17 @@ module.exports = function(grunt) {
       grunt.file.mkdir(destdir);
     }
 
+    zip.on("error", function(e) {
+      grunt.log.error(e);
+      grunt.fail.warn("zipHelper failed.");
+    });
+
     zip.pipe(fs.createWriteStream(dest));
 
     function addFile(){
       if (!files.length) {
         zip.finalize(function(written) {
-          callback(null, written);
+          callback(written);
         });
         return;
       }
@@ -130,7 +130,7 @@ module.exports = function(grunt) {
       grunt.file.mkdir(destdir);
     }
 
-    _.each(files, function(filepath) {
+    files.forEach(function(filepath) {
       var filename = _(filepath).strRightBack("/");
       var internal = _(filepath).strLeftBack("/");
 
@@ -142,7 +142,7 @@ module.exports = function(grunt) {
 
       grunt.verbose.writeln("Adding " + filepath + " to tar.");
       grunt.file.copy(filepath, tardir + internal);
-    })
+    });
 
     var reader = fstream.Reader({path: tardir, type: "Directory"});
     var packer = tar.Pack();
@@ -156,12 +156,13 @@ module.exports = function(grunt) {
     }
 
     tard.on("error", function(e) {
-      callback(e, null);
+      grunt.log.error(e);
+      grunt.fail.warn("tarHelper failed.");
     });
 
     tard.on("close", function() {
       grunt.helper("clean", tempdir);
-      callback(null, getSize(dest));
+      callback(getSize(dest));
     });
   });
 
@@ -173,12 +174,13 @@ module.exports = function(grunt) {
       grunt.file.mkdir(destdir);
     }
 
-    zlib.gzip(grunt.file.read(file), function(error, result) {
-      if (!error) {
+    zlib.gzip(grunt.file.read(file), function(e, result) {
+      if (!e) {
         grunt.file.write(dest, result);
-        callback(null, result.length);
+        callback(result.length);
       } else {
-        callback(error, null);
+        grunt.log.error(e);
+        grunt.fail.warn("tarHelper failed.");
       }
     });
   });

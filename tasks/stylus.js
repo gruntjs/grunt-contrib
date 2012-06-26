@@ -16,7 +16,7 @@ module.exports = function(grunt) {
     var data = this.data;
     var done = this.async();
 
-    async.forEachSeries(_.keys(data.files), function(dest, next) {
+    async.forEachSeries(Object.keys(data.files), function(dest, next) {
       var src = data.files[dest];
       var srcFiles = grunt.file.expandFiles(src);
       var dest = grunt.template.process(dest);
@@ -25,21 +25,16 @@ module.exports = function(grunt) {
         var stylusOptions = _.extend({filename: srcFile}, options);
         var stylusSource = grunt.file.read(srcFile);
 
-        grunt.helper("stylus", stylusSource, stylusOptions, function(error, css) {
-          nextConcat(error, css);
+        grunt.helper("stylus", stylusSource, stylusOptions, function(css) {
+          nextConcat(css);
         });
-      }, function(error, css) {
-        if (error === null) {
-          grunt.file.write(dest, css.join("\n"));
+      }, function(css) {
+          grunt.file.write(dest, css);
           grunt.log.writeln("File '" + dest + "' created.");
-        } else {
-          grunt.log.error(error);
-          grunt.fail.warn("Stylus failed to compile.");
-        }
 
-        next();
+          next();
       });
-    }, function () {
+    }, function() {
       done();
     });
   });
@@ -51,8 +46,13 @@ module.exports = function(grunt) {
       s.set(key, value);
     });
 
-    s.render(function(error, css) {
-      callback(error, css);
+    s.render(function(e, css) {
+      if (!e) {
+        callback(css);
+      } else {
+        grunt.log.error(e);
+        grunt.fail.warn("Stylus failed to compile.");
+      }
     });
   });
 };

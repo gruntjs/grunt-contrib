@@ -8,51 +8,40 @@
  */
 
 module.exports = function(grunt) {
-  var _ = grunt.utils._;
-  var async = grunt.utils.async;
-
   grunt.registerMultiTask("handlebars", "Compile handlebars templates to JST file", function() {
     var options = grunt.helper("options", this, {namespace: "JST"});
     var data = this.data;
-    var done = this.async();
 
-    async.forEachSeries(_.keys(data.files), function(dest, next) {
+    Object.keys(data.files).forEach(function(dest) {
       var src = data.files[dest];
       var srcFiles = grunt.file.expandFiles(src);
       var dest = grunt.template.process(dest);
 
-      grunt.helper("handlebars", srcFiles, options.namespace, function(error, script) {
-        if (error === null) {
-          grunt.file.write(dest, script);
-          grunt.log.writeln("File '" + dest + "' created.");
-        } else {
-          grunt.log.error(error);
-          grunt.fail.warn("Handlebars failed to compile.");
-        }
+      var handlebarOutput = [];
+      var handlebarNamespace = "this['" + options.namespace + "']";
 
-        next();
+      handlebarOutput.push(handlebarNamespace + " = " + handlebarNamespace + " || {};");
+
+      srcFiles.forEach(function(srcFile) {
+        var handlebarSource = grunt.file.read(srcFile);
+
+        handlebarOutput.push(grunt.helper("handlebars", handlebarSource, srcFile, handlebarNamespace));
       });
-    }, function() {
-      done();
+
+      if (handlebarOutput.length > 0) {
+        grunt.file.write(dest, handlebarOutput.join("\n\n"));
+        grunt.log.writeln("File '" + dest + "' created.");
+      }
     });
   });
 
-  grunt.registerHelper("handlebars", function(files, namespace, callback) {
-    namespace = "this['" + namespace + "']";
-
-    var results = [];
-    results.push(namespace + " = " + namespace + " || {};");
-
+  grunt.registerHelper("handlebars", function(source, filepath, namespace) {
     try {
-      _.each(files, function(filepath) {
-        var handleSource = grunt.file.read(filepath);
-        var handleOutput = require("handlebars").precompile(handleSource);
-        results.push(namespace + "['" + filepath + "'] = " + handleOutput);
-      });
-      var result = results.join("\n\n");
-      callback(null, result);
+      var output = require("handlebars").precompile(source);
+      return namespace + "['" + filepath + "'] = " + output;
     } catch (e) {
-      callback(e, null);
+      grunt.log.error(e);
+      grunt.fail.warn("Handlebars failed to compile.");
     }
   });
 };
