@@ -11,9 +11,9 @@ Inside your `grunt.js` file add a section named `jade`. This section specifies f
 
 This defines what files this task will process and should contain key:value pairs.
 
-The key (destination) should be an unique path (supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md)) and the value (source) should be a filepath or an array of filepaths (supports [minimatch](https://github.com/isaacs/minimatch)).
+The key (destination) should be an unique filepath (supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md)) and the value (source) should be a filepath or an array of filepaths (supports [minimatch](https://github.com/isaacs/minimatch)).
 
-Note: When the value contains an array of multiple filepaths, each file is processed and saved (to the destination path) separately in the order passed.
+Note: When the value contains an array of multiple filepaths, the contents are concatenated in the order passed.
 
 ##### options ```object```
 
@@ -31,7 +31,7 @@ Sets the data passed to ```jade``` during template compilation. Any data can be 
 jade: {
   compile: {
     files: {
-      "path/to/dest": ["path/to/templates/*.jade", "another/path/tmpl.jade"]
+      "path/to/dest.html": ["path/to/templates/*.jade", "another/path/tmpl.jade"]
     }
   }
 }
@@ -48,7 +48,7 @@ jade: {
       }
     },
     files: {
-      "debug/": "test.jade"
+      "debug.html": "test.jade"
     }
   },
   release: {
@@ -58,7 +58,7 @@ jade: {
       }
     },
     files: {
-      "release/": "test.jade"
+      "release.html": "test.jade"
     }
   }
 }
@@ -76,7 +76,7 @@ jade: {
       }
     },
     files: {
-      "debug/": "test.jade"
+      "debug.html": "test.jade"
     }
   }
 }
@@ -94,7 +94,7 @@ jade: {
       }
     },
     files: {
-      "debug/": "test.jade"
+      "debug.html": "test.jade"
     }
   }
 }

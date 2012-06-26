@@ -9,7 +9,6 @@
 
 module.exports = function(grunt) {
   var _ = grunt.utils._;
-  var async = grunt.utils.async;
 
   grunt.registerMultiTask("jade", "Compile Jade templates into HTML.", function() {
     var path = require("path");
@@ -17,9 +16,7 @@ module.exports = function(grunt) {
     var options = grunt.helper("options", this);
     var data = this.data;
     var jadeData = options.data;
-    var done = this.async();
 
-    // add template process for grunt templates
     if (_.isEmpty(jadeData) == false) {
       _.each(jadeData, function(value, key) {
         if (_.isString(value)) {
@@ -28,46 +25,33 @@ module.exports = function(grunt) {
       });
     }
 
-    async.forEachSeries(_.keys(data.files), function(dest, next) {
+    Object.keys(data.files).forEach(function(dest) {
       var src = data.files[dest];
       var srcFiles = grunt.file.expandFiles(src);
       var dest = grunt.template.process(dest);
 
-      async.forEachSeries(srcFiles, function(srcFile, nextFile) {
+      var jadeOutput = [];
+
+      srcFiles.forEach(function(srcFile) {
         var jadeOptions = _.extend({filename: srcFile}, options);
         var jadeSource = grunt.file.read(srcFile);
 
-        grunt.helper("jade", jadeSource, jadeOptions, jadeData, function(error, response){
-          if (error === null) {
-            var basename = path.basename(srcFile);
-            var extname = path.extname(srcFile);
-            var htmlname = basename.substring(0, basename.length - extname.length) + ".html";
-            var outpath = dest + '/' + htmlname;
-
-            grunt.file.write(outpath, response);
-            grunt.log.writeln('File "' + outpath + '" created.');
-          } else {
-            grunt.log.error(error);
-            grunt.fail.warn("Jade compiler failed.");
-          }
-
-          nextFile();
-        });
-      }, function() {
-        next();
+        jadeOutput.push(grunt.helper("jade", jadeSource, jadeOptions, jadeData));
       });
 
-    }, function() {
-      done();
+      if (jadeOutput.length > 0) {
+        grunt.file.write(dest, jadeOutput.join("\n"));
+        grunt.log.writeln("File '" + dest + "' created.");
+      }
     });
   });
 
-  grunt.registerHelper("jade", function(src, options, data, callback) {
+  grunt.registerHelper("jade", function(src, options, data) {
     try {
-      var jadeOutput = require("jade").compile(src, options)(data);
-      callback(null, jadeOutput);
+      return require("jade").compile(src, options)(data);
     } catch (e) {
-      callback(e, null);
+      grunt.log.error(e);
+      grunt.fail.warn("Jade failed to compile.");
     }
   });
 };

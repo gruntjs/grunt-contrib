@@ -97,7 +97,8 @@ module.exports = function(grunt) {
     jade: {
       simple: {
         files: {
-          "fixtures/output": ["fixtures/jade/jade.jade", "fixtures/jade/jade2.jade"]
+          "fixtures/output/jade.html": "fixtures/jade/jade.jade",
+          "fixtures/output/jade2.html": "fixtures/jade/jade2.jade"
         },
         options: {
           data: {
@@ -107,12 +108,12 @@ module.exports = function(grunt) {
       },
       include: {
         files: {
-          "fixtures/output": "fixtures/jade/jadeInclude.jade"
+          "fixtures/output/jadeInclude.html": "fixtures/jade/jadeInclude.jade"
         }
       },
       template: {
         files: {
-          "fixtures/output": "fixtures/jade/jadeTemplate.jade"
+          "fixtures/output/jadeTemplate.html": "fixtures/jade/jadeTemplate.jade"
         },
         options: {
           data: {
