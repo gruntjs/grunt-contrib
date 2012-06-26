@@ -9,7 +9,7 @@ Inside your `grunt.js` file add a section named `copy`. This section specifies t
 
 ##### files ```object```
 
-This defines what files this task will compress and should contain key:value pairs.
+This defines what files this task will copy and should contain key:value pairs.
 
 The key (destination) should be an unique path (supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md)) and the value (source) should be a filepath or an array of filepaths (supports [minimatch](https://github.com/isaacs/minimatch)).
 
