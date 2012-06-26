@@ -23,6 +23,10 @@ This controls how this task operates and should contain key:value pairs, see opt
 
 This option adjusts copied filenames to be relative to provided path.
 
+##### stripString ```string```
+
+This option removes the provided string (or array of strings) from filenames when copied.
+
 #### Config Example
 
 ``` javascript
