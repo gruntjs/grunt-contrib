@@ -3,28 +3,37 @@
  * Task: mincss
  * Description: Minify CSS files
  * Dependencies: clean-css
- * Contributor(s): @tbranyen, @thomasaboyt
+ * Contributor(s): @tbranyen, @thomasaboyt, @ctalkington
  *
  */
 
 module.exports = function(grunt) {
   grunt.registerMultiTask("mincss", "Minify CSS files", function() {
-    var files = grunt.file.expand(this.data),
-          max = grunt.helper('concat', files),
-          min = grunt.helper('mincss', max);
+    var options = grunt.helper("options", this);
+    var data = this.data;
 
-    grunt.file.write(this.file.dest, min);
+    Object.keys(data.files).forEach(function(dest) {
+      var src = data.files[dest];
+      var srcFiles = grunt.file.expandFiles(src);
+      var dest = grunt.template.process(dest);
+      var source = grunt.helper("concat", srcFiles);
 
-    // Fail task if errors were logged.
-    if (grunt.errors) { return false; }
+      var min = grunt.helper("mincss", source);
 
-    // Otherwise, print a success message.
-    grunt.log.writeln("File \"" + this.file.dest + "\" created.");
-    grunt.helper('min_max_info', min, max);
+      if (min.length > 0) {
+        grunt.file.write(dest, min);
+        grunt.log.writeln("File '" + dest + "' created.");
+        grunt.helper('min_max_info', min, source);
+      }
+    });
   });
 
-  grunt.registerHelper("mincss", function(css_string) {
-    // Minify and combine all CSS
-    return require("clean-css").process(css_string);
+  grunt.registerHelper("mincss", function(source, callback) {
+    try {
+      return require("clean-css").process(source);
+    } catch (e) {
+      grunt.log.error(e);
+      grunt.fail.warn("css minification failed.");
+    }
   });
 };

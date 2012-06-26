@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 
     test: {
       tasks: ["*_test.js"],
-      clean: ['clean_task.js']
+      clean: ["clean_task.js"]
     },
 
     clean: {
@@ -22,7 +22,8 @@ module.exports = function(grunt) {
       compile: {
         files: {
           "fixtures/output/coffee_basic.js": "fixtures/coffee/coffee_basic.coffee",
-          "fixtures/output/coffee_inheritance.js": "fixtures/coffee/coffee_inheritance.coffee"
+          "fixtures/output/coffee_inheritance.js": "fixtures/coffee/coffee_inheritance.coffee",
+          "fixtures/output/coffee_combined.js": ["fixtures/coffee/coffee_basic.coffee", "fixtures/coffee/coffee_inheritance.coffee"]
         },
         options: {
           bare: true
@@ -33,51 +34,62 @@ module.exports = function(grunt) {
     compress: {
       zip: {
         options: {
-          mode: 'zip',
-          basePath: 'fixtures/compress',
+          mode: "zip",
+          basePath: "fixtures/compress",
           level: 1
         },
         files: {
-          'fixtures/output/compress_test_files.zip': 'fixtures/compress/*',
-          'fixtures/output/compress_test_folders.zip': 'fixtures/compress/**',
-          'fixtures/output/compress_test_array.zip': ['fixtures/compress/test.*','fixtures/compress/folder_one/*'],
-          'fixtures/output/compress_test_files_template.zip': '<%= files.test %>/**',
-          'fixtures/output/compress_test_v<%= pkg.version %>.zip': 'fixtures/compress/**'
+          "fixtures/output/compress_test_files.zip": "fixtures/compress/*",
+          "fixtures/output/compress_test_folders.zip": "fixtures/compress/**",
+          "fixtures/output/compress_test_array.zip": ["fixtures/compress/test.*", "fixtures/compress/folder_one/*"],
+          "fixtures/output/compress_test_files_template.zip": "<%= files.test %>/**",
+          "fixtures/output/compress_test_v<%= pkg.version %>.zip": "fixtures/compress/**"
         }
       },
       tar: {
         options: {
-          mode: 'tar',
-          basePath: 'fixtures/compress'
+          mode: "tar",
+          basePath: "fixtures/compress"
         },
         files: {
-          'fixtures/output/compress_test_files.tar': 'fixtures/compress/*',
-          'fixtures/output/compress_test_folders.tar': 'fixtures/compress/**',
-          'fixtures/output/compress_test_array.tar': ['fixtures/compress/test.*','fixtures/compress/folder_one/*'],
-          'fixtures/output/compress_test_files_template.tar': '<%= files.test %>/**',
-          'fixtures/output/compress_test_v<%= pkg.version %>.tar': 'fixtures/compress/**'
+          "fixtures/output/compress_test_files.tar": "fixtures/compress/*",
+          "fixtures/output/compress_test_folders.tar": "fixtures/compress/**",
+          "fixtures/output/compress_test_array.tar": ["fixtures/compress/test.*", "fixtures/compress/folder_one/*"],
+          "fixtures/output/compress_test_files_template.tar": "<%= files.test %>/**",
+          "fixtures/output/compress_test_v<%= pkg.version %>.tar": "fixtures/compress/**"
         }
       },
       tgz: {
         options: {
-          mode: 'tgz',
-          basePath: 'fixtures/compress',
+          mode: "tgz",
+          basePath: "fixtures/compress",
         },
         files: {
-          'fixtures/output/compress_test_files.tgz': 'fixtures/compress/*',
-          'fixtures/output/compress_test_folders.tgz': 'fixtures/compress/**',
-          'fixtures/output/compress_test_array.tgz': ['fixtures/compress/test.*','fixtures/compress/folder_one/*'],
-          'fixtures/output/compress_test_files_template.tgz': '<%= files.test %>/**',
-          'fixtures/output/compress_test_v<%= pkg.version %>.tgz': 'fixtures/compress/**'
+          "fixtures/output/compress_test_files.tgz": "fixtures/compress/*",
+          "fixtures/output/compress_test_folders.tgz": "fixtures/compress/**",
+          "fixtures/output/compress_test_array.tgz": ["fixtures/compress/test.*", "fixtures/compress/folder_one/*"],
+          "fixtures/output/compress_test_files_template.tgz": "<%= files.test %>/**",
+          "fixtures/output/compress_test_v<%= pkg.version %>.tgz": "fixtures/compress/**"
         }
       },
       gzip: {
         options: {
-          mode: 'gzip'
+          mode: "gzip"
         },
         files: {
-          'fixtures/output/compress_test_file.gz': 'fixtures/compress/test.js',
-          'fixtures/output/compress_test_file2.gz': 'fixtures/compress/folder_one/one.js'
+          "fixtures/output/compress_test_file.gz": "fixtures/compress/test.js",
+          "fixtures/output/compress_test_file2.gz": "fixtures/compress/folder_one/one.js"
+        }
+      }
+    },
+
+    handlebars: {
+      compile: {
+        options: {
+          namespace: "JST"
+        },
+        files: {
+          "fixtures/output/handlebars.js": "fixtures/handlebars/one.handlebar"
         }
       }
     },
@@ -85,7 +97,8 @@ module.exports = function(grunt) {
     jade: {
       simple: {
         files: {
-          "fixtures/output": ["fixtures/jade/jade.jade", "fixtures/jade/jade2.jade"]
+          "fixtures/output/jade.html": "fixtures/jade/jade.jade",
+          "fixtures/output/jade2.html": "fixtures/jade/jade2.jade"
         },
         options: {
           data: {
@@ -95,12 +108,12 @@ module.exports = function(grunt) {
       },
       include: {
         files: {
-          "fixtures/output": "fixtures/jade/jadeInclude.jade"
+          "fixtures/output/jadeInclude.html": "fixtures/jade/jadeInclude.jade"
         }
       },
       template: {
         files: {
-          "fixtures/output": "fixtures/jade/jadeTemplate.jade"
+          "fixtures/output/jadeTemplate.html": "fixtures/jade/jadeTemplate.jade"
         },
         options: {
           data: {
@@ -111,7 +124,11 @@ module.exports = function(grunt) {
     },
 
     jst: {
-      'fixtures/output/jst.js': ['fixtures/jst/*.html']
+      compile: {
+        files: {
+          "fixtures/output/jst.js": "fixtures/jst/*.html"
+        }
+      }
     },
 
     less: {
@@ -127,10 +144,11 @@ module.exports = function(grunt) {
     },
 
     mincss: {
-      "fixtures/output/style.css": [
-        "fixtures/mincss/input_one.css",
-        "fixtures/mincss/input_two.css"
-      ]
+      compress: {
+        files: {
+          "fixtures/output/style.css": ["fixtures/mincss/input_one.css", "fixtures/mincss/input_two.css"]
+        }
+      }
     },
 
     requirejs: {
@@ -157,11 +175,11 @@ module.exports = function(grunt) {
 
     options: {
       jade: {
-        filename: 'fixtures/jade/inc/'
+        filename: "fixtures/jade/inc/"
       }
     }
   });
 
   grunt.loadTasks("../tasks");
-  grunt.registerTask("default", "clean test:clean coffee compress jade jst less mincss requirejs stylus test:tasks");
+  grunt.registerTask("default", "clean test:clean coffee compress jade jst handlebars less mincss requirejs stylus test:tasks");
 };

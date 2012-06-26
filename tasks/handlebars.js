@@ -3,40 +3,45 @@
  * Task: handlebars
  * Description: Compile handlebars templates to JST file
  * Dependencies: handlebars
- * Contributor(s): @tbranyen
+ * Contributor(s): @tbranyen / @ctalkington
  *
  */
 
 module.exports = function(grunt) {
   grunt.registerMultiTask("handlebars", "Compile handlebars templates to JST file", function() {
+    var options = grunt.helper("options", this, {namespace: "JST"});
+    var data = this.data;
 
-    var options = grunt.helper("options", this),
-        namespace = options.namespace || "JST",
-        files = grunt.file.expand(this.data);
+    Object.keys(data.files).forEach(function(dest) {
+      var src = data.files[dest];
+      var srcFiles = grunt.file.expandFiles(src);
+      var dest = grunt.template.process(dest);
 
-    grunt.file.write(this.target, grunt.helper("handlebars", files, namespace));
+      var handlebarOutput = [];
+      var handlebarNamespace = "this['" + options.namespace + "']";
 
-    // Fail task if errors were logged.
-    if (grunt.errors) { return false; }
+      handlebarOutput.push(handlebarNamespace + " = " + handlebarNamespace + " || {};");
 
-    // Otherwise, print a success message.
-    grunt.log.writeln("File \"" + this.target + "\" created.");
+      srcFiles.forEach(function(srcFile) {
+        var handlebarSource = grunt.file.read(srcFile);
+
+        handlebarOutput.push(grunt.helper("handlebars", handlebarSource, srcFile, handlebarNamespace));
+      });
+
+      if (handlebarOutput.length > 0) {
+        grunt.file.write(dest, handlebarOutput.join("\n\n"));
+        grunt.log.writeln("File '" + dest + "' created.");
+      }
+    });
   });
 
-  grunt.registerHelper("handlebars", function(files, namespace) {
-    namespace = "this['" + namespace + "']";
-
-    // Comes out looking like this["JST"] = this["JST"] || {};
-    var contents = namespace + " = " + namespace + " || {};\n\n";
-
-    // Compile the template and get the function source
-    contents += files ? files.map(function(filepath) {
-      var templateFunction =
-        require("handlebars").precompile(grunt.file.read(filepath));
-
-      return namespace + "['" + filepath + "'] = " + templateFunction;
-    }).join("\n\n") : "";
-
-    return contents;
+  grunt.registerHelper("handlebars", function(source, filepath, namespace) {
+    try {
+      var output = require("handlebars").precompile(source);
+      return namespace + "['" + filepath + "'] = " + output;
+    } catch (e) {
+      grunt.log.error(e);
+      grunt.fail.warn("Handlebars failed to compile.");
+    }
   });
 };

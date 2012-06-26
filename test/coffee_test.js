@@ -2,17 +2,20 @@ var grunt = require("grunt");
 
 exports.coffee = {
   main: function(test) {
-     var expectSimple = "test";
-     eval(grunt.file.read("fixtures/output/coffee_basic.js"));
-     var resultSimple = HelloWorld.test;
+    test.expect(2);
 
-     var expectInheritance = "hello";
-     eval(grunt.file.read("fixtures/output/coffee_inheritance.js"));
-     var resultInheritance = Derived.test;
+    var expectA = "test";
+    var sourceA = grunt.file.read("fixtures/output/coffee_basic.js");
+    eval(sourceA);
+    var resultA = HelloWorld.test;
+    test.equal(expectA, resultA, "should compile coffeescript to javascript");
 
-     test.expect(2);
-     test.equal(expectSimple, resultSimple, "should compile coffeescript to javascript");
-     test.equal(expectInheritance, resultInheritance, "should compile coffeescript to javascript with proper scope");
-     test.done();
+    var expectB = "hello";
+    var sourceB = grunt.file.read("fixtures/output/coffee_inheritance.js");
+    eval(sourceB);
+    var resultB = Derived.test;
+    test.equal(expectB, resultB, "should compile coffeescript to javascript with proper scope");
+
+    test.done();
   }
 };

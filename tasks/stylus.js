@@ -8,46 +8,51 @@
  */
 
 module.exports = function(grunt) {
-  var _ = grunt.utils._,
-      async = grunt.utils.async;
+  var _ = grunt.utils._;
+  var async = grunt.utils.async;
 
   grunt.registerMultiTask("stylus", "Compile Stylus files into CSS", function() {
-    var options = grunt.helper('options', this),
-        files = this.data.files,
-        done = this.async();
+    var options = grunt.helper('options', this);
+    var data = this.data;
+    var done = this.async();
 
-    async.forEach(Object.keys(files), function(dest, callback) {
-      var src = files[dest];
-      async.concat(grunt.file.expand(src), function(filename, callback) {
-        var opts = _.extend(options, {filename: filename});
-        grunt.helper("stylus", grunt.file.read(filename), opts, function(err, css) {
-          callback(err, css);
+    async.forEachSeries(Object.keys(data.files), function(dest, next) {
+      var src = data.files[dest];
+      var srcFiles = grunt.file.expandFiles(src);
+      var dest = grunt.template.process(dest);
+
+      async.concatSeries(srcFiles, function(srcFile, nextConcat) {
+        var stylusOptions = _.extend({filename: srcFile}, options);
+        var stylusSource = grunt.file.read(srcFile);
+
+        grunt.helper("stylus", stylusSource, stylusOptions, function(css) {
+          nextConcat(css);
         });
-      }, function(err, css) {
-        if (!err) {
-          grunt.file.write(dest, css.join("\n"));
+      }, function(css) {
+          grunt.file.write(dest, css);
           grunt.log.writeln("File '" + dest + "' created.");
-        }
-        callback(err);
+
+          next();
       });
-    }, function (err) {
-      done(!err);
+    }, function() {
+      done();
     });
   });
 
-  // Compiles a single stylus file and returns the resulting CSS via a callback.
-  grunt.registerHelper("stylus", function(src, options, callback) {
-    var s = require("stylus")(src);
+  grunt.registerHelper("stylus", function(source, options, callback) {
+    var s = require("stylus")(source);
 
     _.each(options, function(value, key) {
       s.set(key, value);
     });
 
-    s.render(function(err, css) {
-      if (err) {
-        grunt.log.error(err);
+    s.render(function(e, css) {
+      if (!e) {
+        callback(css);
+      } else {
+        grunt.log.error(e);
+        grunt.fail.warn("Stylus failed to compile.");
       }
-      callback(err, css);
     });
   });
 };
