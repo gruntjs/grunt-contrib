@@ -18,6 +18,21 @@ module.exports = function(grunt) {
       output: ["fixtures/output"]
     },
 
+    copy: {
+      test: {
+        options: {
+          basePath: "fixtures/copy",
+          stripString: "prefix-"
+        },
+        files: {
+          "fixtures/output/copy_test_files": "fixtures/copy/*",
+          "fixtures/output/copy_test_folders": "fixtures/copy/**",
+          "fixtures/output/copy_test_v<%= pkg.version %>": "fixtures/copy/**",
+          "fixtures/output/copy_test_array": ["fixtures/copy/*.*", "fixtures/copy/folder_one/*"]
+        }
+      }
+    },
+
     coffee: {
       compile: {
         files: {
@@ -181,5 +196,5 @@ module.exports = function(grunt) {
   });
 
   grunt.loadTasks("../tasks");
-  grunt.registerTask("default", "clean test:clean coffee compress jade jst handlebars less mincss requirejs stylus test:tasks");
+  grunt.registerTask("default", "clean test:clean coffee compress copy jade jst handlebars less mincss requirejs stylus test:tasks");
 };
