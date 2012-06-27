@@ -37,8 +37,7 @@ module.exports = function(grunt) {
       compile: {
         files: {
           "fixtures/output/coffee_basic.js": "fixtures/coffee/coffee_basic.coffee",
-          "fixtures/output/coffee_inheritance.js": "fixtures/coffee/coffee_inheritance.coffee",
-          "fixtures/output/coffee_combined.js": ["fixtures/coffee/coffee_basic.coffee", "fixtures/coffee/coffee_inheritance.coffee"]
+          "fixtures/output/coffee_combined.js": ["fixtures/coffee/*.coffee"]
         },
         options: {
           bare: true
