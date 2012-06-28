@@ -32,6 +32,9 @@ This option removes the provided string (or array of strings) from filenames whe
 ``` javascript
 copy: {
   dist: {
+    options: {
+      basePath: "path/to"
+    },
     files: {
       "path/to/directory": "path/to/source/*", // includes files in dir
       "path/to/directory": "path/to/source/**", // includes files in dir and subdirs
