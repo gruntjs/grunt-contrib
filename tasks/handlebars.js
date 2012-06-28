@@ -1,10 +1,8 @@
-/*
- *
+/**
  * Task: handlebars
  * Description: Compile handlebars templates to JST file
  * Dependencies: handlebars
- * Contributor(s): @tbranyen / @ctalkington
- *
+ * Contributor: @tbranyen
  */
 
 module.exports = function(grunt) {

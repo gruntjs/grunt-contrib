@@ -1,5 +1,5 @@
 ## Compile LESS files to CSS
-> Contributed By: Tyler Kellen (@tkellen) and Chris Talkington (@ctalkington)
+> Contributed By: Tyler Kellen (@tkellen)
 
 ### Overview
 

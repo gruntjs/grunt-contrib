@@ -1,5 +1,5 @@
 ## Clear files and folders.
-> Contributed By: Tim Branyen (@tbranyen), Tyler Kellen (@tkellen), and Chris Talkington (@ctalkington)
+> Contributed By: Tim Branyen (@tbranyen)
 
 ### Overview
 

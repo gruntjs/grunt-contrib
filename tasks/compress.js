@@ -2,7 +2,7 @@
 * Task: compress
 * Description: Compress files
 * Dependencies: zipstream / tar / fstream
-* Contributor(s): @ctalkington / @tkellen
+* Contributor: @ctalkington
 * Inspired by: @jzaefferer (jquery-validation)
 */
 

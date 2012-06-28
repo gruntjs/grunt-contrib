@@ -1,5 +1,5 @@
 ## Compile underscore templates to JST file
-> Contributed By: Tim Branyen (@tbranyen) and Chris Talkington (@ctalkington)
+> Contributed By: Tim Branyen (@tbranyen)
 
 ### Overview
 

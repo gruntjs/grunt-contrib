@@ -1,5 +1,5 @@
 ## Compress files and folders
-> Contributed By: Chris Talkington (@ctalkington) and Tyler Kellen (@tkellen)
+> Contributed By: Chris Talkington (@ctalkington)
 
 ### Overview
 

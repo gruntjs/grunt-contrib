@@ -1,7 +1,7 @@
 /**
 * Task: copy
 * Description: Copy files into another directory
-* Contributor(s): @ctalkington
+* Contributor: @ctalkington
 */
 
 module.exports = function(grunt) {

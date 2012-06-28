@@ -1,5 +1,5 @@
 ## Compile CoffeeScript files to JavaScript
-> Contributed By: Eric Woroshow (@errcw) and Chris Talkington (@ctalkington)
+> Contributed By: Eric Woroshow (@errcw)
 
 ### Overview
 

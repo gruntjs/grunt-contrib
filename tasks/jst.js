@@ -1,10 +1,8 @@
-/*
- *
+/**
  * Task: jst
  * Description: Compile underscore templates to JST file
  * Dependencies: underscore
- * Contributor(s): @tbranyen / @ctalkington
- *
+ * Contributor: @tbranyen
  */
 
 module.exports = function(grunt) {

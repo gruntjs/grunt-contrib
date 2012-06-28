@@ -1,5 +1,5 @@
 ## Optimize RequireJS projects using r.js
-> Contributed By: Tim Branyen (@tbranyen) and Chris Talkington (@ctalkington)
+> Contributed By: Tim Branyen (@tbranyen)
 
 ### Overview
 

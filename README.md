@@ -24,7 +24,7 @@ Compile CoffeeScript files into JavaScript.
 #### [`compress`](/gruntjs/grunt-contrib/blob/master/docs/compress.md)
 Compress files and folders using gzip or zip.
 
-#### [`copy`](/gruntjs/grunt-contrib/blob/master/docs/copy.md)
+#### [`copy`](/gruntjs/grunt-contrib/blob/master/docs/copy.md) (not yet functioning properly)
 Copy files into another directory.
 
 #### [`handlebars`](/gruntjs/grunt-contrib/blob/master/docs/handlebars.md)
@@ -70,6 +70,7 @@ npm test
 ## Release History
 * (Until v1.0.0, this will only be updated when major or breaking changes are made)*
 
+* 2012/06/12 - v0.0.9 - Cleanup release with copy task addition (thanks @ctalkington!)
 * 2012/06/12 - v0.0.7 - Add RequireJS task.
 * 2012/06/03 - v0.0.5 - Cleanup release with zip task addition.
 * 2012/05/01 - v0.0.1 - Alpha release.

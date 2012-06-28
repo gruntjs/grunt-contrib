@@ -1,9 +1,7 @@
-/*
- *
+/**
  * Grunt Contrib Helpers
- * Description: helps make things consistent across tasks.
- * Contributor(s): @tkellen / @ctalkington
- *
+ * Description: help make things consistent across tasks.
+ * Contributor: @tkellen
  */
 
 module.exports = function(grunt) {

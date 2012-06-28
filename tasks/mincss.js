@@ -1,10 +1,8 @@
-/*
- *
+/**
  * Task: mincss
  * Description: Minify CSS files
  * Dependencies: clean-css
- * Contributor(s): @tbranyen, @thomasaboyt, @ctalkington
- *
+ * Contributor: @tbranyen
  */
 
 module.exports = function(grunt) {
@@ -14,7 +12,7 @@ module.exports = function(grunt) {
 
     Object.keys(data.files).forEach(function(dest) {
       var src = data.files[dest];
-      var srcFiles = grunt.file.expandFiles(src);      
+      var srcFiles = grunt.file.expandFiles(src);
       var source = grunt.helper("concat", srcFiles);
       dest = grunt.template.process(dest);
 

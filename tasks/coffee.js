@@ -1,10 +1,8 @@
-/*
- *
+/**
  * Task: coffee
  * Description: Compile CoffeeScript files into JavaScript
  * Dependencies: coffee-script
- * Contributor(s): @errcw / @ctalkington
- *
+ * Contributor: @errcw
  */
 
 module.exports = function(grunt) {

@@ -1,5 +1,5 @@
 ## Minify CSS files
-> Contributed By: Tim Branyen (@tbranyen) and Chris Talkington (@ctalkington)
+> Contributed By: Tim Branyen (@tbranyen)
 
 ### Configuration
 

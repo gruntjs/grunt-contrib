@@ -1,10 +1,8 @@
-/*
- *
+/**
  * Task: clean
  * Description: Clear files and folders.
  * Dependencies: rimraf
- * Contributor(s): @tbranyen / @tkellen / @ctalkington
- *
+ * Contributor: @tbranyen
  */
 
 module.exports = function(grunt) {

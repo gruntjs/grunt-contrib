@@ -1,10 +1,8 @@
-/*
- *
+/**
  * Task: jade
  * Description: Compile Jade templates to HTML
  * Dependencies: jade, path
- * Contributor(s): @errcw / @conradz / @ctalkington
- *
+ * Contributor: @errcw
  */
 
 module.exports = function(grunt) {

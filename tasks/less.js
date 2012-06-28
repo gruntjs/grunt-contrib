@@ -1,10 +1,8 @@
-/*
- *
+/**
  * Task: less
  * Description: Compile LESS files to CSS
  * Dependencies: less
- * Contributor(s): @tkellen, @thomasaboyt, @tkazec, @ctalkington
- *
+ * Contributor: @tkellen
  */
 
 module.exports = function(grunt) {

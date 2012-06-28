@@ -1,10 +1,8 @@
-/*
- *
+/**
  * Task: stylus
  * Description: Compile Stylus files into CSS
  * Dependencies: stylus
- * Contributor(s): @errcw
- *
+ * Contributor: @errcw
  */
 
 module.exports = function(grunt) {
