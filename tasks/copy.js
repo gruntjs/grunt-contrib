@@ -68,13 +68,11 @@ module.exports = function(grunt) {
         });
 
         // handle paths outside of grunts working dir
-        relative = relative.replace(/..\//g, "");
+        relative = relative.replace(/\.\.\//g, "");
 
         if (relative.length > 0 ) {
           relative = relative + "/";
         }
-
-        filename = _(filename).trim("/");
 
         grunt.file.copy(srcFile, dest + "/" + relative + filename);
 
