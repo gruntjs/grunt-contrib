@@ -6,13 +6,33 @@
 
 module.exports = function(grunt) {
   var _ = grunt.utils._;
+  var kindOf = grunt.utils.kindOf;
 
   grunt.registerMultiTask("copy", "Copy files into another directory.", function() {
     var options = grunt.helper("options", this, {basePath: null, stripString: null});
     var data = this.data;
 
+    var basePaths = [];
+    var stripStrings = [];
+
     if (options.basePath !== null) {
-      options.basePath = _(options.basePath).rtrim("/");
+      if (kindOf(options.basePath) === "array") {
+        options.basePath.forEach(function(path) {
+          basePaths.push(_(path).trim("/"));
+        });
+      } else {
+        basePaths.push(_(options.basePath).trim("/"));
+      }
+    }
+
+    if (options.stripString !== null) {
+      if (kindOf(options.stripString) === "array") {
+        options.stripString.forEach(function(string) {
+          stripStrings.push(string);
+        });
+      } else {
+        stripStrings.push(options.stripString);
+      }
     }
 
     Object.keys(data.files).forEach(function(dest) {
@@ -20,32 +40,48 @@ module.exports = function(grunt) {
       var srcFiles = grunt.file.expandFiles(src);
 
       dest = grunt.template.process(dest);
-      dest = _(dest).rtrim("/");
+      dest = _(dest).trim("/");
 
       if (require("path").existsSync(dest) === false) {
         grunt.file.mkdir(dest);
       }
 
+      var count = 0;
+
       srcFiles.forEach(function(srcFile) {
         var filename = _(srcFile).strRightBack("/");
         var relative = _(srcFile).strLeftBack("/");
 
-        if (options.basePath !== null) {
-          relative = _(relative).strRightBack(options.basePath);
+        if (relative === filename) {
+          relative = "";
         }
 
-        if (options.stripString !== null) {
-          if (_.isArray(options.stripString)) {
-            options.stripString.forEach(function(stripString) {
-              filename = filename.replace(stripString, "");
-            });
-          } else {
-            filename = filename.replace(options.stripString, "");
+        basePaths.forEach(function(path) {
+          if (path.length > 1) {
+            relative = _(relative).strRightBack(path);
+            relative = _(relative).trim("/");
           }
+        });
+
+        stripStrings.forEach(function(string) {
+          filename = filename.replace(string, "");
+        });
+
+        // handle paths outside of grunts working dir
+        relative = relative.replace(/..\//g, "");
+
+        if (relative.length > 0 ) {
+          relative = relative + "/";
         }
 
-        grunt.file.copy(srcFile, dest + "/" + relative + "/" + filename);
+        filename = _(filename).trim("/");
+
+        grunt.file.copy(srcFile, dest + "/" + relative + filename);
+
+        count++;
       });
+
+      grunt.log.writeln("Copied " + count + ' file(s) to "'  + dest + '".');
     });
   });
 };

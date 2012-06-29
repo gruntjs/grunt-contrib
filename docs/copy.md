@@ -21,7 +21,7 @@ This controls how this task operates and should contain key:value pairs, see opt
 
 ##### basePath ```string```
 
-This option adjusts copied filenames to be relative to provided path.
+This option adjusts copied filenames to be relative to provided path (or array of paths).
 
 ##### stripString ```string```
 
@@ -33,7 +33,7 @@ This option removes the provided string (or array of strings) from filenames whe
 copy: {
   dist: {
     options: {
-      basePath: "path/to"
+      basePath: "path/to" // or something like ["path/to/more", "path/to"]
     },
     files: {
       "path/to/directory": "path/to/source/*", // includes files in dir
