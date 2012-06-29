@@ -26,6 +26,7 @@ module.exports = function(grunt) {
     Object.keys(data.files).forEach(function(dest) {
       var src = data.files[dest];
       var srcFiles = grunt.file.expandFiles(src);
+
       dest = grunt.template.process(dest);
 
       var jadeOutput = [];
