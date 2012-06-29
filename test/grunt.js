@@ -21,7 +21,7 @@ module.exports = function(grunt) {
     copy: {
       test: {
         options: {
-          basePath: ["fixtures/copy/folder_three", "fixtures/copy"],
+          basePath: "fixtures/copy",
           stripString: "prefix-"
         },
         files: {

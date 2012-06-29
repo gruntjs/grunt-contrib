@@ -12,27 +12,8 @@ module.exports = function(grunt) {
     var options = grunt.helper("options", this, {basePath: null, stripString: null});
     var data = this.data;
 
-    var basePaths = [];
-    var stripStrings = [];
-
     if (options.basePath !== null) {
-      if (kindOf(options.basePath) === "array") {
-        options.basePath.forEach(function(path) {
-          basePaths.push(_(path).trim("/"));
-        });
-      } else {
-        basePaths.push(_(options.basePath).trim("/"));
-      }
-    }
-
-    if (options.stripString !== null) {
-      if (kindOf(options.stripString) === "array") {
-        options.stripString.forEach(function(string) {
-          stripStrings.push(string);
-        });
-      } else {
-        stripStrings.push(options.stripString);
-      }
+      options.basePath = _(options.basePath).trim("/");
     }
 
     Object.keys(data.files).forEach(function(dest) {
@@ -56,21 +37,19 @@ module.exports = function(grunt) {
           relative = "";
         }
 
-        basePaths.forEach(function(path) {
-          if (path.length > 1) {
-            relative = _(relative).strRightBack(path);
-            relative = _(relative).trim("/");
-          }
-        });
+        if (options.basePath !== null && options.basePath.length > 1) {
+          relative = _(relative).strRightBack(options.basePath);
+          relative = _(relative).trim("/");
+        }
 
-        stripStrings.forEach(function(string) {
-          filename = filename.replace(string, "");
-        });
+        if (options.stripString !== null) {
+          filename = filename.replace(options.stripString, "");
+        }
 
         // handle paths outside of grunts working dir
         relative = relative.replace(/\.\.\//g, "");
 
-        if (relative.length > 0 ) {
+        if (relative.length > 0) {
           relative = relative + "/";
         }
 
