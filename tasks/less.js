@@ -34,10 +34,10 @@ module.exports = function(grunt) {
           nextConcat(css);
         });
       }, function(css) {
-          grunt.file.write(dest, css);
-          grunt.log.writeln("File '" + dest + "' created.");
+        grunt.file.write(dest, css);
+        grunt.log.writeln("File '" + dest + "' created.");
 
-          next();
+        next();
       });
 
     }, function() {

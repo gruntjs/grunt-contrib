@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     // check if we have a valid config & an invalid target specific config
     if (_.isArray(config) === true && _.isArray(paths) === false) {
       paths = config;
-    } else if (_.isArray(paths) === false){
+    } else if (_.isArray(paths) === false) {
       paths = [];
     }
 

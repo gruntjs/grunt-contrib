@@ -1,10 +1,10 @@
 /**
-* Task: compress
-* Description: Compress files
-* Dependencies: zipstream / tar / fstream
-* Contributor: @ctalkington
-* Inspired by: @jzaefferer (jquery-validation)
-*/
+ * Task: compress
+ * Description: Compress files
+ * Dependencies: zipstream / tar / fstream
+ * Contributor: @ctalkington
+ * Inspired by: @jzaefferer (jquery-validation)
+ */
 
 module.exports = function(grunt) {
   var _ = grunt.utils._;
@@ -77,7 +77,7 @@ module.exports = function(grunt) {
 
     zip.pipe(fs.createWriteStream(dest));
 
-    function addFile(){
+    function addFile() {
       if (!files.length) {
         zip.finalize(function(written) {
           callback(written);

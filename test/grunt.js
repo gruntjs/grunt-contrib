@@ -77,7 +77,7 @@ module.exports = function(grunt) {
       tgz: {
         options: {
           mode: "tgz",
-          basePath: "fixtures/compress",
+          basePath: "fixtures/compress"
         },
         files: {
           "fixtures/output/compress_test_files.tgz": "fixtures/compress/*",

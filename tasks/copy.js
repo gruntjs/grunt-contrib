@@ -1,12 +1,11 @@
 /**
-* Task: copy
-* Description: Copy files into another directory
-* Contributor: @ctalkington
-*/
+ * Task: copy
+ * Description: Copy files into another directory
+ * Contributor: @ctalkington
+ */
 
 module.exports = function(grunt) {
   var _ = grunt.utils._;
-  var kindOf = grunt.utils.kindOf;
 
   grunt.registerMultiTask("copy", "Copy files into another directory.", function() {
     var options = grunt.helper("options", this, {basePath: null, stripString: null});
@@ -58,7 +57,7 @@ module.exports = function(grunt) {
         count++;
       });
 
-      grunt.log.writeln("Copied " + count + ' file(s) to "'  + dest + '".');
+      grunt.log.writeln("Copied " + count + ' file(s) to "' + dest + '".');
     });
   });
 };

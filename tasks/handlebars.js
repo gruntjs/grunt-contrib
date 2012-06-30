@@ -36,7 +36,7 @@ module.exports = function(grunt) {
 
   grunt.registerHelper("handlebars", function(source, filepath, namespace) {
     try {
-      var output = "Handlebars.template("+require("handlebars").precompile(source)+");";
+      var output = "Handlebars.template(" + require("handlebars").precompile(source) + ");";
       return namespace + "['" + filepath + "'] = " + output;
     } catch (e) {
       grunt.log.error(e);

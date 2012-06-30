@@ -27,7 +27,7 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.registerHelper("mincss", function(source, callback) {
+  grunt.registerHelper("mincss", function(source) {
     try {
       return require("clean-css").process(source);
     } catch (e) {
