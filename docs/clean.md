@@ -9,20 +9,53 @@ Due to the destructive nature of this task, we have implemented several sanity c
 
 #### Parameters
 
-This task only accepts an array of paths to be removed. Each path is processed seperately and supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md).
+##### paths ```object```
+
+This defines what paths this task will clean recursively (supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md)).
+
+##### options ```object```
+
+This controls how this task (and its helpers) operate and should contain key:value pairs, see options below.
+
+#### Options
+
+##### force ```boolean```
+
+Force deletion, bypasses all built-in sanity checks.
 
 #### Config Examples
+
+There are three different formats that you can use to run this task.
+
+##### Short
 
 ``` javascript
 clean: ["path/to/dir/one", "path/to/dir/two"]
 ```
 
-As an alternative, you can add specific targets to your clean config,
-which can then be called as 'grunt clean:build', 'grunt clean:release' etc.
+##### Medium (specific targets with global options)
 
 ``` javascript
 clean: {
   build: ["path/to/dir/one", "path/to/dir/two"],
   release: ["path/to/another/dir/one", "path/to/another/dir/two"]
+},
+options: {
+  clean: {
+    force: true // bypasses built-in sanity checks
+  }
+}
+```
+
+##### Long (specific targets with per target options)
+
+``` javascript
+clean: {
+  build: {
+    options: {
+      force: true // bypasses built-in sanity checks.
+    }
+    paths: ["path/to/dir/one", "path/to/dir/two"],
+  }
 }
 ```
