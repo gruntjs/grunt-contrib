@@ -15,6 +15,8 @@ module.exports = function(grunt) {
     var data = this.data;
     var jadeData = options.data;
 
+    grunt.verbose.writeflags(options, "Options");
+
     if (_.isEmpty(jadeData) === false) {
       _.each(jadeData, function(value, key) {
         if (_.isString(value)) {

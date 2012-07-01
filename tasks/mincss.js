@@ -10,6 +10,8 @@ module.exports = function(grunt) {
     var options = grunt.helper("options", this);
     var data = this.data;
 
+    grunt.verbose.writeflags(options, "Options");
+
     Object.keys(data.files).forEach(function(dest) {
       var src = data.files[dest];
       var srcFiles = grunt.file.expandFiles(src);

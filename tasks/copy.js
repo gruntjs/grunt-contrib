@@ -15,6 +15,8 @@ module.exports = function(grunt) {
       options.basePath = _(options.basePath).trim("/");
     }
 
+    grunt.verbose.writeflags(options, "Options");
+
     Object.keys(data.files).forEach(function(dest) {
       var src = data.files[dest];
       var srcFiles = grunt.file.expandFiles(src);

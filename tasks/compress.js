@@ -21,6 +21,8 @@ module.exports = function(grunt) {
       options.basePath = _(options.basePath).rtrim("/");
     }
 
+    grunt.verbose.writeflags(options, "Options");
+
     if (options.mode == 'tgz') {
       helper = "tarHelper";
     }

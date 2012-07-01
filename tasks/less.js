@@ -20,6 +20,8 @@ module.exports = function(grunt) {
     var data = this.data;
     var done = this.async();
 
+    grunt.verbose.writeflags(options, "Options");
+
     async.forEachSeries(Object.keys(data.files), function(dest, next) {
       var src = data.files[dest];
       var srcFiles = grunt.file.expandFiles(src);
