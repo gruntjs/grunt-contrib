@@ -1,6 +1,6 @@
-# grunt-contrib
+# grunt-contrib (*currently in alpha*)
 
-A collection of general use grunt tasks (*currently in alpha*).
+A collection of general use grunt tasks. All tasks are designed with cross platform support in mind and dependencies that can easily be managed through npm.
 
 ## Getting Started
 Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-contrib`
@@ -51,6 +51,10 @@ Compile Stylus files into CSS.
 ## Included Helpers
 ### [`options`](/gruntjs/grunt-contrib/blob/master/docs/helpers.md#options)
 Unified options retrieval
+
+## Bugs
+
+Help us squash them by submitting an issue that describes how you encountered it; please be as specific as possible including operating system, node, grunt, and grunt-contrib versions.
 
 ## Contributing
 In lieu of a formal style guide, take care to maintain the existing coding style. Also, add tests for any new or changed functionality and be sure to lint your code.
