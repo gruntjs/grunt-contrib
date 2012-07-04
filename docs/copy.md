@@ -27,6 +27,14 @@ This option adjusts copied filenames to be relative to provided path.
 
 This option removes the provided string from filenames when copied.
 
+#### process ```function```
+
+This option is passed to `grunt.file.copy` as an advanced way to control the copy process.
+
+#### noProcess ```string```
+
+This option is passed to `grunt.file.copy` as an advanced way to control the copy process.
+
 #### Config Example
 
 ``` javascript

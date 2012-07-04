@@ -8,8 +8,19 @@ module.exports = function(grunt) {
   var _ = grunt.utils._;
 
   grunt.registerMultiTask("copy", "Copy files into another directory.", function() {
-    var options = grunt.helper("options", this, {basePath: null, stripString: null});
+    var options = grunt.helper("options", this, {
+      basePath: null,
+      stripString: null,
+      process: false,
+      noProcess: []
+    });
+
     var data = this.data;
+
+    var copyOptions = {
+      process: options.process,
+      noProcess: options.noProcess
+    };
 
     if (options.basePath !== null) {
       options.basePath = _(options.basePath).trim("/");
@@ -54,7 +65,7 @@ module.exports = function(grunt) {
           relative = relative + "/";
         }
 
-        grunt.file.copy(srcFile, dest + "/" + relative + filename);
+        grunt.file.copy(srcFile, dest + "/" + relative + filename, copyOptions);
 
         count++;
       });
