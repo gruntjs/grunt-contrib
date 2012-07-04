@@ -45,7 +45,7 @@ module.exports = function(grunt) {
       }
     });
 
-    var validPaths = grunt.file.expand(validPaths);
+    validPaths = grunt.file.expand(validPaths);
 
     if (validPaths.length === 0) {
       grunt.fatal("should have an array of valid paths to clean by now, too dangerous to continue.");
