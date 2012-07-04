@@ -25,7 +25,7 @@ module.exports = function(grunt) {
   grunt.registerMultiTask("clean", "Clear files and folders", function() {
     var options = grunt.helper("options", this, {force: false});
     var config = grunt.config.get("clean");
-    var paths = this.data.paths || this.data;
+    var paths = this.data.files || this.data;
     var validPaths = [];
 
     grunt.verbose.writeflags(options, "Options");
@@ -38,14 +38,14 @@ module.exports = function(grunt) {
     }
 
     paths.forEach(function(path) {
-      if (kindOf(path) === "string") {
-        path = grunt.template.process(path);
+      path = grunt.template.process(path);
 
-        if (path.length > 0) {
-          validPaths.push(path);
-        }
+      if (path.length > 0) {
+        validPaths.push(path);
       }
     });
+
+    var validPaths = grunt.file.expand(validPaths);
 
     if (validPaths.length === 0) {
       grunt.fatal("should have an array of valid paths to clean by now, too dangerous to continue.");

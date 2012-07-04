@@ -9,9 +9,9 @@ Due to the destructive nature of this task, we have implemented several sanity c
 
 #### Parameters
 
-##### paths ```object```
+##### files ```object```
 
-This defines what paths this task will clean recursively (supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md)).
+This defines what paths this task will clean recursively (supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md) and [minimatch](https://github.com/isaacs/minimatch)).
 
 ##### options ```object```
 
@@ -55,7 +55,7 @@ clean: {
     options: {
       force: true // bypasses built-in sanity checks.
     }
-    paths: ["path/to/dir/one", "path/to/dir/two"],
+    files: ["path/to/dir/one", "path/to/dir/two"]
   }
 }
 ```
