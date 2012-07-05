@@ -40,7 +40,8 @@
     "tar": "~0.1.13",
     "fstream": "~0.1.18",
     "requirejs": "*",
-    "handlebars": "~1.0.4"
+    "handlebars": "~1.0.4",
+    "yuidocjs": "~0.3.14"
   },
   "devDependencies": {
     "grunt": "~0.3.10"
