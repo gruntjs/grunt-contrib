@@ -7,7 +7,6 @@
 
 module.exports = function(grunt) {
   var fs = require("fs");
-  var existsSync = fs.existsSync || require("path").existsSync;
 
   var kindOf = grunt.utils.kindOf;
 
@@ -19,14 +18,13 @@ module.exports = function(grunt) {
 
     var cwd = fs.readdirSync(process.cwd());
 
-    return !!(cwd.indexOf(path[0]) === -1);
+    return (cwd.indexOf(path[0]) === -1);
   };
 
   grunt.registerMultiTask("clean", "Clear files and folders", function() {
     var options = grunt.helper("options", this, {force: false});
     var config = grunt.config.get("clean");
     var paths = this.data.files || this.data;
-    var validPaths = [];
 
     grunt.verbose.writeflags(options, "Options");
 
@@ -37,22 +35,14 @@ module.exports = function(grunt) {
       paths = [];
     }
 
-    paths.forEach(function(path) {
-      path = grunt.template.process(path);
-
-      if (path.length > 0) {
-        validPaths.push(path);
-      }
-    });
-
-    validPaths = grunt.file.expand(validPaths);
+    var validPaths = grunt.file.expand(paths);
 
     if (validPaths.length === 0) {
       grunt.fatal("should have an array of valid paths to clean by now, too dangerous to continue.");
     }
 
     validPaths.forEach(function(path) {
-      if (options.force === true && existsSync(path) && isOutsideCWD(path)) {
+      if (options.force === false && isOutsideCWD(path)) {
         grunt.fail.warn('trying to clean "' + path + '" which is outside the working dir.');
       }
 
