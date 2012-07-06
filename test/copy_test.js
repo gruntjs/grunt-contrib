@@ -1,11 +1,10 @@
 var grunt = require("grunt");
+var fs = require("fs");
 
 grunt.loadTasks("../tasks");
 
 exports.copy = {
   main: function(test) {
-    var fs = require("fs");
-
     test.expect(5);
 
     var expectA = ["test.css", "test.js"];
