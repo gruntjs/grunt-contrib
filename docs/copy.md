@@ -21,19 +21,30 @@ This controls how this task operates and should contain key:value pairs, see opt
 
 ##### basePath ```string```
 
-This option adjusts copied filenames to be relative to provided path.
+This option adjusts the folder structure when copied to the destination directory.
 
-##### stripString ```string```
+##### processName ```function```
 
-This option removes the provided string from filenames when copied.
+This option accepts a function that adjusts the filename of the copied file. Function is passed filename and should return a string.
 
-#### process ```function```
+``` javascript
+options: {
+  processName: function(filename) {
+    if (filename == "test.jpg") {
+      filename = "newname.jpg";
+    }
+    return filename;
+  }
+}
+```
 
-This option is passed to `grunt.file.copy` as an advanced way to control the copy process.
+##### processContent ```function```
 
-#### noProcess ```string```
+This option is passed to `grunt.file.copy` as an advanced way to control the file contents that are copied.
 
-This option is passed to `grunt.file.copy` as an advanced way to control the copy process.
+##### processContentExclude ```string```
+
+This option is passed to `grunt.file.copy` as an advanced way to control which file contents are processed.
 
 #### Config Example
 

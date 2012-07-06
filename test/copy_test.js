@@ -10,7 +10,7 @@ exports.copy = {
 
     var expectA = ["test.css", "test.js"];
     var resultA = fs.readdirSync("fixtures/output/copy_test_files");
-    test.deepEqual(expectA, resultA, "should copy several files (including prefixed file)");
+    test.deepEqual(expectA, resultA, "should copy several files");
 
     var expectB = ["folder_one", "folder_two", "test.css", "test.js"];
     var resultB = fs.readdirSync("fixtures/output/copy_test_folders");
