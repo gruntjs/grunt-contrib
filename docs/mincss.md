@@ -20,7 +20,9 @@ Note: When the value contains an array of multiple filepaths, the contents are c
 ``` javascript
 mincss: {
   compress: {
-    "path/to/output.css": ["path/to/input_one.css", "path/to/input_two.css"]
+    files: {
+      "path/to/output.css": ["path/to/input_one.css", "path/to/input_two.css"]
+    } 
   }
 }
 
