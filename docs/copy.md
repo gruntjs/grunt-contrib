@@ -1,5 +1,5 @@
 ## Copy files into another directory
-> Contributed By: Chris Talkington (@ctalkington)
+> Contributed By: [Chris Talkington](/ctalkington) (@ctalkington)
 
 ### Configuration
 

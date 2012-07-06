@@ -1,5 +1,5 @@
 ## Clear files and folders.
-> Contributed By: Tim Branyen (@tbranyen)
+> Contributed By: [Tim Branyen](/tbranyen) (@tbranyen)
 
 ### Overview
 
