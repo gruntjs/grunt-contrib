@@ -187,6 +187,24 @@ module.exports = function(grunt) {
       }
     },
 
+    yuidoc: {
+      compileA: {
+        options: {
+          paths: "fixtures/yuidoc/app/",
+          outdir: "fixtures/output/yuidoca/"
+        }
+      },
+      compileB: {
+        options: {
+          paths: [
+            "fixtures/yuidoc/app/",
+            "fixtures/yuidoc/otherapp/"
+          ],
+          outdir: "fixtures/output/yuidocb/"
+        }
+      }
+    },
+
     options: {
       jade: {
         filename: "fixtures/jade/inc/"
@@ -195,5 +213,5 @@ module.exports = function(grunt) {
   });
 
   grunt.loadTasks("../tasks");
-  grunt.registerTask("default", "clean test:clean coffee compress copy jade jst handlebars less mincss requirejs stylus test:tasks");
+  grunt.registerTask("default", "clean test:clean coffee compress copy jade jst handlebars less mincss requirejs stylus yuidoc test:tasks");
 };
