@@ -48,6 +48,9 @@ Optimize RequireJS projects using r.js.
 #### [`stylus`](/gruntjs/grunt-contrib/blob/master/docs/stylus.md)
 Compile Stylus files into CSS.
 
+#### [`yuidoc`](/gruntjs/grunt-contrib/blob/master/docs/yuidoc.md)
+Compile YUIDoc Documentation.
+
 ## Included Helpers
 ### [`options`](/gruntjs/grunt-contrib/blob/master/docs/helpers.md#options)
 Unified options retrieval

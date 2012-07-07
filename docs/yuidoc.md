@@ -1,5 +1,5 @@
 ## Compile YUIDoc Documentation
-> Contributed By: George Pantazis (@gcpantazis)
+> Contributed By: [George Pantazis](/gcpantazis) (@gcpantazis)
 
 ### Overview
 
@@ -29,10 +29,9 @@ Where to save the documentation.
 yuidoc: {
   compile: {
     options: {
-      paths: 'path/to/source/code/',
-      outdir: 'where/to/save/docs/'
+      paths: "path/to/source/code/",
+      outdir: "where/to/save/docs/"
     }
   }
-},
-
+}
 ```

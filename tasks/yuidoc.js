@@ -6,8 +6,9 @@
  */
 
 module.exports = function(grunt) {
+  var kindOf = grunt.utils.kindOf;
 
-  grunt.registerMultiTask( "yuidoc", "Create YUIDocs", function() {
+  grunt.registerMultiTask("yuidoc", "Create YUIDocs", function() {
 
     var Y = require("yuidocjs");
     var done = this.async();
@@ -19,12 +20,14 @@ module.exports = function(grunt) {
       quiet: true
     });
 
+    grunt.verbose.writeflags(options, "Options");
+
     // Catch if required fields are not provided.
     if ( !options.paths ) grunt.fail.warn("No path(s) provided for YUIDoc to scan.");
     if ( !options.outdir ) grunt.fail.warn("You must specify a directory for YUIDoc output.");
 
     // Input path: array expected, but grunt conventions allows for either a string or an array.
-    if ( typeof options.paths === "string" ) {
+    if (kindOf(options.paths) === "string") {
       options.paths = [ options.paths ];
     }
 
@@ -37,8 +40,8 @@ module.exports = function(grunt) {
       var builder = new Y.DocBuilder(options, json);
 
       grunt.log.writeln("Start YUIDoc compile...");
-      grunt.log.writeln("Scanning: " + options.paths.join(", "));
-      grunt.log.writeln("Output: " + options.outdir);
+      grunt.log.writeln("Scanning: " + grunt.log.wordlist(options.paths));
+      grunt.log.writeln("Output: " + (options.outdir).cyan);
 
       builder.compile(function() {
         var endtime = (new Date()).getTime();
