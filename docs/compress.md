@@ -27,6 +27,10 @@ This is used to define which mode to use, currently supports gzip, tar, tgz (tar
 
 This option adjusts internal filenames to be relative to provided path, within the resulting archive file.
 
+##### flatten ```boolean```
+
+This option performs a flat copy that dumps all the files into the root of the destination file.
+
 ##### level ```integer``` (zip only)
 
 This option sets the level of archive compression (defaults to 1).

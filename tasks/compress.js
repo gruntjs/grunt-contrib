@@ -7,18 +7,27 @@
  */
 
 module.exports = function(grunt) {
+  var fs = require("fs");
+  var path = require("path");
+
   var _ = grunt.utils._;
   var async = grunt.utils.async;
 
   grunt.registerMultiTask("compress", "Compress files.", function() {
-    var options = grunt.helper("options", this, {mode: null, basePath: null, level: 1});
+    var options = grunt.helper("options", this, {
+      mode: null,
+      basePath: null,
+      flatten: false,
+      level: 1
+    });
+
     var supported = ["zip", "tar", "tgz", "gzip"];
     var helper = options.mode + "Helper";
     var data = this.data;
     var done = this.async();
 
     if (options.basePath !== null) {
-      options.basePath = _(options.basePath).rtrim("/");
+      options.basePath = _(options.basePath).trim("/");
     }
 
     grunt.verbose.writeflags(options, "Options");
@@ -33,28 +42,22 @@ module.exports = function(grunt) {
       return;
     }
 
+    var src;
+    var srcFiles;
+
     async.forEachSeries(Object.keys(data.files), function(dest, next) {
-      var src = data.files[dest];
+      src = data.files[dest];
+      srcFiles = grunt.file.expandFiles(src);
+
       dest = grunt.template.process(dest);
 
-      if (_.isArray(src)) {
-        src.forEach(function(s, k) {
-          src[k] = grunt.template.process(s);
-        });
-      } else {
-        src = grunt.template.process(src);
-      }
-
-      var srcFiles = grunt.file.expandFiles(src);
-
-      if (options.mode == 'gzip' && srcFiles.length > 1) {
+      if (options.mode == "gzip" && srcFiles.length > 1) {
         grunt.warn("Cannot specify multiple input files for gzip compression.");
         srcFiles = srcFiles[0];
       }
 
       grunt.helper(helper, srcFiles, dest, options, function(written) {
         grunt.log.writeln('File "' + dest + '" created (' + written + ' bytes written).');
-
         next();
       });
 
@@ -64,12 +67,12 @@ module.exports = function(grunt) {
   });
 
   grunt.registerHelper("zipHelper", function(files, dest, options, callback) {
-    var fs = require("fs");
     var zip = require("zipstream").createZip(options);
-    var destdir = _(dest).strLeftBack("/");
 
-    if (require("path").existsSync(destdir) === false) {
-      grunt.file.mkdir(destdir);
+    var destDir = path.dirname(dest);
+
+    if (path.existsSync(destDir) === false) {
+      grunt.file.mkdir(destDir);
     }
 
     zip.on("error", function(e) {
@@ -79,6 +82,11 @@ module.exports = function(grunt) {
 
     zip.pipe(fs.createWriteStream(dest));
 
+    var srcFile;
+    var filename;
+    var relative;
+    var destPath;
+
     function addFile() {
       if (!files.length) {
         zip.finalize(function(written) {
@@ -87,94 +95,101 @@ module.exports = function(grunt) {
         return;
       }
 
-      var filepath = files.shift();
-      var filename = _(filepath).strRightBack("/");
-      var internal = _(filepath).strLeftBack("/");
+      srcFile = files.shift();
+      filename = path.basename(srcFile);
+      relative = path.dirname(srcFile);
 
-      if (options.basePath !== null) {
-        internal = _(internal).strRightBack(options.basePath);
+      if (options.flatten) {
+        relative = "";
+      } else if (options.basePath !== null && options.basePath.length > 1) {
+        relative = _(relative).strRightBack(options.basePath);
       }
 
-      internal = internal + "/" + filename;
+      destPath = path.join(relative, filename);
 
-      grunt.verbose.writeln("Adding " + filepath + " to zip.");
-      zip.addFile(fs.createReadStream(filepath), {name: internal}, addFile);
+      grunt.verbose.writeln("Adding " + srcFile + " to zip.");
+      zip.addFile(fs.createReadStream(srcFile), {name: destPath}, addFile);
     }
 
     addFile();
   });
 
-  grunt.registerHelper("tarHelper", function(files, dest, options, callback) {
+  grunt.registerHelper("tarHelper", function(srcFiles, dest, options, callback) {
     var fstream = require("fstream");
     var tar = require("tar");
     var zlib = require("zlib");
-    var destdir = _(dest).strLeftBack("/");
-    var destfile = _(dest).strRight("/");
-    var tempdir = destdir + "/tar_temp";
-    var tardir = _(destfile).strLeftBack(".");
-    var tard;
+
+    var destDir = path.dirname(dest);
+    var destFile = path.basename(dest);
+    var destFileExt = path.extname(destFile);
+    var tempDir = path.join(destDir, "tar_" + (new Date()).getTime());
+    var tarDir = _(destFile).strLeftBack(destFileExt);
+
+    var tarProcess;
+
+    tarDir = path.join(tempDir, tarDir);
 
     function getSize(filename) {
       try {
-        return require("fs").statSync(filename).size;
+        return fs.statSync(filename).size;
       } catch (e) {
         return 0;
       }
     }
 
-    // support tar.gz naming when getting root folder for tar
-    if (_(tardir).strRightBack(".") === "tar") {
-      tardir = _(tardir).strLeftBack(".");
+    if (path.existsSync(destDir) === false) {
+      grunt.file.mkdir(destDir);
     }
 
-    tardir = tempdir + "/" + tardir;
+    var filename;
+    var relative;
+    var destPath;
 
-    if (require("path").existsSync(destdir) === false) {
-      grunt.file.mkdir(destdir);
-    }
+    srcFiles.forEach(function(srcFile) {
+      filename = path.basename(srcFile);
+      relative = path.dirname(srcFile);
 
-    files.forEach(function(filepath) {
-      var filename = _(filepath).strRightBack("/");
-      var internal = _(filepath).strLeftBack("/");
-
-      if (options.basePath !== null) {
-        internal = _(internal).strRightBack(options.basePath);
+      if (options.flatten) {
+        relative = "";
+      } else if (options.basePath !== null && options.basePath.length > 1) {
+        relative = _(relative).strRightBack(options.basePath).trim("/");
       }
 
-      internal = internal + "/" + filename;
+      destPath = path.join(tarDir, relative, filename);
 
-      grunt.verbose.writeln("Adding " + filepath + " to tar.");
-      grunt.file.copy(filepath, tardir + internal);
+      grunt.verbose.writeln("Adding " + srcFile + " to tar.");
+      grunt.file.copy(srcFile, destPath);
     });
 
-    var reader = fstream.Reader({path: tardir, type: "Directory"});
+    var reader = fstream.Reader({path: tarDir, type: "Directory"});
     var packer = tar.Pack();
     var gzipper = zlib.createGzip();
     var writer = fstream.Writer(dest);
 
-    if (options.mode == 'tgz') {
-      tard = reader.pipe(packer).pipe(gzipper).pipe(writer);
+    if (options.mode == "tgz") {
+      tarProcess = reader.pipe(packer).pipe(gzipper).pipe(writer);
     } else {
-      tard = reader.pipe(packer).pipe(writer);
+      tarProcess = reader.pipe(packer).pipe(writer);
     }
 
-    tard.on("error", function(e) {
+    tarProcess.on("error", function(e) {
       grunt.log.error(e);
       grunt.fail.warn("tarHelper failed.");
     });
 
-    tard.on("close", function() {
-      grunt.helper("clean", tempdir);
+    tarProcess.on("close", function() {
+      grunt.helper("clean", tempDir);
       callback(getSize(dest));
     });
   });
 
   grunt.registerHelper("gzipHelper", function(file, dest, options, callback) {
     var zlib = require("zlib");
-    var destdir = _(dest).strLeftBack("/");
 
-    if (require("path").existsSync(destdir) === false) {
-      grunt.file.mkdir(destdir);
+    var destDir = path.dirname(dest);
+
+    if (path.existsSync(destDir) === false) {
+      grunt.file.mkdir(destDir);
     }
 
     zlib.gzip(grunt.file.read(file), function(e, result) {

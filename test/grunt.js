@@ -55,15 +55,22 @@ module.exports = function(grunt) {
       zip: {
         options: {
           mode: "zip",
-          basePath: "fixtures/compress",
-          level: 1
+          basePath: "fixtures/compress"
         },
         files: {
           "fixtures/output/compress_test_files.zip": "fixtures/compress/*",
-          "fixtures/output/compress_test_folders.zip": "fixtures/compress/**",
+          "fixtures/output/compress_test_v<%= pkg.version %>.zip": "fixtures/compress/**",
           "fixtures/output/compress_test_array.zip": ["fixtures/compress/test.*", "fixtures/compress/folder_one/*"],
-          "fixtures/output/compress_test_files_template.zip": "<%= files.test %>/**",
-          "fixtures/output/compress_test_v<%= pkg.version %>.zip": "fixtures/compress/**"
+          "fixtures/output/compress_test_files_template.zip": "<%= files.test %>/**"
+        }
+      },
+      zip_flatten: {
+        options: {
+          mode: "zip",
+          flatten: true
+        },
+        files: {
+          "fixtures/output/compress_test_flatten.zip": "fixtures/compress/**"
         }
       },
       tar: {
@@ -73,10 +80,18 @@ module.exports = function(grunt) {
         },
         files: {
           "fixtures/output/compress_test_files.tar": "fixtures/compress/*",
-          "fixtures/output/compress_test_folders.tar": "fixtures/compress/**",
+          "fixtures/output/compress_test_v<%= pkg.version %>.tar": "fixtures/compress/**",
           "fixtures/output/compress_test_array.tar": ["fixtures/compress/test.*", "fixtures/compress/folder_one/*"],
-          "fixtures/output/compress_test_files_template.tar": "<%= files.test %>/**",
-          "fixtures/output/compress_test_v<%= pkg.version %>.tar": "fixtures/compress/**"
+          "fixtures/output/compress_test_files_template.tar": "<%= files.test %>/**"
+        }
+      },
+      tar_flatten: {
+        options: {
+          mode: "tar",
+          flatten: true
+        },
+        files: {
+          "fixtures/output/compress_test_flatten.tar": "fixtures/compress/**"
         }
       },
       tgz: {
@@ -86,10 +101,18 @@ module.exports = function(grunt) {
         },
         files: {
           "fixtures/output/compress_test_files.tgz": "fixtures/compress/*",
-          "fixtures/output/compress_test_folders.tgz": "fixtures/compress/**",
+          "fixtures/output/compress_test_v<%= pkg.version %>.tgz": "fixtures/compress/**",
           "fixtures/output/compress_test_array.tgz": ["fixtures/compress/test.*", "fixtures/compress/folder_one/*"],
-          "fixtures/output/compress_test_files_template.tgz": "<%= files.test %>/**",
-          "fixtures/output/compress_test_v<%= pkg.version %>.tgz": "fixtures/compress/**"
+          "fixtures/output/compress_test_files_template.tgz": "<%= files.test %>/**"
+        }
+      },
+      tgz_flatten: {
+        options: {
+          mode: "tgz",
+          flatten: true
+        },
+        files: {
+          "fixtures/output/compress_test_flatten.tgz": "fixtures/compress/**"
         }
       },
       gzip: {
