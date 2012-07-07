@@ -23,6 +23,10 @@ This controls how this task operates and should contain key:value pairs, see opt
 
 This option adjusts the folder structure when copied to the destination directory.
 
+##### flatten ```boolean```
+
+This option performs a flat copy that dumps all the files into the root of the destination directory, overwriting files if they exist.
+
 ##### processName ```function```
 
 This option accepts a function that adjusts the filename of the copied file. Function is passed filename and should return a string.
