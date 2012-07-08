@@ -74,20 +74,18 @@ Help us squash them by submitting an issue that describes how you encountered it
 * task should fill a general need and ideally be pure JavaScript
 * task should include tests that cover, at minimal, its basic features
 * task should be linted by running `grunt` at root of project
-* task should use any built-in helpers first, for consistency, such as [`options`](/gruntjs/grunt-contrib/blob/master/docs/helpers.md#options)
+* task should use any built-in helpers first for consistency
 
 #### Code Style Guide
 
 * code should be indented with 2 spaces
 * double quotes should be used where feasible
 * commas should be followed by a single space (function params, etc)
-* semi-colons should be used throughout, even though they may not seem necessary!
-* variable declaration should include `var`, no multiple declarations
+* variable declaration should include `var`, [no multiple declarations](http://benalman.com/news/2012/05/multiple-var-statements-javascript/)
 
 #### Tests
 
 * tests should be added to the config in `test/grunt.js`
-* it is generally preferred to test the output to a known value vs using eval
 * see existing tests for guidance
 
 *Currently, testing with grunt is a bit cumbersome--this will be addressed in a future release.*
