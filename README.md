@@ -100,6 +100,7 @@ npm test
 ## Release History
 * (Until v1.0.0, this will only be updated when major or breaking changes are made)*
 
+* 2012/07/09 - v0.1.1 - overhaul to existing tasks. yuidoc addition. other misc cleanup. prep for grunt v0.4.
 * 2012/06/28 - v0.0.9 - Cleanup release with copy task addition (thanks @ctalkington!)
 * 2012/06/12 - v0.0.7 - Add RequireJS task.
 * 2012/06/03 - v0.0.5 - Cleanup release with zip task addition.
