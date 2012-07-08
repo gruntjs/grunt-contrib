@@ -1,6 +1,5 @@
 module.exports = function(grunt) {
-
-  grunt.file.mkdir('fixtures/output');
+  grunt.file.mkdir("fixtures/output");
 
   grunt.initConfig({
     pkg: {
