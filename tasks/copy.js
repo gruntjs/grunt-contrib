@@ -14,8 +14,8 @@ module.exports = function(grunt) {
   // TODO: ditch this when grunt v0.4 is released
   grunt.util = grunt.util || grunt.utils;
 
-  var _ = grunt.utils._;
-  var kindOf = grunt.utils.kindOf;
+  var _ = grunt.util._;
+  var kindOf = grunt.util.kindOf;
 
   grunt.registerMultiTask("copy", "Copy files into another directory.", function() {
     var options = grunt.helper("options", this, {
