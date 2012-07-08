@@ -53,7 +53,7 @@ Compile YUIDoc Documentation.
 
 ## Included Helpers
 ### [`options`](/gruntjs/grunt-contrib/blob/master/docs/helpers.md#options)
-Unified options retrieval
+Unified options retrieval, will be replaced with grunt's built-in `this.options` in the near future.
 
 ## Bugs
 
