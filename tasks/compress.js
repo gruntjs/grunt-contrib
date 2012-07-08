@@ -65,9 +65,11 @@ module.exports = function(grunt) {
       level: 1
     });
 
+    // TODO: ditch this when grunt v0.4 is released
+    this.files = grunt.helper("normalizeMultiTaskFiles", this.data, this.target);
+
     var supported = ["zip", "tar", "tgz", "gzip"];
     var helper = options.mode + "Helper";
-    var data = this.data;
     var done = this.async();
 
     if (options.basePath !== null) {
@@ -87,16 +89,12 @@ module.exports = function(grunt) {
       return;
     }
 
-    var src;
     var srcFiles;
     var destDir;
 
-    async.forEachSeries(Object.keys(data.files), function(dest, next) {
-      src = data.files[dest];
-      srcFiles = grunt.file.expandFiles(src);
-
-      dest = grunt.template.process(dest);
-      destDir = path.dirname(dest);
+    async.forEachSeries(this.files, function(file, next) {
+      srcFiles = grunt.file.expandFiles(file.src);
+      destDir = path.dirname(file.dest);
 
       if (options.mode == "gzip" && srcFiles.length > 1) {
         grunt.fail.warn("Cannot specify multiple input files for gzip compression.");
@@ -107,8 +105,8 @@ module.exports = function(grunt) {
         grunt.file.mkdir(destDir);
       }
 
-      grunt.helper(helper, srcFiles, dest, options, function(written) {
-        grunt.log.writeln('File "' + dest + '" created (' + written + ' bytes written).');
+      grunt.helper(helper, srcFiles, file.dest, options, function(written) {
+        grunt.log.writeln('File "' + file.dest + '" created (' + written + ' bytes written).');
         next();
       });
 

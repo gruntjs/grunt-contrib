@@ -5,6 +5,7 @@
  */
 
 module.exports = function(grunt) {
+  var fs = require("fs");
   var path = require("path");
 
   var _ = grunt.utils._;
@@ -22,7 +23,8 @@ module.exports = function(grunt) {
       processContentExclude: []
     });
 
-    var data = this.data;
+    // TODO: ditch this when grunt v0.4 is released
+    this.files = grunt.helper("normalizeMultiTaskFiles", this.data, this.target);
 
     var copyOptions = {
       process: options.processContent,
@@ -36,21 +38,18 @@ module.exports = function(grunt) {
 
     grunt.verbose.writeflags(options, "Options");
 
-    Object.keys(data.files).forEach(function(dest) {
-      var src = data.files[dest];
-      var srcFiles = grunt.file.expandFiles(src);
+    this.files.forEach(function(file) {
+      var srcFiles = grunt.file.expandFiles(file.src);
 
-      dest = grunt.template.process(dest);
-
-      if (grunt.file.exists(dest) === false) {
-        grunt.file.mkdir(dest);
+      if (grunt.file.exists(file.dest) === false) {
+        grunt.file.mkdir(file.dest);
       }
 
       var filename = "";
       var relative = "";
       var destFile = "";
 
-      grunt.log.write("Copying file(s)" + ' to "' + dest + '"...');
+      grunt.log.write("Copying file(s)" + ' to "' + file.dest + '"...');
 
       srcFiles.forEach(function(srcFile) {
         filename = path.basename(srcFile);
@@ -70,7 +69,7 @@ module.exports = function(grunt) {
         // make paths outside grunts working dir relative
         relative = relative.replace(/\.\.(\/|\\)/g, "");
 
-        destFile = path.join(dest, relative, filename);
+        destFile = path.join(file.dest, relative, filename);
 
         grunt.file.copy(srcFile, destFile, copyOptions);
       });

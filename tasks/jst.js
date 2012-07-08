@@ -10,15 +10,15 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask("jst", "Compile underscore templates to JST file", function() {
     var options = grunt.helper("options", this, {namespace: "JST", templateSettings: {}});
-    var data = this.data;
+
+    // TODO: ditch this when grunt v0.4 is released
+    this.files = grunt.helper("normalizeMultiTaskFiles", this.data, this.target);
 
     grunt.verbose.writeflags(options, "Options");
 
-    Object.keys(data.files).forEach(function(dest) {
-      var src = data.files[dest];
-      var srcFiles = grunt.file.expandFiles(src);
+    this.files.forEach(function(file) {
+      var srcFiles = grunt.file.expandFiles(file.src);
 
-      dest = grunt.template.process(dest);
 
       var jstOutput = [];
       var jstNamespace = "this['" + options.namespace + "']";
@@ -32,8 +32,8 @@ module.exports = function(grunt) {
       });
 
       if (jstOutput.length > 0) {
-        grunt.file.write(dest, jstOutput.join("\n\n"));
-        grunt.log.writeln("File '" + dest + "' created.");
+        grunt.file.write(file.dest, jstOutput.join("\n\n"));
+        grunt.log.writeln("File '" + file.dest + "' created.");
       }
     });
   });

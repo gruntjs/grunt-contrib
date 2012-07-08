@@ -1,7 +1,7 @@
 /**
  * Task: jade
  * Description: Compile Jade templates to HTML
- * Dependencies: jade, path
+ * Dependencies: jade
  * Contributor: @errcw
  */
 
@@ -9,10 +9,11 @@ module.exports = function(grunt) {
   var _ = grunt.utils._;
 
   grunt.registerMultiTask("jade", "Compile Jade templates into HTML.", function() {
-    var path = require("path");
-
     var options = grunt.helper("options", this);
-    var data = this.data;
+
+    // TODO: ditch this when grunt v0.4 is released
+    this.files = grunt.helper("normalizeMultiTaskFiles", this.data, this.target);
+
     var jadeData = options.data;
 
     grunt.verbose.writeflags(options, "Options");
@@ -25,11 +26,8 @@ module.exports = function(grunt) {
       });
     }
 
-    Object.keys(data.files).forEach(function(dest) {
-      var src = data.files[dest];
-      var srcFiles = grunt.file.expandFiles(src);
-
-      dest = grunt.template.process(dest);
+    this.files.forEach(function(file) {
+      var srcFiles = grunt.file.expandFiles(file.src);
 
       var jadeOutput = [];
 
@@ -41,8 +39,8 @@ module.exports = function(grunt) {
       });
 
       if (jadeOutput.length > 0) {
-        grunt.file.write(dest, jadeOutput.join("\n"));
-        grunt.log.writeln("File '" + dest + "' created.");
+        grunt.file.write(file.dest, jadeOutput.join("\n"));
+        grunt.log.writeln("File '" + file.dest + "' created.");
       }
     });
   });

@@ -10,17 +10,17 @@ module.exports = function(grunt) {
   var async = grunt.utils.async;
 
   grunt.registerMultiTask("stylus", "Compile Stylus files into CSS", function() {
-    var options = grunt.helper('options', this);
-    var data = this.data;
+    var options = grunt.helper("options", this);
+
+    // TODO: ditch this when grunt v0.4 is released
+    this.files = grunt.helper("normalizeMultiTaskFiles", this.data, this.target);
+
     var done = this.async();
 
     grunt.verbose.writeflags(options, "Options");
 
-    async.forEachSeries(Object.keys(data.files), function(dest, next) {
-      var src = data.files[dest];
-      var srcFiles = grunt.file.expandFiles(src);
-
-      dest = grunt.template.process(dest);
+    async.forEachSeries(this.files, function(file, next) {
+      var srcFiles = grunt.file.expandFiles(file.src);
 
       async.concatSeries(srcFiles, function(srcFile, nextConcat) {
         var stylusOptions = _.extend({filename: srcFile}, options);
@@ -30,8 +30,8 @@ module.exports = function(grunt) {
           nextConcat(css);
         });
       }, function(css) {
-        grunt.file.write(dest, css);
-        grunt.log.writeln("File '" + dest + "' created.");
+        grunt.file.write(file.dest, css);
+        grunt.log.writeln("File '" + file.dest + "' created.");
 
         next();
       });
