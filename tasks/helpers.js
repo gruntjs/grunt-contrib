@@ -5,9 +5,12 @@
  */
 
 module.exports = function(grunt) {
+  // TODO: ditch this when grunt v0.4 is released
+  grunt.util = grunt.util || grunt.utils;
+
   // Helper for consistent options key access across contrib tasks.
   grunt.registerHelper("options", function(data, defaults) {
-    var _ = grunt.utils._;
+    var _ = grunt.util._;
     var namespace = data.nameArgs.split(":");
     var task = grunt.config(_.flatten([namespace, "options"]));
     var global_subtask = namespace.length > 1 ? grunt.config(_.flatten(["options", namespace])) : {};
@@ -21,13 +24,13 @@ module.exports = function(grunt) {
   grunt.registerHelper("normalizeMultiTaskFiles", function(data, target) {
     var prop, obj;
     var files = [];
-    if (grunt.utils.kindOf(data) === 'object') {
+    if (grunt.util.kindOf(data) === 'object') {
       if ('src' in data || 'dest' in data) {
         obj = {};
         if ('src' in data) { obj.src = data.src; }
         if ('dest' in data) { obj.dest = data.dest; }
         files.push(obj);
-      } else if (grunt.utils.kindOf(data.files) === 'object') {
+      } else if (grunt.util.kindOf(data.files) === 'object') {
         for (prop in data.files) {
           files.push({src: data.files[prop], dest: prop});
         }
@@ -51,7 +54,7 @@ module.exports = function(grunt) {
     files.forEach(function(obj) {
       // Process src as a template (recursively, if necessary).
       if ('src' in obj) {
-        obj.src = grunt.utils.recurse(obj.src, function(src) {
+        obj.src = grunt.util.recurse(obj.src, function(src) {
           if (typeof src !== 'string') { return src; }
           return grunt.template.process(src);
         });

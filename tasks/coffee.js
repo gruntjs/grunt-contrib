@@ -6,7 +6,10 @@
  */
 
 module.exports = function(grunt) {
-  var _ = grunt.utils._;
+  // TODO: ditch this when grunt v0.4 is released
+  grunt.util = grunt.util || grunt.utils;
+
+  var _ = grunt.util._;
 
   grunt.registerMultiTask("coffee", "Compile CoffeeScript files into JavaScript", function() {
     var options = grunt.helper("options", this);

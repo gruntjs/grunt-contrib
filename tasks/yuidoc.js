@@ -6,7 +6,10 @@
  */
 
 module.exports = function(grunt) {
-  var kindOf = grunt.utils.kindOf;
+  // TODO: ditch this when grunt v0.4 is released
+  grunt.util = grunt.util || grunt.utils;
+
+  var kindOf = grunt.util.kindOf;
 
   grunt.registerMultiTask("yuidoc", "Create YUIDocs", function() {
 

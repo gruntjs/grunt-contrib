@@ -30,6 +30,11 @@ Sets the data passed to ```jade``` during template compilation. Any data can be 
 ``` javascript
 jade: {
   compile: {
+    options: {
+      data: {
+        debug: false
+      }
+    },
     files: {
       "path/to/dest.html": ["path/to/templates/*.jade", "another/path/tmpl.jade"]
     }

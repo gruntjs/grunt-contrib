@@ -6,7 +6,6 @@
  */
 
 module.exports = function(grunt) {
-
   var requirejs = require('requirejs');
 
   // TODO: extend this to send build log to grunt.log.ok / grunt.log.error

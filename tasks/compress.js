@@ -9,8 +9,14 @@ module.exports = function(grunt) {
   var fs = require("fs");
   var path = require("path");
 
-  var _ = grunt.utils._;
-  var async = grunt.utils.async;
+  // TODO: ditch this when grunt v0.4 is released
+  grunt.file.exists = grunt.file.exists || fs.existsSync || path.existsSync;
+
+  // TODO: ditch this when grunt v0.4 is released
+  grunt.util = grunt.util || grunt.utils;
+
+  var _ = grunt.util._;
+  var async = grunt.util.async;
 
   var getSize = function(filename) {
     try {
@@ -53,9 +59,6 @@ module.exports = function(grunt) {
 
     return [newFiles, newMeta];
   };
-
-  // TODO: ditch this when grunt v0.4 is released
-  grunt.file.exists = grunt.file.exists || fs.existsSync || path.existsSync;
 
   grunt.registerMultiTask("compress", "Compress files.", function() {
     var options = grunt.helper("options", this, {

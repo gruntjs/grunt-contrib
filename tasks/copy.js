@@ -8,11 +8,14 @@ module.exports = function(grunt) {
   var fs = require("fs");
   var path = require("path");
 
-  var _ = grunt.utils._;
-  var kindOf = grunt.utils.kindOf;
-
   // TODO: ditch this when grunt v0.4 is released
   grunt.file.exists = grunt.file.exists || fs.existsSync || path.existsSync;
+
+  // TODO: ditch this when grunt v0.4 is released
+  grunt.util = grunt.util || grunt.utils;
+
+  var _ = grunt.utils._;
+  var kindOf = grunt.utils.kindOf;
 
   grunt.registerMultiTask("copy", "Copy files into another directory.", function() {
     var options = grunt.helper("options", this, {

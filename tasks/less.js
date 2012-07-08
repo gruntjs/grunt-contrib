@@ -6,8 +6,11 @@
  */
 
 module.exports = function(grunt) {
-  var _ = grunt.utils._;
-  var async = grunt.utils.async;
+  // TODO: ditch this when grunt v0.4 is released
+  grunt.util = grunt.util || grunt.utils;
+
+  var _ = grunt.util._;
+  var async = grunt.util.async;
 
   var lessError = function(e) {
     var pos = '[' + 'L' + e.line + ':' + ('C' + e.column) + ']';

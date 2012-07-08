@@ -41,7 +41,8 @@
     "fstream": "~0.1.18",
     "requirejs": "*",
     "handlebars": "~1.0.4",
-    "yuidocjs": "~0.3.14"
+    "yuidocjs": "~0.3.14",
+    "underscore": "~1.3.3"
   },
   "devDependencies": {
     "grunt": "~0.3.10"
