@@ -36,6 +36,14 @@ module.exports = function(grunt) {
         files: {
           "fixtures/output/copy_test_flatten": "fixtures/copy/**"
         }
+      },
+      outside_cwd: {
+        options: {
+          basePath: "../bin"
+        },
+        files: {
+          "fixtures/output/copy_test_outside_cwd": ["../bin/*"]
+        }
       }
     },
 
@@ -73,6 +81,15 @@ module.exports = function(grunt) {
           "fixtures/output/compress_test_flatten.zip": "fixtures/compress/**"
         }
       },
+      zip_outside_cwd: {
+        options: {
+          mode: "zip",
+          basePath: "../bin"
+        },
+        files: {
+          "fixtures/output/compress_test_outside_cwd.zip": ["../bin/*"]
+        }
+      },
       tar: {
         options: {
           mode: "tar",
@@ -94,6 +111,15 @@ module.exports = function(grunt) {
           "fixtures/output/compress_test_flatten.tar": "fixtures/compress/**"
         }
       },
+      tar_outside_cwd: {
+        options: {
+          mode: "tar",
+          basePath: "../bin"
+        },
+        files: {
+          "fixtures/output/compress_test_outside_cwd.tar": ["../bin/*"]
+        }
+      },
       tgz: {
         options: {
           mode: "tgz",
@@ -113,6 +139,15 @@ module.exports = function(grunt) {
         },
         files: {
           "fixtures/output/compress_test_flatten.tgz": "fixtures/compress/**"
+        }
+      },
+      tgz_outside_cwd: {
+        options: {
+          mode: "tgz",
+          basePath: "../bin"
+        },
+        files: {
+          "fixtures/output/compress_test_outside_cwd.tgz": ["../bin/*"]
         }
       },
       gzip: {

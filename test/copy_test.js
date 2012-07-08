@@ -5,7 +5,7 @@ grunt.loadTasks("../tasks");
 
 exports.copy = {
   main: function(test) {
-    test.expect(4);
+    test.expect(5);
 
     var expectA = ["test.css", "test.js"];
     var resultA = fs.readdirSync("fixtures/output/copy_test_files");
@@ -22,6 +22,10 @@ exports.copy = {
     var expectD = ["one.css", "one.js", "test.css", "test.js", "two.css", "two.js"];
     var resultD = fs.readdirSync("fixtures/output/copy_test_flatten");
     test.deepEqual(expectD, resultD, "should create a flat structure");
+
+    var expectE = ["grunt-contrib"];
+    var resultE = fs.readdirSync("fixtures/output/copy_test_outside_cwd");
+    test.deepEqual(expectE, resultE, "should copy file outside of working dir");
 
     test.done();
   }

@@ -10,6 +10,9 @@ module.exports = function(grunt) {
   var _ = grunt.utils._;
   var kindOf = grunt.utils.kindOf;
 
+  // TODO: ditch this when grunt v0.4 is released
+  grunt.file.exists = grunt.file.exists || fs.existsSync || path.existsSync;
+
   grunt.registerMultiTask("copy", "Copy files into another directory.", function() {
     var options = grunt.helper("options", this, {
       basePath: null,
@@ -27,7 +30,8 @@ module.exports = function(grunt) {
     };
 
     if (options.basePath !== null) {
-      options.basePath = _(options.basePath).trim("/");
+      options.basePath = path.normalize(options.basePath);
+      options.basePath = _(options.basePath).trim(path.sep);
     }
 
     grunt.verbose.writeflags(options, "Options");
@@ -37,28 +41,26 @@ module.exports = function(grunt) {
       var srcFiles = grunt.file.expandFiles(src);
 
       dest = grunt.template.process(dest);
-      dest = _(dest).trim("/");
 
-      if (path.existsSync(dest) === false) {
+      if (grunt.file.exists(dest) === false) {
         grunt.file.mkdir(dest);
       }
 
-      var count = 0;
-
       var filename = "";
       var relative = "";
-
       var destFile = "";
+
+      grunt.log.write("Copying file(s)" + ' to "' + dest + '"...');
 
       srcFiles.forEach(function(srcFile) {
         filename = path.basename(srcFile);
         relative = path.dirname(srcFile);
+        relative = path.normalize(relative);
 
         if (options.flatten) {
           relative = "";
         } else if (options.basePath !== null && options.basePath.length > 1) {
-          relative = _(relative).strRightBack(options.basePath);
-          relative = _(relative).trim("/");
+          relative = _(relative).chain().strRightBack(options.basePath).trim(path.sep).value();
         }
 
         if (options.processName && kindOf(options.processName) === "function") {
@@ -66,16 +68,14 @@ module.exports = function(grunt) {
         }
 
         // make paths outside grunts working dir relative
-        relative = relative.replace(/\.\.\//g, "");
+        relative = relative.replace(/\.\.(\/|\\)/g, "");
 
         destFile = path.join(dest, relative, filename);
 
         grunt.file.copy(srcFile, destFile, copyOptions);
-
-        count++;
       });
 
-      grunt.log.writeln("Copied " + count + ' file(s) to "' + dest + '".');
+      grunt.log.ok();
     });
   });
 };

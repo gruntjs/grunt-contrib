@@ -29,7 +29,7 @@ This option adjusts internal filenames to be relative to provided path, within t
 
 ##### flatten ```boolean```
 
-This option performs a flat copy that dumps all the files into the root of the destination file.
+This option performs a flat copy that dumps all the files into the root of the destination file, overwriting files if they exist.
 
 ##### level ```integer``` (zip only)
 

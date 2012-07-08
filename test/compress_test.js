@@ -13,32 +13,36 @@ grunt.loadTasks("../tasks");
 
 exports.compress = {
   zip: function(test) {
-    test.expect(5);
+    test.expect(6);
 
     var expectA = 310;
     var resultA = getSize("fixtures/output/compress_test_files.zip");
     test.equal(expectA, resultA, "should compress files into zip");
 
-    var expectB = 1342;
+    var expectB = 1330;
     var resultB = getSize("fixtures/output/compress_test_v0.3.9.zip");
     test.equal(expectB, resultB, "should compress folders and their files into zip (with template support)");
 
-    var expectC = 638;
+    var expectC = 634;
     var resultC = getSize("fixtures/output/compress_test_array.zip");
     test.equal(expectC, resultC, "should compress array of files and folders into zip");
 
-    var expectD = 394;
+    var expectD = 390;
     var resultD = getSize("fixtures/output/compress_test_files_template.zip");
     test.equal(expectD, resultD, "should compress files and folders into zip (grunt template in source)");
 
-    var expectE = 1162;
+    var expectE = 874;
     var resultE = getSize("fixtures/output/compress_test_flatten.zip");
     test.equal(expectE, resultE, "should create a flat internal structure");
+
+    var expectF = 207;
+    var resultF = getSize("fixtures/output/compress_test_outside_cwd.zip");
+    test.equal(expectF, resultF, "should compress file outside of working dir");
 
     test.done();
   },
   tar: function(test) {
-    test.expect(5);
+    test.expect(6);
 
     var expectA = 3072;
     var resultA = getSize("fixtures/output/compress_test_files.tar");
@@ -60,10 +64,14 @@ exports.compress = {
     var resultE = getSize("fixtures/output/compress_test_flatten.tar");
     test.equal(expectE, resultE, "should create a flat internal structure");
 
+    var expectF = 2048;
+    var resultF = getSize("fixtures/output/compress_test_outside_cwd.tar");
+    test.equal(expectF, resultF, "should compress file outside of working dir");
+
     test.done();
   },
   tgz: function(test) {
-    test.expect(5);
+    test.expect(6);
 
     var expectA = true;
     var resultA = getSize("fixtures/output/compress_test_files.tgz") >= 200;
@@ -84,6 +92,10 @@ exports.compress = {
     var expectE = true;
     var resultE = getSize("fixtures/output/compress_test_flatten.tgz") >= 320;
     test.equal(expectE, resultE, "should create a flat internal structure");
+
+    var expectF = true;
+    var resultF = getSize("fixtures/output/compress_test_outside_cwd.tgz") >= 175;
+    test.equal(expectF, resultF, "should compress file outside of working dir");
 
     test.done();
   },

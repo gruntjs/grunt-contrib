@@ -3,7 +3,6 @@
  * Description: Compress files
  * Dependencies: zipstream / tar / fstream
  * Contributor: @ctalkington
- * Inspired by: @jzaefferer (jquery-validation)
  */
 
 module.exports = function(grunt) {
@@ -12,6 +11,51 @@ module.exports = function(grunt) {
 
   var _ = grunt.utils._;
   var async = grunt.utils.async;
+
+  var getSize = function(filename) {
+    try {
+      return fs.statSync(filename).size;
+    } catch (e) {
+      return 0;
+    }
+  };
+
+  var tempCopy = function(srcFiles, tempDir, options) {
+    var newFiles = [];
+    var newMeta = {};
+
+    var filename;
+    var relative;
+    var destPath;
+
+    srcFiles.forEach(function(srcFile) {
+      filename = path.basename(srcFile);
+      relative = path.dirname(srcFile);
+      relative = path.normalize(relative);
+
+      if (options.flatten) {
+        relative = "";
+      } else if (options.basePath !== null && options.basePath.length > 1) {
+        relative = _(relative).chain().strRightBack(options.basePath).trim(path.sep).value();
+      }
+
+      // make paths outside grunts working dir relative
+      relative = relative.replace(/\.\.(\/|\\)/g, "");
+
+      destPath = path.join(tempDir, relative, filename);
+
+      newFiles.push(destPath);
+      newMeta[destPath] = {name: path.join(relative, filename)};
+
+      grunt.verbose.writeln("Adding " + srcFile + " to temporary structure.");
+      grunt.file.copy(srcFile, destPath);
+    });
+
+    return [newFiles, newMeta];
+  };
+
+  // TODO: ditch this when grunt v0.4 is released
+  grunt.file.exists = grunt.file.exists || fs.existsSync || path.existsSync;
 
   grunt.registerMultiTask("compress", "Compress files.", function() {
     var options = grunt.helper("options", this, {
@@ -27,12 +71,13 @@ module.exports = function(grunt) {
     var done = this.async();
 
     if (options.basePath !== null) {
-      options.basePath = _(options.basePath).trim("/");
+      options.basePath = path.normalize(options.basePath);
+      options.basePath = _(options.basePath).trim(path.sep);
     }
 
     grunt.verbose.writeflags(options, "Options");
 
-    if (options.mode == 'tgz') {
+    if (options.mode == "tgz") {
       helper = "tarHelper";
     }
 
@@ -44,16 +89,22 @@ module.exports = function(grunt) {
 
     var src;
     var srcFiles;
+    var destDir;
 
     async.forEachSeries(Object.keys(data.files), function(dest, next) {
       src = data.files[dest];
       srcFiles = grunt.file.expandFiles(src);
 
       dest = grunt.template.process(dest);
+      destDir = path.dirname(dest);
 
       if (options.mode == "gzip" && srcFiles.length > 1) {
-        grunt.warn("Cannot specify multiple input files for gzip compression.");
+        grunt.fail.warn("Cannot specify multiple input files for gzip compression.");
         srcFiles = srcFiles[0];
+      }
+
+      if (grunt.file.exists(destDir) === false) {
+        grunt.file.mkdir(destDir);
       }
 
       grunt.helper(helper, srcFiles, dest, options, function(written) {
@@ -66,52 +117,42 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.registerHelper("zipHelper", function(files, dest, options, callback) {
+  grunt.registerHelper("zipHelper", function(srcFiles, dest, options, callback) {
     var zip = require("zipstream").createZip(options);
 
     var destDir = path.dirname(dest);
+    var tempDir = path.join(destDir, "zip_" + (new Date()).getTime());
 
-    if (path.existsSync(destDir) === false) {
-      grunt.file.mkdir(destDir);
-    }
+    var copyResult = tempCopy(srcFiles, tempDir, options);
 
-    zip.on("error", function(e) {
-      grunt.log.error(e);
-      grunt.fail.warn("zipHelper failed.");
-    });
+    var zipFiles = _.uniq(copyResult[0]);
+    var zipMeta = copyResult[1];
 
     zip.pipe(fs.createWriteStream(dest));
 
     var srcFile;
-    var filename;
-    var relative;
-    var destPath;
 
     function addFile() {
-      if (!files.length) {
+      if (!zipFiles.length) {
         zip.finalize(function(written) {
+          grunt.helper("clean", tempDir);
           callback(written);
         });
         return;
       }
 
-      srcFile = files.shift();
-      filename = path.basename(srcFile);
-      relative = path.dirname(srcFile);
+      srcFile = zipFiles.shift();
 
-      if (options.flatten) {
-        relative = "";
-      } else if (options.basePath !== null && options.basePath.length > 1) {
-        relative = _(relative).strRightBack(options.basePath);
-      }
-
-      destPath = path.join(relative, filename);
-
-      grunt.verbose.writeln("Adding " + srcFile + " to zip.");
-      zip.addFile(fs.createReadStream(srcFile), {name: destPath}, addFile);
+      zip.addFile(fs.createReadStream(srcFile), zipMeta[srcFile], addFile);
     }
 
     addFile();
+
+    // TODO: node-zipstream v0.2.1 has issues that prevents this from working atm!
+    zip.on("error", function(e) {
+      grunt.log.error(e);
+      grunt.fail.warn("zipHelper failed.");
+    });
   });
 
   grunt.registerHelper("tarHelper", function(srcFiles, dest, options, callback) {
@@ -129,37 +170,7 @@ module.exports = function(grunt) {
 
     tarDir = path.join(tempDir, tarDir);
 
-    function getSize(filename) {
-      try {
-        return fs.statSync(filename).size;
-      } catch (e) {
-        return 0;
-      }
-    }
-
-    if (path.existsSync(destDir) === false) {
-      grunt.file.mkdir(destDir);
-    }
-
-    var filename;
-    var relative;
-    var destPath;
-
-    srcFiles.forEach(function(srcFile) {
-      filename = path.basename(srcFile);
-      relative = path.dirname(srcFile);
-
-      if (options.flatten) {
-        relative = "";
-      } else if (options.basePath !== null && options.basePath.length > 1) {
-        relative = _(relative).strRightBack(options.basePath).trim("/");
-      }
-
-      destPath = path.join(tarDir, relative, filename);
-
-      grunt.verbose.writeln("Adding " + srcFile + " to tar.");
-      grunt.file.copy(srcFile, destPath);
-    });
+    tempCopy(srcFiles, tarDir, options);
 
     var reader = fstream.Reader({path: tarDir, type: "Directory"});
     var packer = tar.Pack();
@@ -185,12 +196,6 @@ module.exports = function(grunt) {
 
   grunt.registerHelper("gzipHelper", function(file, dest, options, callback) {
     var zlib = require("zlib");
-
-    var destDir = path.dirname(dest);
-
-    if (path.existsSync(destDir) === false) {
-      grunt.file.mkdir(destDir);
-    }
 
     zlib.gzip(grunt.file.read(file), function(e, result) {
       if (!e) {
