@@ -65,6 +65,8 @@ Help us squash them by submitting an issue that describes how you encountered it
 
 1. Ensure your task meets the submission guidelines.
 2. Ensure your task follows the code style guide.
+3. Submit your pull request against `master`, unless otherwise instructed.
+4. Ensure your pull request only touches what your changing and that it's squashed (ie `git rebase`).
 
 #### Submission Guidelines
 
