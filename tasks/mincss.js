@@ -10,7 +10,7 @@ module.exports = function(grunt) {
     var options = grunt.helper("options", this);
 
     // TODO: ditch this when grunt v0.4 is released
-    this.files = grunt.helper("normalizeMultiTaskFiles", this.data, this.target);
+    this.files = this.files || grunt.helper("normalizeMultiTaskFiles", this.data, this.target);
 
     grunt.verbose.writeflags(options, "Options");
 

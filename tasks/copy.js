@@ -27,7 +27,7 @@ module.exports = function(grunt) {
     });
 
     // TODO: ditch this when grunt v0.4 is released
-    this.files = grunt.helper("normalizeMultiTaskFiles", this.data, this.target);
+    this.files = this.files || grunt.helper("normalizeMultiTaskFiles", this.data, this.target);
 
     var copyOptions = {
       process: options.processContent,
