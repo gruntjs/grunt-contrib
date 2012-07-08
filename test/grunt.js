@@ -1,4 +1,7 @@
 module.exports = function(grunt) {
+
+  grunt.file.mkdir('fixtures/output');
+
   grunt.initConfig({
     pkg: {
       name: "grunt-contrib",
