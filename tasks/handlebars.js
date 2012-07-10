@@ -6,6 +6,8 @@
  */
 
 module.exports = function(grunt) {
+  "use strict";
+
   grunt.registerMultiTask("handlebars", "Compile handlebars templates to JST file", function() {
     var options = grunt.helper("options", this, {namespace: "JST"});
 

@@ -6,11 +6,17 @@
  */
 
 module.exports = function(grunt) {
+  "use strict";
+
   var fs = require("fs");
 
   var isOutsideCWD = function(path) {
-    if (path.substring(0, 3) === "../") return true;
-    if (path.substring(0, 1) === "/") return true;
+    if (path.substring(0, 3) === "../") {
+      return true;
+    }
+    if (path.substring(0, 1) === "/") {
+      return true;
+    }
 
     path = path.split("/");
 

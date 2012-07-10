@@ -6,6 +6,8 @@
  */
 
 module.exports = function(grunt) {
+  "use strict";
+
   var _ = require("underscore");
 
   grunt.registerMultiTask("jst", "Compile underscore templates to JST file", function() {
