@@ -44,13 +44,9 @@ module.exports = function(grunt) {
     this.files.forEach(function(file) {
       var srcFiles = grunt.file.expandFiles(file.src);
 
-      if (grunt.file.exists(file.dest) === false) {
-        grunt.file.mkdir(file.dest);
-      }
-
-      var filename = "";
-      var relative = "";
-      var destFile = "";
+      var filename;
+      var relative;
+      var destFile;
 
       grunt.log.write("Copying file(s)" + ' to "' + file.dest + '"...');
 
