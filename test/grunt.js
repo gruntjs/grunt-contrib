@@ -24,9 +24,6 @@ module.exports = function(grunt) {
 
     copy: {
       test: {
-        options: {
-          basePath: "fixtures/copy"
-        },
         files: {
           "fixtures/output/copy_test_files": "fixtures/copy/*",
           "fixtures/output/copy_test_v<%= pkg.version %>": "fixtures/copy/**",
@@ -42,9 +39,6 @@ module.exports = function(grunt) {
         }
       },
       outside_cwd: {
-        options: {
-          basePath: "../bin"
-        },
         files: {
           "fixtures/output/copy_test_outside_cwd": ["../bin/*"]
         }

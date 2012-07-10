@@ -55,9 +55,6 @@ This option is passed to `grunt.file.copy` as an advanced way to control which f
 ``` javascript
 copy: {
   dist: {
-    options: {
-      basePath: "path/to"
-    },
     files: {
       "path/to/directory": "path/to/source/*", // includes files in dir
       "path/to/directory": "path/to/source/**", // includes files in dir and subdirs

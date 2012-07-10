@@ -46,9 +46,26 @@ module.exports = function(grunt) {
     this.files.forEach(function(file) {
       var srcFiles = grunt.file.expandFiles(file.src);
 
+      var basePath = options.basePath;
       var filename;
       var relative;
       var destFile;
+
+      var basePaths = [];
+      var dirName;
+
+      if (basePath === null) {
+        srcFiles.forEach(function(srcFile) {
+          dirName = path.dirname(srcFile);
+          dirName = path.normalize(dirName);
+
+          basePaths.push(dirName.split(path.sep));
+        });
+
+        basePaths = _.intersection.apply([], basePaths);
+
+        basePath = path.join.apply(path, basePaths);
+      }
 
       grunt.log.write("Copying file(s)" + ' to "' + file.dest + '"...');
 
@@ -59,8 +76,8 @@ module.exports = function(grunt) {
 
         if (options.flatten) {
           relative = "";
-        } else if (options.basePath !== null && options.basePath.length > 1) {
-          relative = _(relative).chain().strRightBack(options.basePath).trim(path.sep).value();
+        } else if (basePath !== null && basePath.length > 1) {
+          relative = _(relative).chain().strRightBack(basePath).trim(path.sep).value();
         }
 
         if (options.processName && kindOf(options.processName) === "function") {
