@@ -6,6 +6,8 @@
  */
 
 module.exports = function(grunt) {
+  "use strict";
+
   grunt.registerMultiTask("mincss", "Minify CSS files", function() {
     var options = grunt.helper("options", this);
 

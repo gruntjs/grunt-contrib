@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+  "use strict";
+
   grunt.file.mkdir("fixtures/output");
 
   grunt.initConfig({

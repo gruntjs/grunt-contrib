@@ -6,6 +6,8 @@
  */
 
 module.exports = function(grunt) {
+  "use strict";
+
   var fs = require("fs");
   var path = require("path");
 
@@ -82,7 +84,7 @@ module.exports = function(grunt) {
 
     grunt.verbose.writeflags(options, "Options");
 
-    if (options.mode == "tgz") {
+    if (options.mode === "tgz") {
       helper = "tarHelper";
     }
 
@@ -99,7 +101,7 @@ module.exports = function(grunt) {
       srcFiles = grunt.file.expandFiles(file.src);
       destDir = path.dirname(file.dest);
 
-      if (options.mode == "gzip" && srcFiles.length > 1) {
+      if (options.mode === "gzip" && srcFiles.length > 1) {
         grunt.fail.warn("Cannot specify multiple input files for gzip compression.");
         srcFiles = srcFiles[0];
       }
@@ -178,7 +180,7 @@ module.exports = function(grunt) {
     var gzipper = zlib.createGzip();
     var writer = fstream.Writer(dest);
 
-    if (options.mode == "tgz") {
+    if (options.mode === "tgz") {
       tarProcess = reader.pipe(packer).pipe(gzipper).pipe(writer);
     } else {
       tarProcess = reader.pipe(packer).pipe(writer);

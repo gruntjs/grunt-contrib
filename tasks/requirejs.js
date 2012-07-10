@@ -6,6 +6,8 @@
  */
 
 module.exports = function(grunt) {
+  "use strict";
+
   var requirejs = require('requirejs');
 
   // TODO: extend this to send build log to grunt.log.ok / grunt.log.error

@@ -6,6 +6,8 @@
  */
 
 module.exports = function(grunt) {
+  "use strict";
+
   // TODO: ditch this when grunt v0.4 is released
   grunt.util = grunt.util || grunt.utils;
 
@@ -26,8 +28,12 @@ module.exports = function(grunt) {
     grunt.verbose.writeflags(options, "Options");
 
     // Catch if required fields are not provided.
-    if ( !options.paths ) grunt.fail.warn("No path(s) provided for YUIDoc to scan.");
-    if ( !options.outdir ) grunt.fail.warn("You must specify a directory for YUIDoc output.");
+    if ( !options.paths ) {
+      grunt.fail.warn("No path(s) provided for YUIDoc to scan.");
+    }
+    if ( !options.outdir ) {
+      grunt.fail.warn("You must specify a directory for YUIDoc output.");
+    }
 
     // Input path: array expected, but grunt conventions allows for either a string or an array.
     if (kindOf(options.paths) === "string") {
