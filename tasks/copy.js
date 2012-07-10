@@ -43,16 +43,21 @@ module.exports = function(grunt) {
 
     grunt.verbose.writeflags(options, "Options");
 
+    var srcFiles;
+
+    var basePath;
+    var filename;
+    var relative;
+    var destFile;
+
+    var basePaths;
+    var dirName;
+
     this.files.forEach(function(file) {
-      var srcFiles = grunt.file.expandFiles(file.src);
+      srcFiles = grunt.file.expandFiles(file.src);
 
-      var basePath = options.basePath;
-      var filename;
-      var relative;
-      var destFile;
-
-      var basePaths = [];
-      var dirName;
+      basePath = options.basePath;
+      basePaths = [];
 
       if (basePath === null) {
         srcFiles.forEach(function(srcFile) {
