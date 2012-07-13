@@ -10,33 +10,14 @@ module.exports = function(grunt) {
 
   var fs = require("fs");
 
-  var isOutsideCWD = function(path) {
-    if (path.substring(0, 3) === "../") {
-      return true;
-    }
-    if (path.substring(0, 1) === "/") {
-      return true;
-    }
-
-    path = path.split("/");
-
-    var cwd = fs.readdirSync(process.cwd());
-
-    return (cwd.indexOf(path[0]) === -1);
-  };
-
   grunt.registerMultiTask("clean", "Clear files and folders", function() {
-    var options = grunt.helper("options", this, {force: false});
+    var options = grunt.helper("options", this);
 
     grunt.verbose.writeflags(options, "Options");
 
-    var validPaths = grunt.file.expand(this.file.src);
+    var paths = grunt.file.expand(this.file.src);
 
-    validPaths.forEach(function(path) {
-      if (options.force === false && isOutsideCWD(path)) {
-        grunt.fail.warn('trying to clean "' + path + '" which is outside the working dir.');
-      }
-
+    paths.forEach(function(path) {
       grunt.helper("clean", path);
     });
   });

@@ -37,11 +37,6 @@ module.exports = function(grunt) {
         files: {
           "fixtures/output/copy_test_flatten": "fixtures/copy/**"
         }
-      },
-      outside_cwd: {
-        files: {
-          "fixtures/output/copy_test_outside_cwd": ["../bin/*"]
-        }
       }
     },
 
