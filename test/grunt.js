@@ -246,12 +246,20 @@ module.exports = function(grunt) {
 
     yuidoc: {
       compileA: {
+        "name": "Grunt Test",
+        "description": "Grunt Test Description",
+        "version": "1.2.1",
+        "url": "http://test.com/",
         options: {
           paths: "fixtures/yuidoc/app/",
           outdir: "fixtures/output/yuidoca/"
         }
       },
       compileB: {
+        "name": "Grunt Test",
+        "description": "Grunt Test Description",
+        "version": "1.2.1",
+        "url": "http://test.com/",
         options: {
           paths: [
             "fixtures/yuidoc/app/",

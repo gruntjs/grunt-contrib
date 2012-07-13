@@ -17,13 +17,15 @@ module.exports = function(grunt) {
 
     var Y = require("yuidocjs");
     var done = this.async();
+    var starttime = (new Date()).getTime();
+    var json;
 
-    var options = grunt.helper("options", this, {
-      external: {
-        data: "http://yuilibrary.com/yui/docs/api/data.json"
-      },
-      quiet: true
-    });
+    var options = grunt.helper("options", this);
+
+    // when invoking yuidocs via node, the project details
+    // are assigned under the options object using the key
+    // 'project'
+    options.project = this.data;
 
     grunt.verbose.writeflags(options, "Options");
 
@@ -40,8 +42,7 @@ module.exports = function(grunt) {
       options.paths = [ options.paths ];
     }
 
-    var starttime = (new Date()).getTime();
-    var json = (new Y.YUIDoc(options)).run();
+    json = (new Y.YUIDoc(options)).run();
 
     options = Y.Project.mix(json, options);
 

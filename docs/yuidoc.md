@@ -13,7 +13,7 @@ This controls how this task operates and should contain key:value pairs, see opt
 
 #### Options
 
-Options correlate to [YUIDoc config objects](http://yui.github.com/yuidoc/args/index.html). Please note that by default this task will pull a configuration JSON object from here: <http://yuilibrary.com/yui/docs/api/data.json>. You may wish to save this file to your project to save on the request, or otherwise reconfigure your docs.
+Options correlate to [YUIDoc config objects](http://yui.github.com/yuidoc/args/index.html).
 
 ##### paths (required) ```string|array```
 
@@ -28,6 +28,10 @@ Where to save the documentation.
 ``` javascript
 yuidoc: {
   compile: {
+    "name": "Project Name",
+    "description": "Project Description",
+    "version": "1.0.2",
+    "url": "http://projecturl.com/",
     options: {
       paths: "path/to/source/code/",
       outdir: "where/to/save/docs/"
