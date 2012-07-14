@@ -28,6 +28,22 @@ module.exports = function(grunt) {
     }
   };
 
+  var findBasePath = function(srcFiles) {
+    var basePaths = [];
+    var dirName;
+
+    srcFiles.forEach(function(srcFile) {
+      dirName = path.dirname(srcFile);
+      dirName = path.normalize(dirName);
+
+      basePaths.push(dirName.split(path.sep));
+    });
+
+    basePaths = _.intersection.apply([], basePaths);
+
+    return path.join.apply(path, basePaths);
+  };
+
   var tempCopy = function(srcFiles, tempDir, options) {
     var newFiles = [];
     var newMeta = {};
@@ -36,6 +52,8 @@ module.exports = function(grunt) {
     var relative;
     var destPath;
 
+    var basePath = options.basePath || findBasePath(srcFiles);
+
     srcFiles.forEach(function(srcFile) {
       filename = path.basename(srcFile);
       relative = path.dirname(srcFile);
@@ -43,8 +61,8 @@ module.exports = function(grunt) {
 
       if (options.flatten) {
         relative = "";
-      } else if (options.basePath !== null && options.basePath.length > 1) {
-        relative = _(relative).chain().strRightBack(options.basePath).trim(path.sep).value();
+      } else if (basePath && basePath.length > 1) {
+        relative = _(relative).chain().strRightBack(basePath).trim(path.sep).value();
       }
 
       // make paths outside grunts working dir relative
@@ -65,7 +83,7 @@ module.exports = function(grunt) {
   grunt.registerMultiTask("compress", "Compress files.", function() {
     var options = grunt.helper("options", this, {
       mode: null,
-      basePath: null,
+      basePath: false,
       flatten: false,
       level: 1
     });
@@ -77,7 +95,8 @@ module.exports = function(grunt) {
     var helper = options.mode + "Helper";
     var done = this.async();
 
-    if (options.basePath !== null) {
+
+    if (options.basePath) {
       options.basePath = path.normalize(options.basePath);
       options.basePath = _(options.basePath).trim(path.sep);
     }

@@ -19,9 +19,25 @@ module.exports = function(grunt) {
   var _ = grunt.util._;
   var kindOf = grunt.util.kindOf;
 
+  var findBasePath = function(srcFiles) {
+    var basePaths = [];
+    var dirName;
+
+    srcFiles.forEach(function(srcFile) {
+      dirName = path.dirname(srcFile);
+      dirName = path.normalize(dirName);
+
+      basePaths.push(dirName.split(path.sep));
+    });
+
+    basePaths = _.intersection.apply([], basePaths);
+
+    return path.join.apply(path, basePaths);
+  };
+
   grunt.registerMultiTask("copy", "Copy files into another directory.", function() {
     var options = grunt.helper("options", this, {
-      basePath: null,
+      basePath: false,
       flatten: false,
       processName: false,
       processContent: false,
@@ -36,7 +52,7 @@ module.exports = function(grunt) {
       noProcess: options.processContentExclude
     };
 
-    if (options.basePath !== null) {
+    if (options.basePath) {
       options.basePath = path.normalize(options.basePath);
       options.basePath = _(options.basePath).trim(path.sep);
     }
@@ -50,27 +66,10 @@ module.exports = function(grunt) {
     var relative;
     var destFile;
 
-    var basePaths;
-    var dirName;
-
     this.files.forEach(function(file) {
       srcFiles = grunt.file.expandFiles(file.src);
 
-      basePath = options.basePath;
-      basePaths = [];
-
-      if (basePath === null) {
-        srcFiles.forEach(function(srcFile) {
-          dirName = path.dirname(srcFile);
-          dirName = path.normalize(dirName);
-
-          basePaths.push(dirName.split(path.sep));
-        });
-
-        basePaths = _.intersection.apply([], basePaths);
-
-        basePath = path.join.apply(path, basePaths);
-      }
+      basePath = options.basePath || findBasePath(srcFiles);
 
       grunt.log.write("Copying file(s)" + ' to "' + file.dest + '"...');
 
@@ -81,7 +80,7 @@ module.exports = function(grunt) {
 
         if (options.flatten) {
           relative = "";
-        } else if (basePath !== null && basePath.length > 1) {
+        } else if (basePath && basePath.length > 1) {
           relative = _(relative).chain().strRightBack(basePath).trim(path.sep).value();
         }
 

@@ -27,7 +27,7 @@ exports.compress = {
     var resultC = getSize("fixtures/output/compress_test_array.zip");
     test.equal(expectC, resultC, "should compress array of files and folders into zip");
 
-    var expectD = 390;
+    var expectD = 310;
     var resultD = getSize("fixtures/output/compress_test_files_template.zip");
     test.equal(expectD, resultD, "should compress files and folders into zip (grunt template in source)");
 
@@ -56,7 +56,7 @@ exports.compress = {
     var resultC = getSize("fixtures/output/compress_test_array.tar");
     test.equal(expectC, resultC, "should add array of files and folders into tar");
 
-    var expectD = 3584;
+    var expectD = 3072;
     var resultD = getSize("fixtures/output/compress_test_files_template.tar");
     test.equal(expectD, resultD, "should add files and folders into tar (grunt template in source)");
 
@@ -86,7 +86,7 @@ exports.compress = {
     test.equal(expectC, resultC, "should compress array of files and folders into tgz");
 
     var expectD = true;
-    var resultD = getSize("fixtures/output/compress_test_files_template.tgz") >= 225;
+    var resultD = getSize("fixtures/output/compress_test_files_template.tgz") >= 200;
     test.equal(expectD, resultD, "should compress files and folders into tgz (grunt template in source)");
 
     var expectE = true;
