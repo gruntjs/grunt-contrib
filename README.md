@@ -99,7 +99,7 @@ npm test
 
 ## Release History
 
-see [CHANGELOG](/gruntjs/grunt-contrib/blob/master/CHANGELOG.md).
+see [CHANGELOG](/gruntjs/grunt-contrib/blob/master/CHANGELOG).
 
 ## License
 Copyright (c) 2012 "Cowboy" Ben Alman & contributors.
