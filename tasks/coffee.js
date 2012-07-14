@@ -16,25 +16,33 @@ module.exports = function(grunt) {
   grunt.registerMultiTask("coffee", "Compile CoffeeScript files into JavaScript", function() {
     var options = grunt.helper("options", this);
 
+    grunt.verbose.writeflags(options, "Options");
+
     // TODO: ditch this when grunt v0.4 is released
     this.files = this.files || grunt.helper("normalizeMultiTaskFiles", this.data, this.target);
 
-    grunt.verbose.writeflags(options, "Options");
+    var srcFiles;
+    var taskOutput;
+    var sourceCode;
+    var sourceCompiled;
+    var helperOptions;
 
     this.files.forEach(function(file) {
-      var srcFiles = grunt.file.expandFiles(file.src);
+      srcFiles = grunt.file.expandFiles(file.src);
 
-      var coffeeOutput = [];
+      taskOutput = [];
 
       srcFiles.forEach(function(srcFile) {
-        var coffeeOptions = _.extend({filename: srcFile}, options);
-        var coffeeSource = grunt.file.read(srcFile);
+        helperOptions = _.extend({filename: srcFile}, options);
+        sourceCode = grunt.file.read(srcFile);
 
-        coffeeOutput.push(grunt.helper("coffee", coffeeSource, coffeeOptions));
+        sourceCompiled = grunt.helper("coffee", sourceCode, helperOptions);
+
+        taskOutput.push(sourceCompiled);
       });
 
-      if (coffeeOutput.length > 0) {
-        grunt.file.write(file.dest, coffeeOutput.join("\n"));
+      if (taskOutput.length > 0) {
+        grunt.file.write(file.dest, taskOutput.join("\n"));
         grunt.log.writeln("File '" + file.dest + "' created.");
       }
     });

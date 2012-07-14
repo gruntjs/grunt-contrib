@@ -12,39 +12,46 @@ module.exports = function(grunt) {
   grunt.util = grunt.util || grunt.utils;
 
   var _ = grunt.util._;
+  var kindOf = grunt.util.kindOf;
 
   grunt.registerMultiTask("jade", "Compile Jade templates into HTML.", function() {
-    var options = grunt.helper("options", this);
+    var options = grunt.helper("options", this, {data: {}});
+
+    grunt.verbose.writeflags(options, "Options");
 
     // TODO: ditch this when grunt v0.4 is released
     this.files = this.files || grunt.helper("normalizeMultiTaskFiles", this.data, this.target);
 
-    var jadeData = options.data;
+    var helperData = options.data;
 
-    grunt.verbose.writeflags(options, "Options");
+    _.each(helperData, function(value, key) {
+      if (kindOf(value) === "string") {
+        helperData[key] = grunt.template.process(value);
+      }
+    });
 
-    if (_.isEmpty(jadeData) === false) {
-      _.each(jadeData, function(value, key) {
-        if (_.isString(value)) {
-          jadeData[key] = grunt.template.process(value);
-        }
-      });
-    }
+    var srcFiles;
+    var taskOutput;
+    var sourceCode;
+    var sourceCompiled;
+    var helperOptions;
 
     this.files.forEach(function(file) {
-      var srcFiles = grunt.file.expandFiles(file.src);
+      srcFiles = grunt.file.expandFiles(file.src);
 
-      var jadeOutput = [];
+      taskOutput = [];
 
       srcFiles.forEach(function(srcFile) {
-        var jadeOptions = _.extend({filename: srcFile}, options);
-        var jadeSource = grunt.file.read(srcFile);
+        helperOptions = _.extend({filename: srcFile}, options);
+        sourceCode = grunt.file.read(srcFile);
 
-        jadeOutput.push(grunt.helper("jade", jadeSource, jadeOptions, jadeData));
+        sourceCompiled = grunt.helper("jade", sourceCode, helperOptions, helperData);
+
+        taskOutput.push(sourceCompiled);
       });
 
-      if (jadeOutput.length > 0) {
-        grunt.file.write(file.dest, jadeOutput.join("\n"));
+      if (taskOutput.length > 0) {
+        grunt.file.write(file.dest, taskOutput.join("\n"));
         grunt.log.writeln("File '" + file.dest + "' created.");
       }
     });

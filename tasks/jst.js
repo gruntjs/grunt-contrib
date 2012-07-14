@@ -13,27 +13,36 @@ module.exports = function(grunt) {
   grunt.registerMultiTask("jst", "Compile underscore templates to JST file", function() {
     var options = grunt.helper("options", this, {namespace: "JST", templateSettings: {}});
 
+    grunt.verbose.writeflags(options, "Options");
+
     // TODO: ditch this when grunt v0.4 is released
     this.files = this.files || grunt.helper("normalizeMultiTaskFiles", this.data, this.target);
 
-    grunt.verbose.writeflags(options, "Options");
+    var srcFiles;
+    var taskOutput;
+    var sourceCode;
+    var sourceCompiled;
+
+    var jstNamespace;
 
     this.files.forEach(function(file) {
-      var srcFiles = grunt.file.expandFiles(file.src);
+      srcFiles = grunt.file.expandFiles(file.src);
 
-      var jstOutput = [];
-      var jstNamespace = "this['" + options.namespace + "']";
+      taskOutput = [];
+      jstNamespace = "this['" + options.namespace + "']";
 
-      jstOutput.push(jstNamespace + " = " + jstNamespace + " || {};");
+      taskOutput.push(jstNamespace + " = " + jstNamespace + " || {};");
 
       srcFiles.forEach(function(srcFile) {
-        var jstSource = grunt.file.read(srcFile);
+        sourceCode = grunt.file.read(srcFile);
 
-        jstOutput.push(grunt.helper("jst", jstSource, srcFile, jstNamespace, options.templateSettings));
+        sourceCompiled = grunt.helper("jst", sourceCode, srcFile, jstNamespace, options.templateSettings);
+
+        taskOutput.push(sourceCompiled);
       });
 
-      if (jstOutput.length > 0) {
-        grunt.file.write(file.dest, jstOutput.join("\n\n"));
+      if (taskOutput.length > 0) {
+        grunt.file.write(file.dest, taskOutput.join("\n\n"));
         grunt.log.writeln("File '" + file.dest + "' created.");
       }
     });

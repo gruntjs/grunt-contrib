@@ -11,27 +11,36 @@ module.exports = function(grunt) {
   grunt.registerMultiTask("handlebars", "Compile handlebars templates to JST file", function() {
     var options = grunt.helper("options", this, {namespace: "JST"});
 
+    grunt.verbose.writeflags(options, "Options");
+
     // TODO: ditch this when grunt v0.4 is released
     this.files = this.files || grunt.helper("normalizeMultiTaskFiles", this.data, this.target);
 
-    grunt.verbose.writeflags(options, "Options");
+    var srcFiles;
+    var taskOutput;
+    var sourceCode;
+    var sourceCompiled;
+
+    var handlebarNamespace;
 
     this.files.forEach(function(file) {
-      var srcFiles = grunt.file.expandFiles(file.src);
+      srcFiles = grunt.file.expandFiles(file.src);
 
-      var handlebarOutput = [];
-      var handlebarNamespace = "this['" + options.namespace + "']";
+      taskOutput = [];
+      handlebarNamespace = "this['" + options.namespace + "']";
 
-      handlebarOutput.push(handlebarNamespace + " = " + handlebarNamespace + " || {};");
+      taskOutput.push(handlebarNamespace + " = " + handlebarNamespace + " || {};");
 
       srcFiles.forEach(function(srcFile) {
-        var handlebarSource = grunt.file.read(srcFile);
+        sourceCode = grunt.file.read(srcFile);
 
-        handlebarOutput.push(grunt.helper("handlebars", handlebarSource, srcFile, handlebarNamespace));
+        sourceCompiled = grunt.helper("handlebars", sourceCode, srcFile, handlebarNamespace);
+
+        taskOutput.push(sourceCompiled);
       });
 
-      if (handlebarOutput.length > 0) {
-        grunt.file.write(file.dest, handlebarOutput.join("\n\n"));
+      if (taskOutput.length > 0) {
+        grunt.file.write(file.dest, taskOutput.join("\n\n"));
         grunt.log.writeln("File '" + file.dest + "' created.");
       }
     });

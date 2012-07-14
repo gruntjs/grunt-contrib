@@ -11,21 +11,24 @@ module.exports = function(grunt) {
   grunt.registerMultiTask("mincss", "Minify CSS files", function() {
     var options = grunt.helper("options", this);
 
+    grunt.verbose.writeflags(options, "Options");
+
     // TODO: ditch this when grunt v0.4 is released
     this.files = this.files || grunt.helper("normalizeMultiTaskFiles", this.data, this.target);
 
-    grunt.verbose.writeflags(options, "Options");
+    var srcFiles;
+    var taskOutput;
+    var sourceCode;
 
     this.files.forEach(function(file) {
-      var srcFiles = grunt.file.expandFiles(file.src);
-      var source = grunt.helper("concat", srcFiles);
+      srcFiles = grunt.file.expandFiles(file.src);
+      sourceCode = grunt.helper("concat", srcFiles);
+      taskOutput = grunt.helper("mincss", sourceCode);
 
-      var min = grunt.helper("mincss", source);
-
-      if (min.length > 0) {
-        grunt.file.write(file.dest, min);
+      if (taskOutput.length > 0) {
+        grunt.file.write(file.dest, taskOutput);
         grunt.log.writeln("File '" + file.dest + "' created.");
-        grunt.helper('min_max_info', min, source);
+        grunt.helper('min_max_info', taskOutput, sourceCode);
       }
     });
   });
