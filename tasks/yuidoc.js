@@ -20,7 +20,9 @@ module.exports = function(grunt) {
     var starttime = (new Date()).getTime();
     var json;
 
-    var options = grunt.helper("options", this);
+    var options = grunt.helper("options", this, {
+      quiet: true
+    });
 
     // when invoking yuidocs via node, the project details
     // are assigned under the options object using the key

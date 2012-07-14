@@ -21,20 +21,18 @@ module.exports = function(grunt) {
     var sourceCode;
     var sourceCompiled;
 
-    var handlebarNamespace;
+    var helperNamespace = "this['" + options.namespace + "']";
 
     this.files.forEach(function(file) {
       srcFiles = grunt.file.expandFiles(file.src);
 
       taskOutput = [];
-      handlebarNamespace = "this['" + options.namespace + "']";
-
-      taskOutput.push(handlebarNamespace + " = " + handlebarNamespace + " || {};");
+      taskOutput.push(helperNamespace + " = " + helperNamespace + " || {};");
 
       srcFiles.forEach(function(srcFile) {
         sourceCode = grunt.file.read(srcFile);
 
-        sourceCompiled = grunt.helper("handlebars", sourceCode, srcFile, handlebarNamespace);
+        sourceCompiled = grunt.helper("handlebars", sourceCode, srcFile, helperNamespace);
 
         taskOutput.push(sourceCompiled);
       });

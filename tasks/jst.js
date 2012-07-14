@@ -23,20 +23,18 @@ module.exports = function(grunt) {
     var sourceCode;
     var sourceCompiled;
 
-    var jstNamespace;
+    var helperNamespace = "this['" + options.namespace + "']";
 
     this.files.forEach(function(file) {
       srcFiles = grunt.file.expandFiles(file.src);
 
       taskOutput = [];
-      jstNamespace = "this['" + options.namespace + "']";
-
-      taskOutput.push(jstNamespace + " = " + jstNamespace + " || {};");
+      taskOutput.push(helperNamespace + " = " + helperNamespace + " || {};");
 
       srcFiles.forEach(function(srcFile) {
         sourceCode = grunt.file.read(srcFile);
 
-        sourceCompiled = grunt.helper("jst", sourceCode, srcFile, jstNamespace, options.templateSettings);
+        sourceCompiled = grunt.helper("jst", sourceCode, srcFile, helperNamespace, options.templateSettings);
 
         taskOutput.push(sourceCompiled);
       });
