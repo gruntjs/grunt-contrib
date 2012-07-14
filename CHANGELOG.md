@@ -1,4 +1,4 @@
-* (Until v1.0.0, this will only be updated when major or breaking changes are made) *
+Until v1.0.0, this will only be updated when major or breaking changes are made
 
 2012.07.16, Version 0.1.2 (Alpha)
 
