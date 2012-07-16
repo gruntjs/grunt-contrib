@@ -8,8 +8,6 @@
 module.exports = function(grunt) {
   "use strict";
 
-  var fs = require("fs");
-
   grunt.registerMultiTask("clean", "Clear files and folders", function() {
     var options = grunt.helper("options", this);
 
