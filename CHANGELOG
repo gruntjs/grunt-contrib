@@ -3,6 +3,7 @@ Until v1.0.0, this will only be updated when major or breaking changes are made
 2012.07.23, Version 0.1.3 (Alpha)
 
 * bug fixes (#86)
+* stylus: load nib if available (PR #87)
 
 2012.07.16, Version 0.1.2 (Alpha)
 

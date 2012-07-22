@@ -54,8 +54,8 @@ module.exports = function(grunt) {
     
     // load nib if available
     try {
-      s.use(require("nib")())
-    } catch (err) {}
+      s.use(require("nib")());
+    } catch (e) {}
 
     _.each(options, function(value, key) {
       s.set(key, value);
