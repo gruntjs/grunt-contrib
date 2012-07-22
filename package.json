@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib",
   "description": "A collection of common grunt tasks.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/gruntjs/grunt-contrib",
   "author": {
     "name": "\"Cowboy\" Ben Alman and contributors",
