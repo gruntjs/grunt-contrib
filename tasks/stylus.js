@@ -51,17 +51,22 @@ module.exports = function(grunt) {
 
   grunt.registerHelper("stylus", function(source, options, callback) {
     var s = require("stylus")(source);
+    
+    // load nib if available
+    try {
+      s.use(require("nib")())
+    } catch (err) {}
 
     _.each(options, function(value, key) {
       s.set(key, value);
     });
 
-    s.render(function(e, css) {
-      if (!e) {
-        callback(css);
-      } else {
-        grunt.log.error(e);
+    s.render(function(err, css) {
+      if (err) {
+        grunt.log.error(err);
         grunt.fail.warn("Stylus failed to compile.");
+      } else {
+        callback(css);
       }
     });
   });
