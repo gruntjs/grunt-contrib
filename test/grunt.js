@@ -13,6 +13,10 @@ module.exports = function(grunt) {
       test: "fixtures/compress/<%= pkg.name %>-<%= pkg.version %>"
     },
 
+    vars: {
+      requirejs_template: "fixtures/output/requirejs-template.js"
+    },
+
     test: {
       tasks: ["*_test.js"],
       clean: ["clean_task.js"]
@@ -227,6 +231,13 @@ module.exports = function(grunt) {
           baseUrl: "fixtures/requirejs",
           name: "project",
           out: "fixtures/output/requirejs.js"
+        }
+      },
+      template: {
+        options: {
+          baseUrl: "fixtures/requirejs",
+          name: "project",
+          out: "<%= vars.requirejs_template %>"
         }
       }
     },
