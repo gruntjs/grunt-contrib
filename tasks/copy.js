@@ -7,11 +7,7 @@
 module.exports = function(grunt) {
   "use strict";
 
-  var fs = require("fs");
   var path = require("path");
-
-  // TODO: ditch this when grunt v0.4 is released
-  grunt.file.exists = grunt.file.exists || fs.existsSync || path.existsSync;
 
   // TODO: ditch this when grunt v0.4 is released
   grunt.util = grunt.util || grunt.utils;

@@ -51,7 +51,7 @@ module.exports = function(grunt) {
       });
 
       if (taskOutput.length > 0) {
-        grunt.file.write(file.dest, taskOutput.join("\n"));
+        grunt.file.write(file.dest, taskOutput.join("\n\n"));
         grunt.log.writeln("File '" + file.dest + "' created.");
       }
     });
