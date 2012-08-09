@@ -8,6 +8,8 @@
 module.exports = function(grunt) {
   "use strict";
 
+  var _ = require("underscore");
+
   grunt.registerMultiTask("handlebars", "Compile handlebars templates to JST file", function() {
     var options = grunt.helper("options", this, {namespace: "JST"});
 
@@ -31,6 +33,10 @@ module.exports = function(grunt) {
 
       srcFiles.forEach(function(srcFile) {
         sourceCode = grunt.file.read(srcFile);
+
+        if (options.processName && _.isFunction(options.processName)) {
+          srcFile = options.processName(srcFile);
+        }
 
         sourceCompiled = grunt.helper("handlebars", sourceCode, srcFile, helperNamespace);
 
