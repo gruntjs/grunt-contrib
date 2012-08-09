@@ -33,6 +33,7 @@ options: {
     return filename.toUpperCase();
   }
 }
+```
 
 #### Config Example
 
