@@ -36,10 +36,10 @@ module.exports = function(grunt) {
         sourceCode = grunt.file.read(srcFile);
 
         grunt.helper("stylus", sourceCode, helperOptions, function(css) {
-          nextConcat(css);
+          nextConcat(null, css);
         });
-      }, function(css) {
-        grunt.file.write(file.dest, css);
+      }, function(err, css) {
+        grunt.file.write(file.dest, css.join("\n") || "");
         grunt.log.writeln("File '" + file.dest + "' created.");
 
         next();

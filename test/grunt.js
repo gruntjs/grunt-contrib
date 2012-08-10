@@ -210,7 +210,8 @@ module.exports = function(grunt) {
         files: {
           "fixtures/output/less_a.css": "fixtures/less/style.less",
           "fixtures/output/less_b.css": "fixtures/less/style.less",
-          "fixtures/output/less_c.css": "fixtures/less/**/*.nomatches"
+          "fixtures/output/less_c.css": "fixtures/less/**/*.nomatches",
+          "fixtures/output/less_d.css": ["fixtures/less/style.less", "fixtures/less/style2.less"]
         },
         options: {
           paths: ["fixtures/less/include"]
@@ -246,7 +247,8 @@ module.exports = function(grunt) {
     stylus: {
       compile: {
         files: {
-          "fixtures/output/stylus.css": "fixtures/stylus/stylus.styl"
+          "fixtures/output/stylus.css": "fixtures/stylus/stylus.styl",
+          "fixtures/output/stylus_b.css": ["fixtures/stylus/stylus.styl", "fixtures/stylus/stylus2.styl"]
         },
         options: {
           paths: ["fixtures/stylus/include"],

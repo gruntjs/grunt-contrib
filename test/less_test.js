@@ -2,7 +2,7 @@ var grunt = require("grunt");
 
 exports.less = {
   main: function(test) {
-    test.expect(3);
+    test.expect(4);
 
     var expectA = "body {\n  color: #ffffff;\n}\n";
     var resultA = grunt.file.read("fixtures/output/less_a.css");
@@ -15,6 +15,10 @@ exports.less = {
     var expectC = "";
     var resultC = grunt.file.read("fixtures/output/less_c.css");
     test.equal(expectC, resultC, "should write an empty file when no less sources are found");
+
+    var expectD = "body {\n  color: #ffffff;\n}\n\n#header {\n  background: #ffffff;\n}\n";
+    var resultD = grunt.file.read("fixtures/output/less_d.css");
+    test.equal(expectD, resultD, "should concat output when passed an array");
 
     test.done();
   }
