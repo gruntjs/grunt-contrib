@@ -37,7 +37,8 @@ module.exports = function(grunt) {
       flatten: false,
       processName: false,
       processContent: false,
-      processContentExclude: []
+      processContentExclude: [],
+      minimatch: {}
     });
 
     // TODO: ditch this when grunt v0.4 is released
@@ -63,7 +64,7 @@ module.exports = function(grunt) {
     var destFile;
 
     this.files.forEach(function(file) {
-      srcFiles = grunt.file.expandFiles(file.src);
+      srcFiles = grunt.file.expandFiles(options.minimatch, file.src);
 
       basePath = options.basePath || findBasePath(srcFiles);
 
