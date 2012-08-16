@@ -21,7 +21,7 @@ This controls how this task operates and should contain key:value pairs, see opt
 
 ##### basePath ```string```
 
-This option adjusts the folder structure when copied to the destination directory.
+This option adjusts the folder structure when copied to the destination directory. When not explicitly set, best effort is made to locate the basePath by comparing all source filepaths left to right for a common pattern.
 
 ##### flatten ```boolean```
 
