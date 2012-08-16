@@ -64,16 +64,18 @@ module.exports = function(grunt) {
     var destFile;
 
     this.files.forEach(function(file) {
+      file.dest = path.normalize(file.dest);
       srcFiles = grunt.file.expandFiles(options.minimatch, file.src);
 
       basePath = options.basePath || findBasePath(srcFiles);
 
-      grunt.log.write("Copying file(s)" + ' to "' + file.dest + '"...');
+      grunt.verbose.writeln("Base Path: " + basePath.cyan);
+      grunt.verbose.or.write("Copying file(s)" + ' to "' + file.dest + '"...');
 
       srcFiles.forEach(function(srcFile) {
+        srcFile = path.normalize(srcFile);
         filename = path.basename(srcFile);
         relative = path.dirname(srcFile);
-        relative = path.normalize(relative);
 
         if (options.flatten) {
           relative = "";
@@ -93,7 +95,7 @@ module.exports = function(grunt) {
         grunt.file.copy(srcFile, destFile, copyOptions);
       });
 
-      grunt.log.ok();
+      grunt.verbose.or.ok();
     });
   });
 };
