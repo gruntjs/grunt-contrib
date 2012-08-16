@@ -35,6 +35,31 @@ options: {
 }
 ```
 
+##### processPartialName ```function```
+
+This option accepts a function which takes one argument (the partial filepath) and returns a string which will be used as the key for the precompiled partial object when it is registered in Handlebars.partials. The example below stores all partials using only the actual filename instead of the full path.
+
+``` javascript
+options: {
+	processPartialName: function(filePath) { // input:  templates/_header.handlebar
+    var pieces = filePath.split("/");
+    return pieces[pieces.length - 1];      // output: _header.handlebar
+  }
+}
+````
+
+Note: If processPartialName is not provided as an option the default assumes that partials will be stored by stripping trailing underscore characters and filename extensions. For example, the path *templates/_header.handlebar* will become *header* and can be referenced in other templates as *{{> header}}*.
+
+##### partialRegex ```regex```
+
+This option accepts a regex that defines the prefix character that is used to identify Handlebars partial files. (The default is _).
+
+``` javascript
+options: {
+	partialRegex: /^par_/ // assumes partial files would be prefixed with "par_" ie: "par_header.handlebar"
+}
+```
+
 #### Config Example
 
 ``` javascript
