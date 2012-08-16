@@ -1,5 +1,4 @@
 ## Compress files and folders
-> Contributed By: [Chris Talkington](/ctalkington) (@ctalkington)
 
 ### Overview
 
