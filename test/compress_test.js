@@ -35,7 +35,7 @@ exports.compress = {
     var resultE = getSize("fixtures/output/compress_test_flatten.zip");
     test.equal(expectE, resultE, "should create a flat internal structure");
 
-    var expectF = 207;
+    var expectF = 205;
     var resultF = getSize("fixtures/output/compress_test_outside_cwd.zip");
     test.equal(expectF, resultF, "should compress file outside of working dir");
 

@@ -50,6 +50,10 @@ This option is passed to `grunt.file.copy` as an advanced way to control the fil
 
 This option is passed to `grunt.file.copy` as an advanced way to control which file contents are processed.
 
+##### minimatch ```object```
+
+These options will be forwarded on to expandFiles, as referenced in the [minimatch options section](https://github.com/isaacs/minimatch/#options)
+
 #### Config Example
 
 ``` javascript

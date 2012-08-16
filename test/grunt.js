@@ -46,6 +46,16 @@ module.exports = function(grunt) {
         files: {
           "fixtures/output/copy_test_outside_cwd": ["../bin/*"]
         }
+      },
+      minimatch: {
+        options: {
+          minimatch: {
+            dot: true
+          }
+        },
+        files: {
+          "fixtures/output/copy_minimatch": "fixtures/copy/*",
+        }
       }
     },
 

@@ -5,7 +5,7 @@ grunt.loadTasks("../tasks");
 
 exports.copy = {
   main: function(test) {
-    test.expect(5);
+    test.expect(6);
 
     var expectA = ["test.css", "test.js"].sort();
     var resultA = fs.readdirSync("fixtures/output/copy_test_files").sort();
@@ -26,6 +26,10 @@ exports.copy = {
     var expectE = ["grunt-contrib"].sort();
     var resultE = fs.readdirSync("fixtures/output/copy_test_outside_cwd").sort();
     test.deepEqual(expectE, resultE, "should copy file outside of working dir");
+
+    var expectF = [".hidden", "test.css", "test.js"].sort();
+    var resultF = fs.readdirSync("fixtures/output/copy_minimatch").sort();
+    test.deepEqual(expectF, resultF, "should allow for minimatch dot option");
 
     test.done();
   }
