@@ -1,5 +1,4 @@
 ## Copy files into another directory
-> Contributed By: [Chris Talkington](/ctalkington) (@ctalkington)
 
 ### Recent Confusion
 
