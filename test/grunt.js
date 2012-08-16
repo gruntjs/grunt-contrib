@@ -10,7 +10,7 @@ module.exports = function(grunt) {
     },
 
     files: {
-      test: "fixtures/compress/<%= pkg.name %>-<%= pkg.version %>"
+      compress_test: "fixtures/compress/folder_one"
     },
 
     vars: {
@@ -29,9 +29,9 @@ module.exports = function(grunt) {
     copy: {
       test: {
         files: {
-          "fixtures/output/copy_test_files": "fixtures/copy/*",
-          "fixtures/output/copy_test_v<%= pkg.version %>": "fixtures/copy/**",
-          "fixtures/output/copy_test_array": ["fixtures/copy/*.*", "fixtures/copy/folder_one/*"]
+          "fixtures/output/copy_test_files": ["fixtures/copy/*"],
+          "fixtures/output/copy_test_v<%= pkg.version %>": ["fixtures/copy/**"],
+          "fixtures/output/copy_test_outside_cwd": ["../bin/*"]
         }
       },
       flatten: {
@@ -39,12 +39,7 @@ module.exports = function(grunt) {
           flatten: true
         },
         files: {
-          "fixtures/output/copy_test_flatten": "fixtures/copy/**"
-        }
-      },
-      outside_cwd: {
-        files: {
-          "fixtures/output/copy_test_outside_cwd": ["../bin/*"]
+          "fixtures/output/copy_test_flatten": ["fixtures/copy/**"]
         }
       },
       minimatch: {
@@ -54,7 +49,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          "fixtures/output/copy_minimatch": "fixtures/copy/*",
+          "fixtures/output/copy_minimatch": ["fixtures/copy/*"]
         }
       }
     },
@@ -62,7 +57,7 @@ module.exports = function(grunt) {
     coffee: {
       compile: {
         files: {
-          "fixtures/output/coffee_basic.js": "fixtures/coffee/coffee_basic.coffee",
+          "fixtures/output/coffee_basic.js": ["fixtures/coffee/coffee_basic.coffee"],
           "fixtures/output/coffee_combined.js": ["fixtures/coffee/*.coffee"]
         },
         options: {
@@ -77,10 +72,10 @@ module.exports = function(grunt) {
           mode: "zip"
         },
         files: {
-          "fixtures/output/compress_test_files.zip": "fixtures/compress/*",
-          "fixtures/output/compress_test_v<%= pkg.version %>.zip": "fixtures/compress/**",
-          "fixtures/output/compress_test_array.zip": ["fixtures/compress/test.*", "fixtures/compress/folder_one/*"],
-          "fixtures/output/compress_test_files_template.zip": "<%= files.test %>/**"
+          "fixtures/output/compress_test_files.zip": ["fixtures/compress/*"],
+          "fixtures/output/compress_test_v<%= pkg.version %>.zip": ["fixtures/compress/**"],
+          "fixtures/output/compress_test_files_template.zip": ["<%= files.compress_test %>/**"],
+          "fixtures/output/compress_test_outside_cwd.zip": ["../bin/*"]
         }
       },
       zip_flatten: {
@@ -89,15 +84,7 @@ module.exports = function(grunt) {
           flatten: true
         },
         files: {
-          "fixtures/output/compress_test_flatten.zip": "fixtures/compress/**"
-        }
-      },
-      zip_outside_cwd: {
-        options: {
-          mode: "zip"
-        },
-        files: {
-          "fixtures/output/compress_test_outside_cwd.zip": ["../bin/*"]
+          "fixtures/output/compress_test_flatten.zip": ["fixtures/compress/**"]
         }
       },
       tar: {
@@ -105,10 +92,10 @@ module.exports = function(grunt) {
           mode: "tar"
         },
         files: {
-          "fixtures/output/compress_test_files.tar": "fixtures/compress/*",
-          "fixtures/output/compress_test_v<%= pkg.version %>.tar": "fixtures/compress/**",
-          "fixtures/output/compress_test_array.tar": ["fixtures/compress/test.*", "fixtures/compress/folder_one/*"],
-          "fixtures/output/compress_test_files_template.tar": "<%= files.test %>/**"
+          "fixtures/output/compress_test_files.tar": ["fixtures/compress/*"],
+          "fixtures/output/compress_test_v<%= pkg.version %>.tar": ["fixtures/compress/**"],
+          "fixtures/output/compress_test_files_template.tar": ["<%= files.compress_test %>/**"],
+          "fixtures/output/compress_test_outside_cwd.tar": ["../bin/*"]
         }
       },
       tar_flatten: {
@@ -117,15 +104,7 @@ module.exports = function(grunt) {
           flatten: true
         },
         files: {
-          "fixtures/output/compress_test_flatten.tar": "fixtures/compress/**"
-        }
-      },
-      tar_outside_cwd: {
-        options: {
-          mode: "tar"
-        },
-        files: {
-          "fixtures/output/compress_test_outside_cwd.tar": ["../bin/*"]
+          "fixtures/output/compress_test_flatten.tar": ["fixtures/compress/**"]
         }
       },
       tgz: {
@@ -133,10 +112,10 @@ module.exports = function(grunt) {
           mode: "tgz"
         },
         files: {
-          "fixtures/output/compress_test_files.tgz": "fixtures/compress/*",
-          "fixtures/output/compress_test_v<%= pkg.version %>.tgz": "fixtures/compress/**",
-          "fixtures/output/compress_test_array.tgz": ["fixtures/compress/test.*", "fixtures/compress/folder_one/*"],
-          "fixtures/output/compress_test_files_template.tgz": "<%= files.test %>/**"
+          "fixtures/output/compress_test_files.tgz": ["fixtures/compress/*"],
+          "fixtures/output/compress_test_v<%= pkg.version %>.tgz": ["fixtures/compress/**"],
+          "fixtures/output/compress_test_files_template.tgz": ["<%= files.compress_test %>/**"],
+          "fixtures/output/compress_test_outside_cwd.tgz": ["../bin/*"]
         }
       },
       tgz_flatten: {
@@ -145,15 +124,7 @@ module.exports = function(grunt) {
           flatten: true
         },
         files: {
-          "fixtures/output/compress_test_flatten.tgz": "fixtures/compress/**"
-        }
-      },
-      tgz_outside_cwd: {
-        options: {
-          mode: "tgz"
-        },
-        files: {
-          "fixtures/output/compress_test_outside_cwd.tgz": ["../bin/*"]
+          "fixtures/output/compress_test_flatten.tgz": ["fixtures/compress/**"]
         }
       },
       gzip: {
@@ -161,8 +132,8 @@ module.exports = function(grunt) {
           mode: "gzip"
         },
         files: {
-          "fixtures/output/compress_test_file.gz": "fixtures/compress/test.js",
-          "fixtures/output/compress_test_file2.gz": "fixtures/compress/folder_one/one.js"
+          "fixtures/output/compress_test_file.gz": ["fixtures/compress/test.js"],
+          "fixtures/output/compress_test_file2.gz": ["fixtures/compress/folder_one/one.js"]
         }
       }
     },
@@ -173,16 +144,17 @@ module.exports = function(grunt) {
           namespace: "JST"
         },
         files: {
-          "fixtures/output/handlebars.js": "fixtures/handlebars/one.handlebar"
+          "fixtures/output/handlebars.js": ["fixtures/handlebars/one.handlebar"]
         }
       }
     },
 
     jade: {
-      simple: {
+      compile: {
         files: {
-          "fixtures/output/jade.html": "fixtures/jade/jade.jade",
-          "fixtures/output/jade2.html": "fixtures/jade/jade2.jade"
+          "fixtures/output/jade.html": ["fixtures/jade/jade.jade"],
+          "fixtures/output/jade2.html": ["fixtures/jade/jade2.jade"],
+          "fixtures/output/jadeInclude.html": ["fixtures/jade/jadeInclude.jade"]
         },
         options: {
           data: {
@@ -190,14 +162,9 @@ module.exports = function(grunt) {
           }
         }
       },
-      include: {
-        files: {
-          "fixtures/output/jadeInclude.html": "fixtures/jade/jadeInclude.jade"
-        }
-      },
       template: {
         files: {
-          "fixtures/output/jadeTemplate.html": "fixtures/jade/jadeTemplate.jade"
+          "fixtures/output/jadeTemplate.html": ["fixtures/jade/jadeTemplate.jade"]
         },
         options: {
           data: {
@@ -210,7 +177,7 @@ module.exports = function(grunt) {
     jst: {
       compile: {
         files: {
-          "fixtures/output/jst.js": "fixtures/jst/*.html"
+          "fixtures/output/jst.js": ["fixtures/jst/*.html"]
         }
       }
     },
@@ -218,9 +185,9 @@ module.exports = function(grunt) {
     less: {
       compile: {
         files: {
-          "fixtures/output/less_a.css": "fixtures/less/style.less",
-          "fixtures/output/less_b.css": "fixtures/less/style.less",
-          "fixtures/output/less_c.css": "fixtures/less/**/*.nomatches",
+          "fixtures/output/less_a.css": ["fixtures/less/style.less"],
+          "fixtures/output/less_b.css": ["fixtures/less/style.less"],
+          "fixtures/output/less_c.css": ["fixtures/less/**/*.nomatches"],
           "fixtures/output/less_d.css": ["fixtures/less/style.less", "fixtures/less/style2.less"]
         },
         options: {
@@ -257,7 +224,7 @@ module.exports = function(grunt) {
     stylus: {
       compile: {
         files: {
-          "fixtures/output/stylus.css": "fixtures/stylus/stylus.styl",
+          "fixtures/output/stylus.css": ["fixtures/stylus/stylus.styl"],
           "fixtures/output/stylus_b.css": ["fixtures/stylus/stylus.styl", "fixtures/stylus/stylus2.styl"]
         },
         options: {
