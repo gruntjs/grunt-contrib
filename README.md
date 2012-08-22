@@ -15,6 +15,9 @@ grunt.loadNpmTasks('grunt-contrib');
 [getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
 
 ## Included Tasks
+#### [`bump`](/gruntjs/grunt-contrib/blob/master/docs/bump.md)
+Bump package version.
+
 #### [`clean`](/gruntjs/grunt-contrib/blob/master/docs/clean.md)
 Clear files and folders.
 
