@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     lint: {
-      all: ["grunt.js", "tasks/*.js", "test/*.js"]
+      all: ["grunt.js", "tasks/*.js"]
     },
     jshint: {
       options: {
