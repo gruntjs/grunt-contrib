@@ -5,6 +5,8 @@
 
 Inside your `grunt.js` file add a section named `stylus`. This section specifies the files to compile and the options passed to [stylus](http://learnboost.github.com/stylus/).
 
+This task comes preloaded with [nib](http://visionmedia.github.com/nib/).
+
 #### Parameters
 
 ##### files ```object```

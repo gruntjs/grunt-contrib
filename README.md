@@ -49,7 +49,7 @@ Minify CSS files.
 Optimize RequireJS projects using r.js.
 
 #### [`stylus`](/gruntjs/grunt-contrib/blob/master/docs/stylus.md)
-Compile Stylus files into CSS.
+Compile Stylus files into CSS. Preloaded with [nib](http://visionmedia.github.com/nib/).
 
 #### [`yuidoc`](/gruntjs/grunt-contrib/blob/master/docs/yuidoc.md)
 Compile YUIDoc Documentation.
