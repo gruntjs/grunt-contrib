@@ -1,24 +1,20 @@
-/*
- * Increase version number
- *
- * grunt bump
- * grunt bump:patch
- * grunt bump:minor
- * grunt bump:major
- *
- * @author Vojta Jina <vojta.jina@gmail.com>
+/**
+ * Task: bump
+ * Description: Increase version number.
+ * Dependencies: none
+ * Contributor: @vojtajina
  */
 
 module.exports = function(grunt) {
-  grunt.registerTask("bump", "Increment the version number.", function(versionType) {
-    var PACKAGE_FILE = "package.json";
-    var package = grunt.file.readJSON(PACKAGE_FILE);
+  "use strict";
 
-    // compute the new version
-    package.version = grunt.helper("bump_version", package.version, versionType || "patch");
+  grunt.registerTask("bump", "Increment version number", function(versionType) {
+    var pkg = grunt.file.readJSON("package.json");
 
-    grunt.file.write(PACKAGE_FILE, JSON.stringify(package, null, "  "));
-    grunt.log.ok("Version bumped to " + package.version);
+    pkg.version = grunt.helper("bump_version", pkg.version, versionType || "patch");
+
+    grunt.file.write("package.json", JSON.stringify(pkg, null, "  "));
+    grunt.log.ok("Version bumped to " + pkg.version);
   });
 
 

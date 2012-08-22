@@ -3,6 +3,7 @@ Until v1, this will only be updated when major or breaking changes are made.
 2012.08.27, Version 0.1.8
 
 * update dependencies to latest versions.
+* bump: new task to assist with versioning (PR #111)
 
 2012.08.20, Version 0.1.7
 

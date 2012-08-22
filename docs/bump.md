@@ -1,11 +1,11 @@
 ## Bump package version
 > Contributed By: [Vojta Jína](/vojtajina) (@vojtajina)
 
-### Usage
+#### Usage
 
 Let's say current version is `0.0.1`.
 
-````
+```bash
 grunt bump
 >> Version bumped to 0.0.2
 
@@ -20,4 +20,4 @@ grunt bump
 
 grunt bump:major
 >> Version bumped to 1.0.0
-````
+```
