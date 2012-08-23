@@ -8,10 +8,7 @@
 module.exports = function(grunt) {
   "use strict";
 
-  // TODO: ditch this when grunt v0.4 is released
-  grunt.util = grunt.util || grunt.utils;
-
-  var _ = grunt.util._;
+  var _ = require("underscore");
 
   grunt.registerMultiTask("handlebars", "Register handlebars partials and then Compile handlebars templates to JST file", function() {
     var options = grunt.helper("options", this, {namespace: "JST"});

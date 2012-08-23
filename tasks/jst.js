@@ -1,14 +1,14 @@
 /**
  * Task: jst
  * Description: Compile underscore templates to JST file
- * Dependencies: none
+ * Dependencies: underscore
  * Contributor: @tbranyen
  */
 
 module.exports = function(grunt) {
   "use strict";
 
-  var lodash = require("../lib/lodash.custom")._;
+  var _ = require("underscore");
 
   grunt.registerMultiTask("jst", "Compile underscore templates to JST file", function() {
     var options = grunt.helper("options", this, {namespace: "JST", templateSettings: {}});
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
 
   grunt.registerHelper("jst", function(source, filepath, namespace, templateSettings) {
     try {
-      return namespace + "['" + filepath + "'] = " + lodash.template(source, false, templateSettings).source + ";";
+      return namespace + "['" + filepath + "'] = " + _.template(source, false, templateSettings).source + ";";
     } catch (e) {
       grunt.log.error(e);
       grunt.fail.warn("JST failed to compile.");
