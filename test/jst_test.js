@@ -1,6 +1,6 @@
 var grunt = require("grunt");
 
-exports.jade = {
+exports.jst = {
   main: function(test) {
     test.expect(1);
 
