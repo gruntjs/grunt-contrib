@@ -15,43 +15,43 @@ grunt.loadNpmTasks('grunt-contrib');
 [getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
 
 ## Included Tasks
-#### [`bump`](/gruntjs/grunt-contrib-bump/)
+#### [`bump`](https://github.com/gruntjs/grunt-contrib-bump/)
 Bump package version.
 
-#### [`clean`](/gruntjs/grunt-contrib-clean/)
+#### [`clean`](https://github.com/gruntjs/grunt-contrib-clean/)
 Clear files and folders.
 
-#### [`coffee`](/gruntjs/grunt-contrib-coffee/)
+#### [`coffee`](https://github.com/gruntjs/grunt-contrib-coffee/)
 Compile CoffeeScript files into JavaScript.
 
-#### [`compress`](/gruntjs/grunt-contrib-compress/)
+#### [`compress`](https://github.com/gruntjs/grunt-contrib-compress/)
 Compress files and folders using gzip or zip.
 
-#### [`copy`](/gruntjs/grunt-contrib-copy/)
+#### [`copy`](https://github.com/gruntjs/grunt-contrib-copy/)
 Copy files into another directory.
 
-#### [`handlebars`](/gruntjs/grunt-contrib-handlebars/)
+#### [`handlebars`](https://github.com/gruntjs/grunt-contrib-handlebars/)
 Compile handlebars templates to JST file.
 
-#### [`jade`](/gruntjs/grunt-contrib-jade/)
+#### [`jade`](https://github.com/gruntjs/grunt-contrib-jade/)
 Compile Jade templates to HTML.
 
-#### [`jst`](/gruntjs/grunt-contrib-jst/)
+#### [`jst`](https://github.com/gruntjs/grunt-contrib-jst/)
 Compile underscore templates to JST file.
 
-#### [`less`](/gruntjs/grunt-contrib-less/)
+#### [`less`](https://github.com/gruntjs/grunt-contrib-less/)
 Compile LESS files to CSS.
 
-#### [`mincss`](/gruntjs/grunt-contrib-mincss/)
+#### [`mincss`](https://github.com/gruntjs/grunt-contrib-mincss/)
 Minify CSS files.
 
-#### [`requirejs`](/gruntjs/grunt-contrib-requirejs/)
+#### [`requirejs`](https://github.com/gruntjs/grunt-contrib-requirejs/)
 Optimize RequireJS projects using r.js.
 
-#### [`stylus`](/gruntjs/grunt-contrib-stylus/)
+#### [`stylus`](https://github.com/gruntjs/grunt-contrib-stylus/)
 Compile Stylus files into CSS. Preloaded with [nib](http://visionmedia.github.com/nib/).
 
-#### [`yuidoc`](/gruntjs/grunt-contrib-yuidoc/)
+#### [`yuidoc`](https://github.com/gruntjs/grunt-contrib-yuidoc/)
 Compile YUIDoc Documentation.
 
 ## Bugs
@@ -78,7 +78,7 @@ Help us squash them by submitting an issue that describes how you encountered it
 #### Code Style Guide
 
 * code should be indented with 2 spaces
-* double quotes should be used where feasible
+* single quotes should be used where feasible
 * commas should be followed by a single space (function params, etc)
 * variable declaration should include `var`, [no multiple declarations](http://benalman.com/news/2012/05/multiple-var-statements-javascript/)
 
@@ -100,7 +100,7 @@ npm test
 
 We have adopted a weekly release cycle (npm release every Monday) to ensure you can always get the most recent changes in your hands while allowing for updates that don't require excessive amounts of debugging or testing.
 
-see [CHANGELOG](/gruntjs/grunt-contrib/blob/master/CHANGELOG) for release history.
+see [CHANGELOG](https://github.com/gruntjs/grunt-contrib/blob/master/CHANGELOG) for release history.
 
 #### Testing Pre-Releases
 
