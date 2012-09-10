@@ -15,48 +15,44 @@ grunt.loadNpmTasks('grunt-contrib');
 [getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
 
 ## Included Tasks
-#### [`bump`](/gruntjs/grunt-contrib/blob/master/docs/bump.md)
+#### [`bump`](/gruntjs/grunt-contrib-bump/)
 Bump package version.
 
-#### [`clean`](/gruntjs/grunt-contrib/blob/master/docs/clean.md)
+#### [`clean`](/gruntjs/grunt-contrib-clean/)
 Clear files and folders.
 
-#### [`coffee`](/gruntjs/grunt-contrib/blob/master/docs/coffee.md)
+#### [`coffee`](/gruntjs/grunt-contrib-coffee/)
 Compile CoffeeScript files into JavaScript.
 
-#### [`compress`](/gruntjs/grunt-contrib/blob/master/docs/compress.md)
+#### [`compress`](/gruntjs/grunt-contrib-compress/)
 Compress files and folders using gzip or zip.
 
-#### [`copy`](/gruntjs/grunt-contrib/blob/master/docs/copy.md)
+#### [`copy`](/gruntjs/grunt-contrib-copy/)
 Copy files into another directory.
 
-#### [`handlebars`](/gruntjs/grunt-contrib/blob/master/docs/handlebars.md)
+#### [`handlebars`](/gruntjs/grunt-contrib-handlebars/)
 Compile handlebars templates to JST file.
 
-#### [`jade`](/gruntjs/grunt-contrib/blob/master/docs/jade.md)
+#### [`jade`](/gruntjs/grunt-contrib-jade/)
 Compile Jade templates to HTML.
 
-#### [`jst`](/gruntjs/grunt-contrib/blob/master/docs/jst.md)
+#### [`jst`](/gruntjs/grunt-contrib-jst/)
 Compile underscore templates to JST file.
 
-#### [`less`](/gruntjs/grunt-contrib/blob/master/docs/less.md)
+#### [`less`](/gruntjs/grunt-contrib-less/)
 Compile LESS files to CSS.
 
-#### [`mincss`](/gruntjs/grunt-contrib/blob/master/docs/mincss.md)
+#### [`mincss`](/gruntjs/grunt-contrib-mincss/)
 Minify CSS files.
 
-#### [`requirejs`](/gruntjs/grunt-contrib/blob/master/docs/requirejs.md)
+#### [`requirejs`](/gruntjs/grunt-contrib-requirejs/)
 Optimize RequireJS projects using r.js.
 
-#### [`stylus`](/gruntjs/grunt-contrib/blob/master/docs/stylus.md)
+#### [`stylus`](/gruntjs/grunt-contrib-stylus/)
 Compile Stylus files into CSS. Preloaded with [nib](http://visionmedia.github.com/nib/).
 
-#### [`yuidoc`](/gruntjs/grunt-contrib/blob/master/docs/yuidoc.md)
+#### [`yuidoc`](/gruntjs/grunt-contrib-yuidoc/)
 Compile YUIDoc Documentation.
-
-## Included Helpers
-### [`options`](/gruntjs/grunt-contrib/blob/master/docs/helpers.md#options)
-Unified options retrieval, will be replaced with grunt's built-in `this.options` in the near future.
 
 ## Bugs
 
@@ -121,7 +117,3 @@ or if you always want to ride on the edge:
     "grunt-contrib": "git://github.com/gruntjs/grunt-contrib.git"
 }
 ```
-
-## License
-Copyright (c) 2012 "Cowboy" Ben Alman & contributors.
-Licensed under the MIT license.
