@@ -96,24 +96,4 @@ npm install
 npm test
 ```
 
-## Release Cycle
-
-We have adopted a weekly release cycle (npm release every Monday) to ensure you can always get the most recent changes in your hands while allowing for updates that don't require excessive amounts of debugging or testing.
-
-see [CHANGELOG](https://github.com/gruntjs/grunt-contrib/blob/master/CHANGELOG) for release history.
-
-#### Testing Pre-Releases
-
-For those who wish to help us test releases or just need earlier access to the code than our release cycle offers, you can always use npm like so:
-
-```bash
-npm install https://github.com/gruntjs/grunt-contrib/tarball/master
-```
-
-or if you always want to ride on the edge:
-
-```javascript
-"dependencies": {
-    "grunt-contrib": "git://github.com/gruntjs/grunt-contrib.git"
-}
-```
+See [CHANGELOG](https://github.com/gruntjs/grunt-contrib/blob/master/CHANGELOG) for release history.

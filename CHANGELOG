@@ -1,5 +1,9 @@
 Until v1, this will only be updated when major or breaking changes are made.
 
+2012.09.23, v0.3.0
+
+* options no longer accepted from global config key.
+
 2012.09.10, v0.2.0
 
 * converted to grunt collection, all tasks in separate repos/packages.
