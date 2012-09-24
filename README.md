@@ -18,7 +18,7 @@ grunt.loadNpmTasks('grunt-contrib');
 #### [`bump`](https://github.com/gruntjs/grunt-contrib-bump/) (not released)
 Bump package version.
 
-#### [`clean`](https://github.com/gruntjs/grunt-contrib-clean/) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-clean.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-clean)
+#### [`clean`](https://github.com/gruntjs/grunt-contrib-clean/)
 Clear files and folders.
 
 #### [`coffee`](https://github.com/gruntjs/grunt-contrib-coffee/) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-coffee.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-coffee)
