@@ -1,4 +1,4 @@
-# grunt-contrib (*currently in alpha*)
+# grunt-contrib
 
 A collection of general use grunt tasks. All tasks are designed with cross platform support in mind and dependencies that can easily be managed through npm.
 
@@ -15,43 +15,43 @@ grunt.loadNpmTasks('grunt-contrib');
 [getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
 
 ## Included Tasks
-#### [`bump`](https://github.com/gruntjs/grunt-contrib-bump/)
+#### [`bump`](https://github.com/gruntjs/grunt-contrib-bump/) (not released)
 Bump package version.
 
-#### [`clean`](https://github.com/gruntjs/grunt-contrib-clean/)
+#### [`clean`](https://github.com/gruntjs/grunt-contrib-clean/) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-clean.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-clean)
 Clear files and folders.
 
-#### [`coffee`](https://github.com/gruntjs/grunt-contrib-coffee/)
+#### [`coffee`](https://github.com/gruntjs/grunt-contrib-coffee/) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-coffee.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-coffee)
 Compile CoffeeScript files into JavaScript.
 
-#### [`compress`](https://github.com/gruntjs/grunt-contrib-compress/)
+#### [`compress`](https://github.com/gruntjs/grunt-contrib-compress/) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-compress.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-compress)
 Compress files and folders using gzip or zip.
 
-#### [`copy`](https://github.com/gruntjs/grunt-contrib-copy/)
+#### [`copy`](https://github.com/gruntjs/grunt-contrib-copy/) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-copy.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-copy)
 Copy files into another directory.
 
-#### [`handlebars`](https://github.com/gruntjs/grunt-contrib-handlebars/)
+#### [`handlebars`](https://github.com/gruntjs/grunt-contrib-handlebars/) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-handlebars.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-handlebars)
 Compile handlebars templates to JST file.
 
-#### [`jade`](https://github.com/gruntjs/grunt-contrib-jade/)
+#### [`jade`](https://github.com/gruntjs/grunt-contrib-jade/) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-jade.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-jade)
 Compile Jade templates to HTML.
 
-#### [`jst`](https://github.com/gruntjs/grunt-contrib-jst/)
+#### [`jst`](https://github.com/gruntjs/grunt-contrib-jst/) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-jst.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-jst)
 Compile underscore templates to JST file.
 
-#### [`less`](https://github.com/gruntjs/grunt-contrib-less/)
+#### [`less`](https://github.com/gruntjs/grunt-contrib-less/) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-less)
 Compile LESS files to CSS.
 
-#### [`mincss`](https://github.com/gruntjs/grunt-contrib-mincss/)
+#### [`mincss`](https://github.com/gruntjs/grunt-contrib-mincss/) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-mincss.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-mincss)
 Minify CSS files.
 
-#### [`requirejs`](https://github.com/gruntjs/grunt-contrib-requirejs/)
+#### [`requirejs`](https://github.com/gruntjs/grunt-contrib-requirejs/) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-requirejs.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-requirejs)
 Optimize RequireJS projects using r.js.
 
-#### [`stylus`](https://github.com/gruntjs/grunt-contrib-stylus/)
+#### [`stylus`](https://github.com/gruntjs/grunt-contrib-stylus/) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-stylus.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-stylus)
 Compile Stylus files into CSS. Preloaded with [nib](http://visionmedia.github.com/nib/).
 
-#### [`yuidoc`](https://github.com/gruntjs/grunt-contrib-yuidoc/)
+#### [`yuidoc`](https://github.com/gruntjs/grunt-contrib-yuidoc/) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-yuidoc.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-yuidoc)
 Compile YUIDoc Documentation.
 
 ## Bugs

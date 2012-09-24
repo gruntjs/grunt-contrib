@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib",
   "description": "A collection of common grunt tasks.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://github.com/gruntjs/grunt-contrib",
   "author": {
     "name": "\"Cowboy\" Ben Alman and contributors",
@@ -24,18 +24,18 @@
     "node": "*"
   },
   "dependencies": {
-    "grunt-contrib-clean": "~0.2.0",
-    "grunt-contrib-coffee": "~0.2.0",
-    "grunt-contrib-compress": "~0.2.0",
-    "grunt-contrib-copy": "~0.2.0",
-    "grunt-contrib-handlebars": "~0.2.0",
-    "grunt-contrib-jade": "~0.2.0",
-    "grunt-contrib-jst": "~0.2.0",
-    "grunt-contrib-less": "~0.2.0",
-    "grunt-contrib-mincss": "~0.2.0",
-    "grunt-contrib-requirejs": "~0.2.0",
-    "grunt-contrib-stylus": "~0.2.0",
-    "grunt-contrib-yuidoc": "~0.2.0"
+    "grunt-contrib-clean": "~0.3.0",
+    "grunt-contrib-coffee": "~0.3.0",
+    "grunt-contrib-compress": "~0.3.0",
+    "grunt-contrib-copy": "~0.3.0",
+    "grunt-contrib-handlebars": "~0.3.0",
+    "grunt-contrib-jade": "~0.3.0",
+    "grunt-contrib-jst": "~0.3.0",
+    "grunt-contrib-less": "~0.3.0",
+    "grunt-contrib-mincss": "~0.3.0",
+    "grunt-contrib-requirejs": "~0.3.0",
+    "grunt-contrib-stylus": "~0.3.0",
+    "grunt-contrib-yuidoc": "~0.3.0"
   },
   "keywords": [
     "gruntcollection"
