@@ -91,7 +91,7 @@ A listing of each plugin and the current version included in this package is lis
 #### [grunt-contrib-stylus](https://github.com/gruntjs/grunt-contrib-stylus) (v0.4.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-stylus.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-stylus)
 > Compile Stylus files to CSS.
 
-#### [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify) (v0.1.1rc6) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-uglify.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-uglify)
+#### [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify) (v0.1.1) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-uglify.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-uglify)
 > Minify files with UglifyJS.
 
 #### [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) (v0.2.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-watch.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-watch)
@@ -107,12 +107,12 @@ A listing of each plugin and the current version included in this package is lis
  * 2012-02-16   v0.4.0   Updated to include the entire grunt-contrib suite for Grunt v0.4.
  * 2012-09-22   v0.3.0   options no longer accepted from global config key.
  * 2012-09-09   v0.2.0   converted to grunt collection, all tasks in separate repos/packages.
- * 2012-08-26   v0.1.8   update dependencies to latest versions. [object Object]
- * 2012-08-19   v0.1.7   add partial support to handlebars task (PR update package.json for latest stylus (PR [object Object]
- * 2012-08-12   v0.1.6   [object Object] [object Object]
+ * 2012-08-26   v0.1.8   update dependencies to latest versions. bump: new task to assist with versioning (PR #111)
+ * 2012-08-19   v0.1.7   add partial support to handlebars task (PR update package.json for latest stylus (PR copy: add minimatch option (PR #105)
+ * 2012-08-12   v0.1.6   less+stylus: correct concat logic and add tests. (#101) handlebars: add processName
  * 2012-08-05   v0.1.5   add nib as dependancy
- * 2012-07-29   v0.1.4   [object Object] [object Object] [object Object] [object Object]
- * 2012-07-22   v0.1.3   bug fixes (#86) [object Object]
+ * 2012-07-29   v0.1.4   copy: sort test arrays before compare (PR #93) copy+compress: use basePath left to right (GH #92) handlebars: fix failing test in 1.0.6 less: prints 'undefined' when there are no stylesheets. (PR #89)
+ * 2012-07-22   v0.1.3   bug fixes (#86) stylus: load nib if available (PR #87)
  * 2012-07-15   v0.1.2   bug fixes (#84) basePath overhaul lint in strict mode variable declaration cleanup
  * 2012-07-08   v0.1.1   bug fixes task overhaul yuidoc task addition prep for grunt v0.4
  * 2012-06-27   v0.0.9   task cleanup copy task addition
@@ -124,4 +124,4 @@ A listing of each plugin and the current version included in this package is lis
 
 Task submitted by [Tyler Kellen](http://goingslowly.com)
 
-*This file was generated on Sun Feb 17 2013 22:55:36.*
+*This file was generated on Mon Feb 18 2013 12:16:05.*

@@ -70,7 +70,7 @@ A listing of each plugin and the current version included in this package is lis
 ## [grunt-contrib-stylus](https://github.com/gruntjs/grunt-contrib-stylus) (v0.4.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-stylus.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-stylus)
 > Compile Stylus files to CSS.
 
-## [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify) (v0.1.1rc6) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-uglify.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-uglify)
+## [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify) (v0.1.1) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-uglify.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-uglify)
 > Minify files with UglifyJS.
 
 ## [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) (v0.2.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-watch.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-watch)
