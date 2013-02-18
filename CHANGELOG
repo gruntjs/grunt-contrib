@@ -14,18 +14,18 @@ v0.1.8:
   date: 2012-08-27
   changes:
     - update dependencies to latest versions.
-    - bump: new task to assist with versioning (PR #111)
+    - "bump: new task to assist with versioning (PR #111)"
 v0.1.7:
   date: 2012-08-20
   changes:
     - add partial support to handlebars task (PR #106)
     - update package.json for latest stylus (PR #104)
-    - copy: add minimatch option (PR #105)
+    - "copy: add minimatch option (PR #105)"
 v0.1.6:
   date: 2012-08-13
   changes:
-    - less+stylus: correct concat logic and add tests. (#101)
-    - handlebars: add processName
+    - "less+stylus: correct concat logic and add tests. (#101)"
+    - "handlebars: add processName"
 v0.1.5:
   date: 2012-08-06
   changes:
@@ -33,15 +33,15 @@ v0.1.5:
 v0.1.4:
   date: 2012-07-30
   changes:
-    - copy: sort test arrays before compare (PR #93)
-    - copy+compress: use basePath left to right (GH #92)
-    - handlebars: fix failing test in 1.0.6
-    - less: prints 'undefined' when there are no stylesheets. (PR #89)
+    - "copy: sort test arrays before compare (PR #93)"
+    - "copy+compress: use basePath left to right (GH #92)"
+    - "handlebars: fix failing test in 1.0.6"
+    - "less: prints 'undefined' when there are no stylesheets. (PR #89)"
 v0.1.3:
   date: 2012-07-23
   changes:
     - bug fixes (#86)
-    - stylus: load nib if available (PR #87)
+    - "stylus: load nib if available (PR #87)"
 v0.1.2:
   date: 2012-07-16
   changes:
