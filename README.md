@@ -104,7 +104,7 @@ A listing of each plugin and the current version included in this package is lis
 
 ## Release History
 
- * 2012-02-16   v0.4.0   Updated to include the entire grunt-contrib suite for Grunt v0.4.
+ * 2013-02-16   v0.4.0   Updated to include the entire grunt-contrib suite for Grunt v0.4.
  * 2012-09-22   v0.3.0   options no longer accepted from global config key.
  * 2012-09-09   v0.2.0   converted to grunt collection, all tasks in separate repos/packages.
  * 2012-08-26   v0.1.8   update dependencies to latest versions. bump: new task to assist with versioning (PR #111)
@@ -124,4 +124,4 @@ A listing of each plugin and the current version included in this package is lis
 
 Task submitted by [Tyler Kellen](http://goingslowly.com)
 
-*This file was generated on Mon Feb 18 2013 12:16:05.*
+*This file was generated on Tue Feb 19 2013 10:50:55.*
