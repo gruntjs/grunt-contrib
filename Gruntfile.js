@@ -21,12 +21,27 @@ module.exports = function(grunt) {
       authors.push(grunt.file.read(path.join(dir, 'AUTHORS')).split('\n'));
       return require(path.join(dir, 'package.json'));
     });
-    authors = _.unique(
-      _.compact(
-        _.map(_.flatten(authors),function(author){return author.trim()})
-      )
-    ).sort().join("\n");
-    grunt.file.write("AUTHORS","Tyler Kellen (http://goingslowly.com)\n"+authors);
+    authors =
+      'Tyler Kellen (http://goingslowly.com)\n' +
+      _.chain(authors)
+      .flatten()
+      .map(function(author) {
+        return author.trim();
+      })
+      .filter(function(author) {
+        return !(author.indexOf('Tyler Kellen') !== -1);
+      })
+      .sort()
+      .uniq(true, function(author) {
+        if (author.indexOf('(') !== -1) {
+          author = author.slice(0, author.indexOf('('));
+        }
+        return author;
+      })
+      .compact()
+      .value()
+      .join('\n');
+    grunt.file.write('AUTHORS', authors);
     var tmpl = grunt.file.read('docs/overview.tmpl');
     var readme = grunt.template.process(tmpl, {data:{plugins:plugins}});
     grunt.file.write('docs/overview.md', readme);

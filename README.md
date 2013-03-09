@@ -13,7 +13,7 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 npm install grunt-contrib --save-dev
 ```
 
-One the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
 grunt.loadNpmTasks('grunt-contrib');
@@ -128,4 +128,4 @@ A listing of each plugin and the current version included in this package is lis
 
 Task submitted by [Tyler Kellen](http://goingslowly.com)
 
-*This file was generated on Thu Mar 07 2013 15:42:05.*
+*This file was generated on Sat Mar 09 2013 13:49:00.*
