@@ -1,3 +1,7 @@
+v0.6.0:
+  date: 2013-03-26
+  changes:
+    - Minor version bumps in several grunt-contrib-* plugins.
 v0.5.0:
   date: 2013-03-07
   changes:
