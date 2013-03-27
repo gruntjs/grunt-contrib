@@ -1,8 +1,11 @@
 # Overview
-This collection contains all 25 grunt-contrib plugins.  We have made it available as a convenience for first-time users who would like to explore what Grunt has to offer.  After review, it is recommended that you uninstall this collection and specify the plugins you wish to use individually.
+This collection contains all 26 grunt-contrib plugins.  We have made it available as a convenience for first-time users who would like to explore what Grunt has to offer.  After review, it is recommended that you uninstall this collection and specify the plugins you wish to use individually.
 
 A listing of each plugin and the current version included in this package is listed below.
 
+
+## [grunt-contrib-clean](https://github.com/gruntjs/grunt-contrib-clean) (v0.4.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-clean.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-clean)
+> Clean files and folders.
 
 ## [grunt-contrib-coffee](https://github.com/gruntjs/grunt-contrib-coffee) (v0.6.4) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-coffee.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-coffee)
 > Compile CoffeeScript files to JavaScript.
