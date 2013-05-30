@@ -20,7 +20,7 @@ grunt.loadNpmTasks('grunt-contrib');
 ```
 
 ### Overview
-This collection contains all 26 grunt-contrib plugins.  We have made it available as a convenience for first-time users who would like to explore what Grunt has to offer.  After review, it is recommended that you uninstall this collection and specify the plugins you wish to use individually.
+This collection contains all 25 grunt-contrib plugins.  We have made it available as a convenience for first-time users who would like to explore what Grunt has to offer.  After review, it is recommended that you uninstall this collection and specify the plugins you wish to use individually.
 
 A listing of each plugin and the current version included in this package is listed below.
 
@@ -76,9 +76,6 @@ A listing of each plugin and the current version included in this package is lis
 #### [grunt-contrib-less](https://github.com/gruntjs/grunt-contrib-less) (v0.5.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-less)
 > Compile LESS files to CSS.
 
-#### [grunt-contrib-livereload](https://github.com/gruntjs/grunt-contrib-livereload) (v0.1.2) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-livereload.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-livereload)
-> Reload assets live in the browser
-
 #### [grunt-contrib-nodeunit](https://github.com/gruntjs/grunt-contrib-nodeunit) (v0.1.2) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-nodeunit.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-nodeunit)
 > Run Nodeunit unit tests.
 
@@ -129,4 +126,4 @@ A listing of each plugin and the current version included in this package is lis
 
 Task submitted by [Tyler Kellen](http://goingslowly.com)
 
-*This file was generated on Wed Mar 27 2013 09:26:59.*
+*This file was generated on Thu May 30 2013 10:05:39.*
