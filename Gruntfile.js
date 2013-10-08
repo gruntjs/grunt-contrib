@@ -14,9 +14,9 @@ module.exports = function(grunt) {
   grunt.registerTask('build', function () {
     var _ = grunt.util._;
     var path = require('path');
-    var deps = require('./package.json').dependencies;
+    var deps = require('matchdep').filterPeer('grunt-contrib-*');
     var authors = [];
-    var plugins = Object.keys(deps).map(function(plugin) {
+    var plugins = deps.map(function(plugin) {
       var dir = path.dirname(require.resolve(plugin));
       authors.push(grunt.file.read(path.join(dir, 'AUTHORS')).split('\n'));
       return require(path.join(dir, 'package.json'));
