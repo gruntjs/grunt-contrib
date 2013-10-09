@@ -12,7 +12,6 @@
 module.exports = function(grunt) {
 
   // Load all grunt-contrib peerDependencies.
-  var pkg = __dirname + '/../package.json';
-  require('matchdep').filterPeer('grunt-contrib-*', pkg).forEach(grunt.loadNpmTasks);
+  require('matchdep').filterPeer('grunt-contrib-*').forEach(grunt.loadNpmTasks);
 
 };

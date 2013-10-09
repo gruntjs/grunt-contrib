@@ -24,7 +24,7 @@
     "node": ">= 0.8.0"
   },
   "dependencies": {
-    "matchdep": "git://github.com/cowboy/node-matchdep#peerDependencies"
+    "matchdep": "~0.3.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
