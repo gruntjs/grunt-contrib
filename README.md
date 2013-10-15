@@ -1,4 +1,4 @@
-# grunt-contrib v0.7.0
+# grunt-contrib v0.8.0
 
 > The entire grunt-contrib suite.
 
@@ -104,6 +104,7 @@ A listing of each plugin and the current version included in this package is lis
 
 ## Release History
 
+ * 2013-10-15   v0.8.0   Use matchdep and peerDependencies to create collection.
  * 2013-03-26   v0.6.0   Minor version bumps in several grunt-contrib-* plugins.
  * 2013-03-07   v0.5.0   Add grunt-contrib-csslint Minor version bumps in several grunt-contrib-* plugins.
  * 2013-02-17   v0.4.0   Updated to include the entire grunt-contrib suite for Grunt v0.4.
@@ -126,4 +127,4 @@ A listing of each plugin and the current version included in this package is lis
 
 Task submitted by [Tyler Kellen](http://goingslowly.com)
 
-*This file was generated on Tue Oct 15 2013 15:54:55.*
+*This file was generated on Tue Oct 15 2013 16:03:09.*
