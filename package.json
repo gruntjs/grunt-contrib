@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib",
   "description": "The entire grunt-contrib suite.",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "homepage": "https://github.com/gruntjs/grunt-contrib",
   "author": {
     "name": "Grunt Team",
