@@ -68,7 +68,7 @@ module.exports = function(grunt) {
       grunt.file.write('AUTHORS', output);
     };
 
-    // write combined readme from all grunt-contrib repos
+    // write combined readme for all contrib repos
     var writeReadme = function (packages) {
       var tmpl = grunt.file.read('docs/overview.tmpl');
       var readme = grunt.template.process(tmpl, {data:{plugins:packages}});
