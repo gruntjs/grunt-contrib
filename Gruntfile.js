@@ -22,10 +22,13 @@ module.exports = function(grunt) {
     // make http request for author file in a repo
     var authorFile = function (dep) {
       var deferred = when.defer();
-      request.get({
-        url: baseurl+dep+'/master/AUTHORS'
-      }, function(err, res, body) {
-        deferred.resolve(body.split('\n'));
+      var url = baseurl+dep+'/master/AUTHORS';
+      request.get({url: url}, function(err, res, body) {
+        if (res.statusCode != 200) {
+          grunt.fail.fatal('Failed to retrieve '+url);
+        } else {
+          deferred.resolve(body.split('\n'));
+        }
       });
       return deferred.promise
     };
@@ -33,11 +36,13 @@ module.exports = function(grunt) {
     // make http request for package.json in a repo
     var packageJSON = function (dep) {
       var deferred = when.defer();
-      request.get({
-        url: baseurl+dep+'/master/package.json',
-        json: true
-      }, function(err, res, body) {
-        deferred.resolve(body);
+      var url = baseurl+dep+'/master/package.json';
+      request.get({url: url, json: true}, function(err, res, body) {
+        if (res.statusCode != 200) {
+          grunt.fail.fatal('Failed to retrieve '+url);
+        } else {
+          deferred.resolve(body);
+        }
       });
       return deferred.promise
     };
