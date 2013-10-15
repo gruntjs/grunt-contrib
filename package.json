@@ -27,7 +27,7 @@
     "matchdep": "~0.3.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": "~0.4.0",
     "grunt-contrib-internal": "~0.4.3",
     "request": "~2.27.0",
     "lodash": "~2.2.1",
@@ -59,7 +59,7 @@
     "grunt-contrib-uglify": "~0.2.4",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-yuidoc": "~0.5.0",
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.0"
   },
   "keywords": [
     "gruntplugin"
