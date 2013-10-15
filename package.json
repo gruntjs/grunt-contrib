@@ -23,15 +23,17 @@
   "engines": {
     "node": ">= 0.8.0"
   },
-  "dependencies": {
-    "matchdep": "~0.3.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-internal": "~0.4.3"
+    "matchdep": "~0.3.0",
+    "grunt-contrib-internal": "~0.4.3",
+    "request": "~2.27.0",
+    "lodash": "~2.2.1",
+    "when": "~2.5.1"
   },
   "peerDependencies": {
-    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.7.0",
     "grunt-contrib-compass": "~0.2.0",
     "grunt-contrib-compress": "~0.5.1",
