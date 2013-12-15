@@ -10,10 +10,10 @@ A listing of each plugin and the current version included in this package is lis
 ## [grunt-contrib-coffee](https://github.com/gruntjs/grunt-contrib-coffee) (v0.7.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-coffee.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-coffee)
 > Compile CoffeeScript files to JavaScript.
 
-## [grunt-contrib-compass](https://github.com/gruntjs/grunt-contrib-compass) (v0.6.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-compass.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-compass)
+## [grunt-contrib-compass](https://github.com/gruntjs/grunt-contrib-compass) (v0.7.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-compass.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-compass)
 > Compile Sass to CSS using Compass
 
-## [grunt-contrib-compress](https://github.com/gruntjs/grunt-contrib-compress) (v0.5.2) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-compress.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-compress)
+## [grunt-contrib-compress](https://github.com/gruntjs/grunt-contrib-compress) (v0.5.3) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-compress.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-compress)
 > Compress files and folders.
 
 ## [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat) (v0.3.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-concat)
@@ -25,20 +25,20 @@ A listing of each plugin and the current version included in this package is lis
 ## [grunt-contrib-copy](https://github.com/gruntjs/grunt-contrib-copy) (v0.4.1) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-copy.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-copy)
 > Copy files and folders.
 
-## [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin) (v0.6.2) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-cssmin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-cssmin)
+## [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin) (v0.7.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-cssmin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-cssmin)
 > Compress CSS files.
 
-## [grunt-contrib-csslint](https://github.com/gruntjs/grunt-contrib-csslint) (v0.1.2) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-csslint.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-csslint)
+## [grunt-contrib-csslint](https://github.com/gruntjs/grunt-contrib-csslint) (v0.2.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-csslint.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-csslint)
 > Lint CSS files.
 
-## [grunt-contrib-handlebars](https://github.com/gruntjs/grunt-contrib-handlebars) (v0.5.11) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-handlebars.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-handlebars)
+## [grunt-contrib-handlebars](https://github.com/gruntjs/grunt-contrib-handlebars) (v0.6.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-handlebars.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-handlebars)
 > Precompile Handlebars templates to JST file.
 
 ## [grunt-contrib-htmlmin](https://github.com/gruntjs/grunt-contrib-htmlmin) (v0.1.3) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-htmlmin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-htmlmin)
 > Minify HTML
 
-## [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin) (v0.3.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-imagemin)
-> Minify PNG and JPEG images
+## [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin) (v0.4.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-imagemin)
+> Minify PNG, JPEG and GIF images
 
 ## [grunt-contrib-jade](https://github.com/gruntjs/grunt-contrib-jade) (v0.8.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-jade.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-jade)
 > Compile Jade templates.
@@ -46,16 +46,16 @@ A listing of each plugin and the current version included in this package is lis
 ## [grunt-contrib-jasmine](https://github.com/gruntjs/grunt-contrib-jasmine) (v0.5.2) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-jasmine.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-jasmine)
 > Run jasmine specs headlessly through PhantomJS.
 
-## [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint) (v0.6.4) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-jshint.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-jshint)
+## [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint) (v0.7.2) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-jshint.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-jshint)
 > Validate files with JSHint.
 
 ## [grunt-contrib-jst](https://github.com/gruntjs/grunt-contrib-jst) (v0.5.1) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-jst.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-jst)
 > Precompile Underscore templates to JST file.
 
-## [grunt-contrib-less](https://github.com/gruntjs/grunt-contrib-less) (v0.7.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-less)
+## [grunt-contrib-less](https://github.com/gruntjs/grunt-contrib-less) (v0.8.3) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-less.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-less)
 > Compile LESS files to CSS.
 
-## [grunt-contrib-nodeunit](https://github.com/gruntjs/grunt-contrib-nodeunit) (v0.2.1) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-nodeunit.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-nodeunit)
+## [grunt-contrib-nodeunit](https://github.com/gruntjs/grunt-contrib-nodeunit) (v0.3.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-nodeunit.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-nodeunit)
 > Run Nodeunit unit tests.
 
 ## [grunt-contrib-qunit](https://github.com/gruntjs/grunt-contrib-qunit) (v0.3.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-qunit.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-qunit)
@@ -64,13 +64,13 @@ A listing of each plugin and the current version included in this package is lis
 ## [grunt-contrib-requirejs](https://github.com/gruntjs/grunt-contrib-requirejs) (v0.4.1) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-requirejs.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-requirejs)
 > Optimize RequireJS projects using r.js.
 
-## [grunt-contrib-sass](https://github.com/gruntjs/grunt-contrib-sass) (v0.5.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-sass.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-sass)
+## [grunt-contrib-sass](https://github.com/gruntjs/grunt-contrib-sass) (v0.6.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-sass.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-sass)
 > Compile Sass to CSS
 
-## [grunt-contrib-stylus](https://github.com/gruntjs/grunt-contrib-stylus) (v0.8.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-stylus.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-stylus)
+## [grunt-contrib-stylus](https://github.com/gruntjs/grunt-contrib-stylus) (v0.11.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-stylus.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-stylus)
 > Compile Stylus files to CSS.
 
-## [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify) (v0.2.4) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-uglify.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-uglify)
+## [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify) (v0.2.7) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-uglify.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-uglify)
 > Minify files with UglifyJS.
 
 ## [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) (v0.5.3) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-watch.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-watch)
