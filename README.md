@@ -2,6 +2,7 @@
 
 > The entire grunt-contrib suite.
 
+We're not accepting any submissions at this point.
 
 
 ## Getting Started
