@@ -41,7 +41,7 @@ A listing of each plugin and the current version included in this package is lis
 #### [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat) (v0.3.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-concat.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-concat) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-concat.png)](https://david-dm.org/gruntjs/grunt-contrib-concat)
 > Concatenate files.
 
-#### [grunt-contrib-connect](https://github.com/gruntjs/grunt-contrib-connect) (v0.5.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-connect) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-connect.png)](https://david-dm.org/gruntjs/grunt-contrib-connect)
+#### [grunt-contrib-connect](https://github.com/gruntjs/grunt-contrib-connect) (v0.6.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-connect.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-connect) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-connect.png)](https://david-dm.org/gruntjs/grunt-contrib-connect)
 > Start a connect web server.
 
 #### [grunt-contrib-copy](https://github.com/gruntjs/grunt-contrib-copy) (v0.4.1) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-copy.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-copy) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-copy.png)](https://david-dm.org/gruntjs/grunt-contrib-copy)
