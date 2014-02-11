@@ -1,8 +1,7 @@
-# grunt-contrib v0.8.0
+# grunt-contrib v0.9.0
 
 > The entire grunt-contrib suite.
 
-We're not accepting any submissions at this point.
 
 
 ## Getting Started
@@ -128,4 +127,4 @@ A listing of each plugin and the current version included in this package is lis
 
 Task submitted by [Tyler Kellen](http://goingslowly.com)
 
-*This file was generated on Sun Dec 15 2013 10:57:24.*
+*This file was generated on Tue Feb 11 2014 15:09:16.*
