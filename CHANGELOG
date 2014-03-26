@@ -1,3 +1,8 @@
+v0.10.0:
+  date: 2014-03-26
+  changes:
+    - Version bumps in several grunt-contrib-* plugins.
+    - Added grunt-contrib-symlink.
 v0.9.0:
   date: 2014-02-11
   changes:
