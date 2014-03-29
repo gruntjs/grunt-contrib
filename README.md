@@ -1,4 +1,4 @@
-# grunt-contrib v0.10.0
+# grunt-contrib v0.10.1
 
 > The entire grunt-contrib suite.
 
@@ -58,7 +58,7 @@ A listing of each plugin and the current version included in this package is lis
 #### [grunt-contrib-htmlmin]() (v0.2.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-htmlmin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-htmlmin) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-htmlmin.png)](https://david-dm.org/gruntjs/grunt-contrib-htmlmin)
 > Minify HTML
 
-#### [grunt-contrib-imagemin]() (v0.6.0-pre) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-imagemin) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-imagemin.png)](https://david-dm.org/gruntjs/grunt-contrib-imagemin)
+#### [grunt-contrib-imagemin]() (v0.6.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-imagemin) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-imagemin.png)](https://david-dm.org/gruntjs/grunt-contrib-imagemin)
 > Minify PNG, JPEG and GIF images
 
 #### [grunt-contrib-jade](https://github.com/gruntjs/grunt-contrib-jade) (v0.11.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-jade.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-jade) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-jade.png)](https://david-dm.org/gruntjs/grunt-contrib-jade)
@@ -107,6 +107,7 @@ A listing of each plugin and the current version included in this package is lis
 
 ## Release History
 
+ * 2014-03-26   v0.10.1   Updated grunt-contrib-handlebars. Updated grunt-contrib-imagemin.
  * 2014-03-26   v0.10.0   Version bumps in several grunt-contrib-* plugins. Added grunt-contrib-symlink.
  * 2014-02-11   v0.9.0   Version bumps in several grunt-contrib-* plugins.
  * 2013-10-15   v0.8.0   Use matchdep and peerDependencies to create collection.
@@ -132,4 +133,4 @@ A listing of each plugin and the current version included in this package is lis
 
 Task submitted by [Tyler Kellen](http://goingslowly.com)
 
-*This file was generated on Wed Mar 26 2014 16:04:01.*
+*This file was generated on Fri Mar 28 2014 22:15:12.*

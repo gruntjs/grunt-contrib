@@ -37,7 +37,7 @@ A listing of each plugin and the current version included in this package is lis
 ## [grunt-contrib-htmlmin]() (v0.2.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-htmlmin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-htmlmin) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-htmlmin.png)](https://david-dm.org/gruntjs/grunt-contrib-htmlmin)
 > Minify HTML
 
-## [grunt-contrib-imagemin]() (v0.4.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-imagemin) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-imagemin.png)](https://david-dm.org/gruntjs/grunt-contrib-imagemin)
+## [grunt-contrib-imagemin]() (v0.6.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-imagemin) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-imagemin.png)](https://david-dm.org/gruntjs/grunt-contrib-imagemin)
 > Minify PNG, JPEG and GIF images
 
 ## [grunt-contrib-jade](https://github.com/gruntjs/grunt-contrib-jade) (v0.11.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-jade.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-jade) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-jade.png)](https://david-dm.org/gruntjs/grunt-contrib-jade)

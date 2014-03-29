@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib",
   "description": "The entire grunt-contrib suite.",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "homepage": "https://github.com/gruntjs/grunt-contrib",
   "author": {
     "name": "Grunt Team",
@@ -45,7 +45,7 @@
     "grunt-contrib-csslint": "~0.2.0",
     "grunt-contrib-handlebars": "~0.7.0",
     "grunt-contrib-htmlmin": "~0.2.0",
-    "grunt-contrib-imagemin": "~0.4.0",
+    "grunt-contrib-imagemin": "~0.6.0",
     "grunt-contrib-jade": "~0.11.0",
     "grunt-contrib-jasmine": "~0.6.0",
     "grunt-contrib-jshint": "~0.9.0",
