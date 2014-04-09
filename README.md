@@ -1,4 +1,4 @@
-# grunt-contrib v0.10.1
+# grunt-contrib v0.10.2
 
 > The entire grunt-contrib suite.
 
@@ -79,7 +79,7 @@ A listing of each plugin and the current version included in this package is lis
 #### [grunt-contrib-nodeunit](https://github.com/gruntjs/grunt-contrib-nodeunit) (v0.3.3) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-nodeunit.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-nodeunit) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-nodeunit.png)](https://david-dm.org/gruntjs/grunt-contrib-nodeunit)
 > Run Nodeunit unit tests.
 
-#### [grunt-contrib-qunit](https://github.com/gruntjs/grunt-contrib-qunit) (v0.5.0-pre) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-qunit.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-qunit) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-qunit.png)](https://david-dm.org/gruntjs/grunt-contrib-qunit)
+#### [grunt-contrib-qunit](https://github.com/gruntjs/grunt-contrib-qunit) (v0.4.0) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-qunit.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-qunit) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-qunit.png)](https://david-dm.org/gruntjs/grunt-contrib-qunit)
 > Run QUnit unit tests in a headless PhantomJS instance.
 
 #### [grunt-contrib-requirejs](https://github.com/gruntjs/grunt-contrib-requirejs) (v0.4.3) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-requirejs.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-requirejs) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-requirejs.png)](https://david-dm.org/gruntjs/grunt-contrib-requirejs)
@@ -133,4 +133,4 @@ A listing of each plugin and the current version included in this package is lis
 
 Task submitted by [Tyler Kellen](http://goingslowly.com)
 
-*This file was generated on Fri Mar 28 2014 22:15:12.*
+*This file was generated on Wed Apr 09 2014 10:47:20.*
