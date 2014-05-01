@@ -28,12 +28,12 @@
   },
   "devDependencies": {
     "grunt": "~0.4.0",
-    "grunt-contrib-internal": "~0.4.3",
-    "request": "~2.27.0",
-    "lodash": "~2.2.1",
-    "when": "~2.5.1"
+    "lodash": "~2.4.1",
+    "request": "~2.34.0",
+    "when": "~3.1.0"
   },
   "peerDependencies": {
+    "grunt": "~0.4.4",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.10.0",
     "grunt-contrib-compass": "~0.7.0",
@@ -41,26 +41,25 @@
     "grunt-contrib-concat": "~0.4.0",
     "grunt-contrib-connect": "~0.7.0",
     "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-cssmin": "~0.9.0",
     "grunt-contrib-csslint": "~0.2.0",
-    "grunt-contrib-handlebars": "~0.7.0",
+    "grunt-contrib-cssmin": "~0.9.0",
+    "grunt-contrib-handlebars": "~0.8.0",
     "grunt-contrib-htmlmin": "~0.2.0",
-    "grunt-contrib-imagemin": "~0.6.0",
+    "grunt-contrib-imagemin": "~0.7.0",
     "grunt-contrib-jade": "~0.11.0",
     "grunt-contrib-jasmine": "~0.6.0",
-    "grunt-contrib-jshint": "~0.9.0",
+    "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-jst": "~0.6.0",
     "grunt-contrib-less": "~0.11.0",
     "grunt-contrib-nodeunit": "~0.3.0",
     "grunt-contrib-qunit": "~0.4.0",
     "grunt-contrib-requirejs": "~0.4.1",
     "grunt-contrib-sass": "~0.7.0",
-    "grunt-contrib-stylus": "~0.13.0",
+    "grunt-contrib-stylus": "~0.15.1",
+    "grunt-contrib-symlink": "~0.3.0",
     "grunt-contrib-uglify": "~0.4.0",
     "grunt-contrib-watch": "~0.6.0",
-    "grunt-contrib-yuidoc": "~0.5.0",
-    "grunt-contrib-symlink": "~0.3.0",
-    "grunt": "~0.4.0"
+    "grunt-contrib-yuidoc": "~0.5.0"
   },
   "keywords": [
     "gruntplugin"
