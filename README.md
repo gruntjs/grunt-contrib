@@ -45,10 +45,10 @@ The above is only meant for quickly being able to try out grunt. For anything el
 #### [grunt-contrib-handlebars](https://github.com/gruntjs/grunt-contrib-handlebars) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-handlebars.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-handlebars) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-handlebars.png)](https://david-dm.org/gruntjs/grunt-contrib-handlebars)
 > Precompile Handlebars templates to JST file.
 
-#### [grunt-contrib-htmlmin]() [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-htmlmin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-htmlmin) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-htmlmin.png)](https://david-dm.org/gruntjs/grunt-contrib-htmlmin)
+#### [grunt-contrib-htmlmin](https://github.com/gruntjs/grunt-contrib-htmlmin) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-htmlmin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-htmlmin) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-htmlmin.png)](https://david-dm.org/gruntjs/grunt-contrib-htmlmin)
 > Minify HTML
 
-#### [grunt-contrib-imagemin]() [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-imagemin) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-imagemin.png)](https://david-dm.org/gruntjs/grunt-contrib-imagemin)
+#### [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-imagemin) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-imagemin.png)](https://david-dm.org/gruntjs/grunt-contrib-imagemin)
 > Minify PNG, JPEG and GIF images
 
 #### [grunt-contrib-jade](https://github.com/gruntjs/grunt-contrib-jade) [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-jade.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-jade) [![Dependency Status](https://david-dm.org/gruntjs/grunt-contrib-jade.png)](https://david-dm.org/gruntjs/grunt-contrib-jade)
